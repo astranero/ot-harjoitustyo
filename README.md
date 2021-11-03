@@ -1,6 +1,6 @@
 ## Otsikko </h2> Otsikko
 *Emphasis*
 _BOLD_
-_*BOLDTALIC*_
-__ISITBOLD__
+*BOLDTALIC*
+_ISITBOLD_
 ***BOLDITALIC***
