@@ -1,6 +1,2 @@
-## Otsikko </h2> Otsikko
-*Emphasis*
-_BOLD_
-*BOLDTALIC*
-_ISITBOLD_
-***BOLDITALIC***
+## Harjoitustyo </h2> Otsikko
+Tässä *testaan* kirjoittaa jotain _tänne_ hienolla tyylillä. 
