@@ -1,0 +1,96 @@
+commit f3833e7d7048b6191cf18ac799e83351bd552c0e
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 11:43:40 2021 +0200
+
+    Muutokset on tehty
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 77a73bf3984121628b0c309b3ef16b03d86999e7
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 11:33:43 2021 +0200
+
+    Hakemisto ja tiedostot lisätty#
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e51ff2005d9628de90fb4a15d1c5f480424d0639
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 11:23:38 2021 +0200
+
+    muutokset tiedostoihin
+
+ kolmas.txt    | 1 +
+ stuff/eka.txt | 7 +------
+ 2 files changed, 2 insertions(+), 6 deletions(-)
+
+commit 05bd2ca0bd575db80598c840ec56231d8cafa58d
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 11:18:20 2021 +0200
+
+    tiedostoja on poistettu ja uudelleennimetty
+
+ stuff/{tiedosto.txt => eka.txt} | 0
+ toinen.txt                      | 1 -
+ 2 files changed, 1 deletion(-)
+
+commit f916d6a3af252d47c49364327c0c11bacc69ef9b
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 11:14:14 2021 +0200
+
+    muutos tiedosto.txt tiedostoon
+
+ stuff/tiedosto.txt | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+commit 4820c49ad3a24330e789f9aa386decee50d432e5
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 11:12:28 2021 +0200
+
+    tiedosto.txt lisätty tekstiä paljon
+
+ stuff/tiedosto.txt | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit 1680a54cd8e12a7cad556384f8d969046ece3397
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 10:57:56 2021 +0200
+
+    tiedosto.txt siirretty stuff-hakemistoon
+
+ tiedosto.txt => stuff/tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 220bbe567309d5a088472cf913224558b7016706
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 10:56:25 2021 +0200
+
+    kolmas.txt ja toinen.txt muutettu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 6345a6df9e5cbce0e6cd71a1272ff279e49bfe17
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 10:45:42 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit d7b33f576511a4a8947eb89cb32800febc417048
+Author: Neroniuoso <esa.taheresa@gmail.com>
+Date:   Wed Nov 3 10:42:31 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
