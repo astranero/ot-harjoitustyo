@@ -23,7 +23,7 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
  - Käyttäjän tunnuksen tulee olla sähköpostimuodossa ja käyttämätön. Ohjelma ilmoittaa kelvottomasta sähköpostista.
 
 - Käyttäjä pystyy lisäämään oman sukupuolensa, pituudensa ja painonsa
- -Ikä saadaan "Date of Birth" muuttujasta
+  - Ikä saadaan "Date of Birth" muuttujasta
  - Painon mukana näkymään tulee myös päivämäärä, jolloin se on lisätty.
 - Käyttäjä voi laskea lepokalorikulutuksensa (BMR, Basal Metabolic Rate)
 - Käyttäjä voi poistaa tilinsä
