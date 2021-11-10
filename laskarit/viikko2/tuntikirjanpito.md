@@ -1,4 +1,4 @@
-# työaikakirjanpito <h1>
+# työaikakirjanpito 
 
 | päivä | aika | mitä tein |
  :----: |:-----|:------|
