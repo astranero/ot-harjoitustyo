@@ -1,12 +1,12 @@
-Vaatimusmäärittely <h1>
+<h1> Vaatimusmäärittely <h1>
 
-Sovelluksen tarkoitus<h2>
+<h2> Sovelluksen tarkoitus <h2>
 
 
 Sovelluksen avulla käyttäjän on mahdollista laskea kalorin liittyviä ominaisuuksia, kuten proteiinin, hiilihydraatin ja rasvan kalorimäärää. Myös lisäämään oman painon sovellukseen ja seuraamaan painon muutosta. 
 Sovellusta voi käyttää vain rekisteröitynyt käyttäjä, joista jokaisen yksityiset tiedot on turvassa toisilta käyttäjiltä. 
 
-Käyttäjät<h2>
+Käyttäjät
 
 Sovellukselle saatetaan lisätä administration käyttäjä, joka pystyy poistamaan epäasialliset postaukset ja tarvittaessa antamaan käyttäjälle postauskiellon.
 
