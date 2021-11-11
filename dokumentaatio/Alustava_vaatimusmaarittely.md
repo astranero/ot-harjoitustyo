@@ -30,8 +30,8 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
 - Käyttäjä voi laskea lepokalorikulutuksensa (BMR, Basal Metabolic Rate)
 - Käyttäjä voi poistaa tilinsä
 - Käyttäjä voi kirjautua ulos tilistä
-
-### Jatkokehitysideoita
+- 
+## Jatkokehitysideoita
 
 - Taulukko, josta näkyy painon kehitys kuvaajana. 
 - BMI laskuri
