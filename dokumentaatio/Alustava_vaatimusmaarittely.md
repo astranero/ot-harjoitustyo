@@ -17,7 +17,7 @@ Ensin ennen kirjautumista käyttäjälle aukeaa ikkuna, jossa näkyvät napit "R
 Rekisteröitymisessä vaaditaan "Email id", "Password", "Rewrite Password" ja "Date of Birth" 
 Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Password". Painamalla "Login" voi kirjautua sisään sovellukseen.
 
-<img="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kuva_1.png" width=760>
+<img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kuva_1.png" width=760>
 ## Perusversion tarjoama toiminnallisuus 
 
 - Käyttäjä pystyy rekisteröitymään ja kirjautumaan sovellukseen
