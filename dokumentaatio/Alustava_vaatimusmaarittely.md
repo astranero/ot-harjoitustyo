@@ -18,6 +18,7 @@ Rekisteröitymisessä vaaditaan "Email id", "Password", "Rewrite Password" ja "D
 Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Password". Painamalla "Login" voi kirjautua sisään sovellukseen.
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kuva_1.png" width=760>
+
 ## Perusversion tarjoama toiminnallisuus 
 
 - Käyttäjä pystyy rekisteröitymään ja kirjautumaan sovellukseen
