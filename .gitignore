@@ -2,4 +2,5 @@
 /laskarit/viikko2/unicafe/__pycache__
 /laskarit/viikko2/unicafe/src/__pycache__/
 /laskarit/viikko2/unicafe/src/tests/__pycache__/
-
+/laskarit/viikko2/unicafe/.coverage
+/laskarit/viikko2/unicafe/htmlcov

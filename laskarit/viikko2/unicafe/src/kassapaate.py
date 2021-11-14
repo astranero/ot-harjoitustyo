@@ -1,4 +1,5 @@
 class Kassapaate:
+    
     def __init__(self):
         self.kassassa_rahaa = 100000
         self.edulliset = 0
