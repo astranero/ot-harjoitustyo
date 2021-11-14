@@ -7,43 +7,30 @@ class TestKassapaate(unittest.TestCase):
     def setUp(self): 
         self.kassa = Kassapaate()
 
-    def test_kassapaate_rahamaara_oikein(self):
+    def test_kassapaate_alkutilanne_oikein(self):
         self.assertEqual(self.kassa.kassassa_rahaa, 100000)
-        
-    def test_kassapaate_maukkaat_lounaat(self):
         self.assertEqual(self.kassa.maukkaat, 0)
-    
-    def test_kassapaate_edulliset_lounaat(self):
         self.assertEqual(self.kassa.edulliset, 0)
         
-    def test_syo_edullisesti_kateisella_kasvattaa_rahaakassassa(self):
+    def test_syominen_kasvattaa_rahaakassassa(self):
         self.kassa.syo_edullisesti_kateisella(240)
-        self.assertEqual(self.kassa.kassassa_rahaa, 100240)
+        self.kassa.syo_maukkaasti_kateisella(400)
+        self.assertEqual(self.kassa.kassassa_rahaa, 100640)
     
-    def test_syo_edullisesti_kateisella_palauttaa_oikean_maaran_rahaa(self):
+    def test_syominen_palauttaa_oikean_maaran_rahaa(self):
         self.assertEqual(self.kassa.syo_edullisesti_kateisella(340), 100)
+        self.assertEqual(self.kassa.syo_maukkaasti_kateisella(540), 140)
     
-    def test_syo_edullisesti_kateisella_kasvattaa_myytyjen_lounaiden_maaran(self):
+    def test_syominen_kasvattaa_myytyjen_lounaiden_maaran(self):
         self.kassa.syo_edullisesti_kateisella(240)
-        self.assertEqual(self.kassa.edulliset, 1)
-        
-    def test_syo_edullisesti_kateisella_riittamaton_maksu_palauttaa(self):
+        self.assertEqual(self.kassa.edulliset, 1)  
+        self.kassa.syo_maukkaasti_kateisella(400)
+        self.assertEqual(self.kassa.maukkaat, 1)
+          
+    def test_syominen_riittamaton_maksu_palauttaa_oikein(self):
         self.assertEqual(self.kassa.syo_edullisesti_kateisella(140), 140)
         self.assertEqual(self.kassa.edulliset, 0)
         self.assertEqual(self.kassa.kassassa_rahaa, 100000)
-    
-    def test_syo_maukkaasti_kateisella_kasvattaa_rahaakassassa(self):
-        self.kassa.syo_maukkaasti_kateisella(400)
-        self.assertEqual(self.kassa.kassassa_rahaa, 100400)
-    
-    def test_syo_maukkaasti_kateisella_palauttaa_oikean_maaran_rahaa(self):
-        self.assertEqual(self.kassa.syo_maukkaasti_kateisella(540), 140)
-    
-    def test_syo_maukkaasti_kateisella_kasvattaa_myytyjen_lounaiden_maaran(self):
-        self.kassa.syo_maukkaasti_kateisella(400)
-        self.assertEqual(self.kassa.maukkaat, 1)
-        
-    def test_syo_maukkaasti_kateisella_riittamaton_maksu_palauttaa(self):
         self.assertEqual(self.kassa.syo_maukkaasti_kateisella(140), 140)
         self.assertEqual(self.kassa.maukkaat, 0)
         self.assertEqual(self.kassa.kassassa_rahaa, 100000)
