@@ -1,13 +1,16 @@
 [tool.poetry]
-name = "ot-harjoitustyo"
+name = "FitApp"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "This apps is for counting different fitness related calculations and tracking weightloss progression."
+authors = ["Kozheen Taher Esa"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
+invoke = "^1.6.0"
 
 [tool.poetry.dev-dependencies]
+coverage = "^6.1.2"
+pytest = "^6.2.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

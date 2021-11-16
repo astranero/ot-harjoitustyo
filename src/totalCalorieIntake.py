@@ -1,12 +1,11 @@
-from intakeCounter import MouthInput
 from calorieCalculator import Calculator
 
 class TotalCalorie:
     
-    def __init__(self):
-        self.protein = MouthInput.get_protein()
-        self.carbohydrates = MouthInput.get_carbohydrates()
-        self.fat = MouthInput.get_fat()
+    def __init__(self, protein, carbohydrates, fat):
+        self.protein = protein
+        self.carbohydrates = carbohydrates
+        self.fat = fat
         self.counter = Calculator()
         
     def totalCalorie(self):
@@ -17,4 +16,3 @@ class TotalCalorie:
         return protein_calories + carbohydrate_calories + fat_calories        
     
 
-print(TotalCalorie.totalCalorie)

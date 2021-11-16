@@ -1,9 +1,10 @@
-
+from totalCalorieIntake import TotalCalorie
 class MouthInput:
     def __init__(self):
         self.__protein = 0
         self.__carbohydrates = 0
         self.__fat = 0
+        self.totalCal = TotalCalorie()
         
     def set_protein(self, protein_gram):
         self.__protein += protein_gram
@@ -29,13 +30,8 @@ class MouthInput:
     def get_fat(self):
         return self.__fat
     
+    def totalCalorieIntake(self):
+        return self.totalCal(self.get_protein, self.get_carbohydrates, self.get_fat)
+    
     def __str__(self):
         return f"Protein: {self.__protein}g | Carbohydrates: {self.__carbohydrates}g | Fat: {self.__fat}g"
-    
-suu = MouthInput()
-suu.set_protein(19)
-suu.set_carbohydrates(120)
-suu.set_fat(12)
-suu.set_protein(12)
-print(suu.get_protein())
-print(suu)
