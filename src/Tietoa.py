@@ -6,4 +6,4 @@ class User:
         '''Tarvitaan siis käyttäjä, joka käyttää sovellusta'''
    
 class Application:
-     
+     int()
