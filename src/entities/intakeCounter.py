@@ -1,10 +1,10 @@
-from totalCalorieIntake import TotalCalorie
+from entities.totalCalorieIntake import TotalCalorie
 class MouthInput:
     def __init__(self):
         self.__protein = 0
         self.__carbohydrates = 0
         self.__fat = 0
-        self.totalCal = TotalCalorie()
+        self.totalCal = TotalCalorie(self.set_protein, self.set_carbohydrates, self.set_fat)
         
     def set_protein(self, protein_gram):
         self.__protein += protein_gram

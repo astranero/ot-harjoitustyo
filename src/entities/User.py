@@ -1,7 +1,4 @@
-
-from intakeCounter import MouthInput
-
-
+from entities.intakeCounter import MouthInput
 class User(MouthInput):
     def __init__(self, name, email):
         self.__name = name

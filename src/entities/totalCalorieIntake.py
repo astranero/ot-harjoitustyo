@@ -1,8 +1,8 @@
-from calorieCalculator import Calculator
+from services.calorieCalculator import Calculator
 
 class TotalCalorie:
     
-    def __init__(self, protein, carbohydrates, fat):
+    def __init__(self, protein=0, carbohydrates=0, fat=0):
         self.protein = protein
         self.carbohydrates = carbohydrates
         self.fat = fat

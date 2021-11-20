@@ -10,3 +10,5 @@
 /tests/__pycache__
 /tests/pytest_cache
 /.coverage
+/src/entities/__pycache__
+/src/services/__pycache__
