@@ -1,4 +1,4 @@
-create_userTable = """CREATE TABLE IF NOT EXISTS Users (
+create_userTableSTR = """CREATE TABLE IF NOT EXISTS Users (
                     id INT PRIMARY KEY,
                     firstName TEXT NOT NULL,
                     surname TEXT NOT NULL,
@@ -10,7 +10,7 @@ create_userTable = """CREATE TABLE IF NOT EXISTS Users (
                     
                     )"""
 
-create_weightTable = """CREATE TABLE IF NOT EXISTS Weights (
+create_weightTableSTR = """CREATE TABLE IF NOT EXISTS Weights (
     
                     id integer PRIMARY KEY,
                     user.id INT,
@@ -22,33 +22,36 @@ create_weightTable = """CREATE TABLE IF NOT EXISTS Weights (
                     
 
 
-create_postTable = """CREATE TABLE IF NOT EXISTS Posts (
+create_postTableSTR = """CREATE TABLE IF NOT EXISTS Posts (
                     id INT PRIMARY KEY,
                     user.id INT,
                     post TEXT,
                     time DATE,
                     FOREING KEY (user.id) REFERENCES Users (id)"""
                     
-def deleteTable(table:str):
+def deleteTableSTR(table:str):
     return "DROP TABLE ?", (table)
                     
-def delete_user(email, password):
+def delete_userSTR(email, password):
     return "DELETE Users WHERE email=? AND password=?", (email, password)
                 
-def check_user(email, password):                
+def check_userSTR(email, password):                
     return "SELECT email FROM Users WHERE email=? AND password=?", (email, password)
 
-def check_email_available(email):
+def check_email_availableSTR(email):
     return "SELECT email FROM Users Where email=?", (email)
 
-def update_password(email, password, newPassword):
+def update_passwordSTR(email, password, newPassword):
     return "UPDATE Users SET password=? WHERE email=? AND password=?", (newPassword, email, password)
 
-def update_weight(email, weight):
+def update_weightSTR(email, weight):
     return "UPDATE Users SET weight=? WHERE email=?", (weight, email)
 
-def update_height(email, height):
+def update_heighSTR(email, height):
     return "UPDATE Users SET height=? WHERE email=?", (height, email)
 
-def delete_user(email, password):
+def delete_userSTR(email, password):
     return "DELETE FROM Users WHERE email=? AND password=?", (email, password)
+
+def create_userSTR(firstName, surname, email, password, dateOfBirth, sex, height):
+    return "INSERT INTO Users (firstName, surname, email, password, dateOfBirth, sex, height) VALUES (?, ?, ?, ?, ?, ?)", (firstName, surname, email, password, dateOfBirth, sex, height)
