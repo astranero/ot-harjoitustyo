@@ -1,4 +1,6 @@
-create_userTableSTR = """CREATE TABLE IF NOT EXISTS Users (
+
+def createUserTableSTR():
+    return """CREATE TABLE IF NOT EXISTS Users (
                     id INT PRIMARY KEY,
                     firstName TEXT NOT NULL,
                     surname TEXT NOT NULL,
@@ -10,7 +12,8 @@ create_userTableSTR = """CREATE TABLE IF NOT EXISTS Users (
                     
                     )"""
 
-create_weightTableSTR = """CREATE TABLE IF NOT EXISTS Weights (
+def createWeightTableSTR():
+    return """CREATE TABLE IF NOT EXISTS Weights (
     
                     id integer PRIMARY KEY,
                     user.id INT,
@@ -22,18 +25,32 @@ create_weightTableSTR = """CREATE TABLE IF NOT EXISTS Weights (
                     
 
 
-create_postTableSTR = """CREATE TABLE IF NOT EXISTS Posts (
+def createPostTableSTR():
+    return """CREATE TABLE IF NOT EXISTS Posts (
                     id INT PRIMARY KEY,
                     user.id INT,
                     post TEXT,
                     time DATE,
                     FOREING KEY (user.id) REFERENCES Users (id)"""
+     
+     
+"""
+Useful SQL commands:
                     
 def deleteTableSTR(table:str):
     return "DROP TABLE ?", (table)
                     
 def delete_userSTR(email, password):
     return "DELETE Users WHERE email=? AND password=?", (email, password)
+
+def delete_all_usersSTR():
+    return "DELETE Users"
+
+def delete_all_weightsSTR():
+    return "DELETE Weights"
+
+def delete_all_postsSTR():
+    return "DELETE Posts"
                 
 def check_userSTR(email, password):                
     return "SELECT email FROM Users WHERE email=? AND password=?", (email, password)
@@ -55,3 +72,4 @@ def delete_userSTR(email, password):
 
 def create_userSTR(firstName, surname, email, password, dateOfBirth, sex, height):
     return "INSERT INTO Users (firstName, surname, email, password, dateOfBirth, sex, height) VALUES (?, ?, ?, ?, ?, ?)", (firstName, surname, email, password, dateOfBirth, sex, height)
+"""
