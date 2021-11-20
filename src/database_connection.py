@@ -5,7 +5,7 @@ conn = None
 try:
     
     directory_name = os.path.dirname(__file__)
-    con = sqlite3.connect(os.path.join(directory_name,"data", "database.sqlite"))
+    con = sqlite3.connect(os.path.join(directory_name,"data", "database.db"))
     con.row_factory = sqlite3.Row
     
   

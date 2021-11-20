@@ -1,11 +1,32 @@
-from entities.intakeCounter import MouthInput
-class User(MouthInput):
-    def __init__(self, name, email):
-        self.__name = name
+class User:
+    def __init__(self, first_name, surname, email, password, dateOfBirth, sex, weight=0, height=0):
+        self.__first_name = first_name
+        self.__surname = surname
         self.__email = email
-        self.__mouth = MouthInput()
+        self.__password = password
+        self.__dateOfBirth = dateOfBirth
+        self.__sex = sex
+        self.__weight = weight
+        self.__height = height
+    
+    def getPassword(self):
+        return self.__password
+    
+    def setpassword(self, newPassword):
+        self.__password = newPassword
+    
+    def getSex(self):
+        return self.__sex
+    
+    def getWeight(self):
+        return self.__weight
+    
+    def setWeight(self, newWeight):
+        self.__weight = newWeight
 
-user = User("Pekka","peke@Gamil")
-user.set_protein(10)
-user.set_protein(35)
-print((user.get_protein))
+    def getHeight(self):
+        return self.__height
+    
+    def setHeight(self, newHeight):
+        self.__height = newHeight
+

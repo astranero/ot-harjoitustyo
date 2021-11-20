@@ -12,3 +12,4 @@
 /.coverage
 /src/entities/__pycache__
 /src/services/__pycache__
+/src/info.txt
