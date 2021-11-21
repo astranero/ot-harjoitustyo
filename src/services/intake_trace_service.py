@@ -1,9 +1,10 @@
+import src.services.calculator_service as calculator
 class Intake:
     def __init__(self):
         self.__protein = 0
         self.__carbohydrates = 0
         self.__fat = 0
-        self.totalCal = self.totalCalorieIntake()
+        self.counter = calculator.Calculator()
         
     def set_protein(self, protein_gram):
         self.__protein += protein_gram
@@ -36,5 +37,5 @@ class Intake:
         
         return protein_calories + carbohydrate_calories + fat_calories        
     
-    def __str__(self):
+    def __str__ (self):
         return f"Protein: {self.__protein}g | Carbohydrates: {self.__carbohydrates}g | Fat: {self.__fat}g"
