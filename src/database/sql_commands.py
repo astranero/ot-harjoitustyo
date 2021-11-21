@@ -9,17 +9,16 @@ def createUserTableSTR():
                     dateOfBirth date NOT NULL,
                     sex NOT NULL,
                     height REAL
-                    
                     )"""
 
 def createWeightTableSTR():
     return """CREATE TABLE IF NOT EXISTS Weights (
     
                     id integer PRIMARY KEY,
-                    user.id INT,
+                    user_id INT,
                     weight REAL,
-                    time DATE
-                    FOREING KEY (user.id) REFERENCES Users (id)
+                    time DATE,
+                    FOREIGN KEY (user_id) REFERENCES Users (id)
     
                     )"""
                     
@@ -28,8 +27,9 @@ def createWeightTableSTR():
 def createPostTableSTR():
     return """CREATE TABLE IF NOT EXISTS Posts (
                     id INT PRIMARY KEY,
-                    user.id INT,
+                    user_id INT,
                     post TEXT,
+                    image DATA,
                     time DATE,
-                    FOREING KEY (user.id) REFERENCES Users (id)"""
+                    FOREIGN KEY (user_id) REFERENCES Users (id))"""
      

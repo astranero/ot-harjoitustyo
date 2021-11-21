@@ -1,22 +1,22 @@
 import database_connection as connection
-import data.sql_commands as command
+import database.sql_commands as command
 
-con = connection.return_db_connection()
-cur = con.cursor()
-
-def database_init():
-    cur.execute("DROP TABLE Users")
-    cur.execute("DROP TABLE Weights")
-    cur.execute("DROP TABLE Posts")
+con = connection.return_connection()
+def database_DropIt(con):
+    cur = con.cursor()
+    cur.execute("DROP TABLE IF EXISTS Users")
+    cur.execute("DROP TABLE IF EXISTS Weights")
+    cur.execute("DROP TABLE IF EXISTS Posts")
+    con.commit()
     
-def createTables(con):
-    
+def database_createTables(con):
+    cur = con.cursor()
     cur.execute(command.createUserTableSTR())
     cur.execute(command.createWeightTableSTR())
     cur.execute(command.createPostTableSTR())
     con.commit()
 
 
-if __name__ == "__main__":
-    createTables()
-    database_init()
+def database_init():
+    database_DropIt(con)
+    database_createTables(con)
