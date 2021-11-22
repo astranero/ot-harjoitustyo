@@ -27,16 +27,16 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 ## Komentorivitoiminnot
 
 ### Ohjelman suorittaminen
-    Ohjelman voi suorittaa komennolla:
+Ohjelman voi suorittaa komennolla:
     
-    ```Poetry run invoke start``` 
+    Poetry run invoke start 
 
 ### Testaus
 Ohjelman testit suoritetaan komennolla:
      
-    ```Poetry run coverage test```
+    Poetry run coverage test
 
 ### Testikattavuus
 Ohjelman testikattavuusraportti generoidaan htmlcov-hakemistoon komennolla:
 
-    ```Poetry run invoke coverage-report```
+    Poetry run invoke coverage-report
