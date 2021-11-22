@@ -24,6 +24,8 @@ class Calculator:
         
         self.fat_calories = self.__fat_calorie_per_gram * int(fat_grams)
         return self.fat_calories
+        self.fat_calories = self.__fat_calorie_per_gram * int(fat_grams)
+        return self.fat_calories
     
     def lean_body_mass_calculator(self, knowing_body_fat_percentage: bool,body_fat_percent, weight_kg, height_cm , sex: str):
         if knowing_body_fat_percentage == True:
