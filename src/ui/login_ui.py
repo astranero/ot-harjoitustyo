@@ -26,7 +26,7 @@ class LoginScreen:
         self._frame.destroy()
 
     def _popUpWin(self,message):
-        messagebox.showinfo("Notification",message)
+        messagebox.showinfo("Notification",message, fg="#fcc002", bg="#afeeee")
         
     def _user_handling(self, email, password):
         error_bol = True
