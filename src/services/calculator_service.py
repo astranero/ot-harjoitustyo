@@ -64,6 +64,3 @@ class Calculator:
         total_daily_energy_expenditure = activity_multiplier * self.basal_metabolic_rate_calculator(weight_kg=120, height_cm=195, sex="male")
         return total_daily_energy_expenditure
     
-laskin = Calculator()
-print(laskin.fat_calorie_count(140))
-print(laskin.total_daily_energy_expenditure("Medium"))

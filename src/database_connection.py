@@ -4,7 +4,7 @@ import os
 conn = None
 try:    
     directory_name = os.path.dirname(__file__)    
-    conn = sqlite3.connect(os.path.join(directory_name,"database", "database.db"))    
+    conn = sqlite3.connect(os.path.join(directory_name,"database", "Softfit.db"))    
     conn.row_factory = sqlite3.Row    
 
 except sqlite3.Error as e:    
