@@ -16,12 +16,15 @@ class LoginScreen:
         self._initialize()
     
     def pack(self):
-        self._frame.pack(fill="x")
+        self._frame.pack(fill=constants.X)
 
     def destroy(self):
         self._frame.destroy()
         
+    def _user_handling(self):
+        pass
     def _initialize(self):
+        
         self._frame = tk.Frame(master=self._root)
         self._error_var = tk.StringVar(master=self._frame)
         self._error_lbl = tk.Label(master=self._frame, textvariable=self._error_var, fg="#fcc002", bg="#afeeee")
@@ -53,7 +56,7 @@ class LoginScreen:
 
         btn_register = tk.Button (
             master=self._frame, 
-            text="Register", 
+            text="Create User", 
             command=self._show_register_view)
         
         btn_register.grid(row=4, column=1, sticky="nsew")

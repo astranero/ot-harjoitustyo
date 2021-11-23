@@ -7,6 +7,7 @@ authors = ["Kozheen Taher Esa"]
 [tool.poetry.dependencies]
 python = "^3.8"
 invoke = "^1.6.0"
+tkcalendar = "^1.6.1"
 
 [tool.poetry.dev-dependencies]
 coverage = "^6.1.2"
