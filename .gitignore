@@ -15,3 +15,8 @@
 /src/info.txt
 /src/__pycache__
 src/data/__pycache__
+/src/.coverage
+/src/ui/__pycache__
+/src/tests/__pycache__
+/src/tests/.coverage
+/src/database/__pycache__
