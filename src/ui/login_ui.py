@@ -26,20 +26,19 @@ class LoginScreen:
         self._frame.destroy()
 
     def _popUpWin(self,message):
-        messagebox.showinfo("Notification",message, fg="#fcc002", bg="#afeeee")
+        messagebox.showinfo("Notification",message)
         
     def _user_handling(self, email, password):
-        error_bol = True
         try:
             email_value = self._cur._check_Email(email, password)
             password_value = self._cur._check_Password(email, password)
-            if email_value !=None and password_value != None:
-                self._popUpWin("You don't have permission to login yet!")
+            if email_value[0] == email and password_value[0] == password:
+                self._popUpWin("You have logged in!")
+            else:
+                self._popUpWin("You haven't logged in!")
         except:
-            error_bol = False
-            self._popUpWin(f"Something went wrong: {e}")
-        finally:
-            return error_bol
+            self._popUpWin(f"Something went wrong!")
+
         
     def _initialize(self):
         

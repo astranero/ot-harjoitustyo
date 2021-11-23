@@ -16,10 +16,10 @@ class DatabaseTools:
        self.connection.commit()
                   
     def _check_Email(self,email, password):                
-        return self.cur.execute("SELECT email FROM Users WHERE email=? AND password=?", (email, password)).fetchone
+        return self.cur.execute("SELECT email FROM Users WHERE email=? AND password=?", (email, password)).fetchone()
     
     def _check_Password(self, email, password):
-        return self.cur.execute("SELECT password FROM Users WHERE email=? AND password=?", (email, password)).fetchone
+        return self.cur.execute("SELECT password FROM Users WHERE email=? AND password=?", (email, password)).fetchone()
     
     def _check_email_availableSTR(self, email):
         return self.cur.execute("SELECT email FROM Users Where email=?",(email,)).fetchone()
