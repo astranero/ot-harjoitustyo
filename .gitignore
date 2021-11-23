@@ -20,3 +20,4 @@ src/data/__pycache__
 /src/tests/__pycache__
 /src/tests/.coverage
 /src/database/__pycache__
+/src/database/.sqlite3.exe

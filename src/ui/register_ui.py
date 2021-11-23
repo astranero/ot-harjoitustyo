@@ -142,23 +142,26 @@ class Register:
         error = True
         letters = string.ascii_letters
         for i in name:
-            if i not in letters:
+            if (i not in letters):
                 error = False
+        if name == None or (not name):
+            error = False
         if error == False:
-            self._errorWindow("Name should be in letters only.")
-        return error
+            self._errorWindow("Name fields should contain letters.")
+        if error == True:
+            return error
     
     def _emailCheck(self, email):
         error = False
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         if (re.fullmatch(regex, email))!=None:
             try:
-                email_available = self._datatools.check_email_availableSTR(email)
+                email_available = self._datatools._check_email_availableSTR(email)
                 if email_available != None:
                     self._errorWindow("Email is already in use!")
                 error=True
             except Exception as e:
-                self._errorWindow("Error: "+ e)
+                self._errorWindow(f"Error: {e}")
         else:
             self._errorWindow("Incorrect Email Address.")
         return error
@@ -177,14 +180,29 @@ class Register:
     
     def _checkHeightIsDigits(self, height):
         error=True
-        dig = string.digits
+        dig = string.digits + "."
         for i in height:
-            if i not in (dig or ","):
+            if i not in (dig):
                 error = False
+
         if error==False:   
-            self._errorWindow("Height in digits and centimeters, please.")
+            self._errorWindow("Height in digits, dots and centimeters, please.")
+        
+        try:
+            new_heigh = int(height)
+            if new_heigh < 0 and new_heigh > 300:
+                error = False
+        except:
+            self._errorWindow(Exception) 
+        
+        try:    
+            new_heigh = float(height)
+            if new_heigh < 0.0 and new_heigh > 300.0: 
+                error = False
+        except:
+            self._errorWindow(Exception) 
+        
         return error
-            
     
     def _savedata(self):
         
@@ -199,12 +217,12 @@ class Register:
         
         
         try:    
-            if self._emailCheck(email):
-                if self._nameCheck(name):
-                    if self._nameCheck(surname):
+            if self._nameCheck(name):
+                if self._nameCheck(surname):
+                    if self._emailCheck(email):
                         if self._passwordCheck(password1, password2):
                             if self._checkHeightIsDigits(height):
-                                self._datatools.create_userSTR(name, surname, email, password1, birthdate, gender, height)
+                                self._datatools._create_userSTR(name, surname, email, password1, birthdate, gender, height)
         except Exception as e:
             self._errorWindow(f"Error: {e}")
        

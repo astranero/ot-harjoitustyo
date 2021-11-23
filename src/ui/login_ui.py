@@ -1,10 +1,14 @@
+from sqlite3.dbapi2 import Error
 import tkinter as tk
-from tkinter import constants
+from tkinter import *
+from tkinter import constants, messagebox
+import database.database_tools as tools
 
 
 class LoginScreen:
     
     def __init__(self, root, show_register_view):
+        self._cur = tools.DatabaseTools()
         self._root = root
         self._error_var = None
         self._error_lbl = None
@@ -20,16 +24,26 @@ class LoginScreen:
 
     def destroy(self):
         self._frame.destroy()
+
+    def _popUpWin(self,message):
+        messagebox.showinfo("Notification",message)
         
-    def _user_handling(self):
-        pass
+    def _user_handling(self, email, password):
+        error_bol = True
+        try:
+            email_value = self._cur._check_Email(email, password)
+            password_value = self._cur._check_Password(email, password)
+            if email_value !=None and password_value != None:
+                self._popUpWin("You don't have permission to login yet!")
+        except:
+            error_bol = False
+            self._popUpWin(f"Something went wrong: {e}")
+        finally:
+            return error_bol
+        
     def _initialize(self):
         
         self._frame = tk.Frame(master=self._root)
-        self._error_var = tk.StringVar(master=self._frame)
-        self._error_lbl = tk.Label(master=self._frame, textvariable=self._error_var, fg="#fcc002", bg="#afeeee")
-        self._error_lbl.grid(padx=5, pady=5)
-    
         heading_lbl = tk.Label(self._frame,text="Login Screen")
         heading_lbl.grid(row=1, column=1, sticky="nsew")
 
@@ -44,7 +58,7 @@ class LoginScreen:
         password_lbl.grid(row=3, column=0, sticky="nsew")
 
         self._password_entry = tk.StringVar(self._frame)
-        password_ent = tk.Entry(self._frame, textvariable=self._password_entry)
+        password_ent = tk.Entry(self._frame, textvariable=self._password_entry, show="*")
         password_ent.grid(row=3, column=1, sticky="nsew")
     
         btn_login = tk.Button(
@@ -63,4 +77,6 @@ class LoginScreen:
 
         
     def _login_start(self):
-        pass
+        email = self._email_entry.get()
+        password = self._password_entry.get()
+        self._user_handling(email, password)
