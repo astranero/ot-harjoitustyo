@@ -2,7 +2,7 @@
 # SoftFit-Assist
 
 
-<img src="hhttps://github.com/Neroniuoso/ot-harjoitustyo/blob/Head/dokumentaatio/kuvat/Fit-man.png"> 
+<img src="hhttps://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Fit-man.png"> 
 <a href="https://unsplash.com/photos/9dzWZQWZMdE "> Source of the picture</a>  
 
 Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä asioita, kuten Basal Metabolic rate eli lepoaikaista energian kulutusta ja TDEE eli päivän aikana kaikkiaan kulutettua energiamäärää, jotka lasketaan käyttäen Katch-Mcardlen laskukaavoja. Ennen sovelluksen käyttämistä on rekisteröidyttävä, sillä käyttäjän tietojen tallentamiseen tarvitaan tunnusta. Tunnuksen avulla voi myöhemmin kirjautua uudelleen takaisin ja saada näkyville aiemmin tallennetut tiedot. 
@@ -10,9 +10,9 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 
 ## Dokumentaatio
 
-[vaatimusmäärittely](https://github.com/Neroniuoso/ot-harjoitustyo/blob/Head/dokumentaatio/Alustava_vaatimusmaarittely.md)
+[vaatimusmäärittely](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/Alustava_vaatimusmaarittely.md)
 
-[työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/Head/dokumentaatio/tuntikirjanpito.md)
+[työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Asennus
 
