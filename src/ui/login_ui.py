@@ -7,7 +7,7 @@ import database.database_tools as tools
 
 class LoginScreen:
     
-    def __init__(self, root, show_register_view):
+    def __init__(self, root, show_register_view, show_user_view):
         self._cur = tools.DatabaseTools()
         self._root = root
         self._error_var = None
@@ -15,6 +15,7 @@ class LoginScreen:
         self._email_entry = None
         self._password_entry = None
         self._show_register_view = show_register_view
+        self._show_user_view = show_user_view
         self._frame = None
         
         self._initialize()
@@ -32,12 +33,15 @@ class LoginScreen:
         try:
             email_value = self._cur._check_Email(email, password)
             password_value = self._cur._check_Password(email, password)
-            if email_value[0] == email and password_value[0] == password:
-                self._popUpWin("You have logged in!")
+            
+            if email_value != None and password_value != None:
+                if email_value[0] == email and password_value[0] == password:
+                    self._show_user_view(email, password)
             else:
-                self._popUpWin("You haven't logged in!")
-        except:
-            self._popUpWin(f"Something went wrong!")
+                self._popUpWin("Username or password is incorrect.")
+              
+        except Exception as e:
+            self._popUpWin(f"Something went wrong: {e}!")
 
         
     def _initialize(self):
@@ -76,6 +80,7 @@ class LoginScreen:
 
         
     def _login_start(self):
+        
         email = self._email_entry.get()
         password = self._password_entry.get()
         self._user_handling(email, password)

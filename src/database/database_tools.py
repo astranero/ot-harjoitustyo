@@ -4,16 +4,6 @@ class DatabaseTools:
     def __init__(self):
         self.cur = conn.return_connection().cursor()
         self.connection = conn.return_connection()
-        
-    def _delete_userSTR(self, email, password):
-        self.cur.execute("DELETE Users WHERE email=? AND password=?", (email, password))
-        self.connection.commit()
-
-    def _delete_all(self):
-       self.cur.execute("DELETE Users")
-       self.cur.execute("DELETE Posts")
-       self.cur.execute("DELETE Weights")
-       self.connection.commit()
                   
     def _check_Email(self,email, password):                
         return self.cur.execute("SELECT email FROM Users WHERE email=? AND password=?", (email, password)).fetchone()
@@ -26,10 +16,6 @@ class DatabaseTools:
 
     def _update_passwordSTR(self, email, password, newPassword):
         self.cur.execute("UPDATE Users SET password=? WHERE email=? AND password=?", (newPassword, email, password))
-        self.connection.commit()
-
-    def _update_weightSTR(self, email, weight):
-        self.cur.execute("UPDATE Users SET weight=? WHERE email=?", (weight, email))
         self.connection.commit()
         
     def _update_heighSTR(self, email, height):

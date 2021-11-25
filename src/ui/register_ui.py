@@ -37,9 +37,10 @@ class Register:
         
     def _destroyDateScreen(self):
         self._new_win.destroy()
+        self._date_btn["state"] = "active"
         
     def _fetchDate(self):
-        
+        self._date_btn["state"] = "disabled"
         date_of_birth_lbl = tk.Label(self._frame,text="Date of Birth")
         date_of_birth_lbl.grid(row=8, column=0, sticky="nsew")
         
@@ -50,8 +51,8 @@ class Register:
         self._cal.grid(row=0, column=0)
         
         
-        tk.Button(self._new_win, text="Choose", command=self._getDate).grid(row=1, column=0)
-        tk.Button(self._new_win, text="Exit", command=self._destroyDateScreen).grid(row=1, column=1)
+        self._chooseBtn = tk.Button(self._new_win, text="Choose", command=self._getDate).grid(row=1, column=0)
+        self._exitBtn = tk.Button(self._new_win, text="Exit", command=self._destroyDateScreen).grid(row=1, column=1)
         
     def _fetchName(self):
         name_lbl = tk.Label(self._frame,text="First name")
@@ -126,25 +127,25 @@ class Register:
         self._fetchGender()
         self._fetchHeight()
         
-        date_btn = tk.Button(self._frame, text="Choose Date of Birth", command=self._fetchDate)
-        date_btn.grid(row=8, column=1)
+        self._date_btn = tk.Button(self._frame, text="Choose Date of Birth", command=self._fetchDate)
+        self._date_btn.grid(row=8, column=1)
         
-        login_btn = tk.Button(self._frame, text="Change to login Screen", command = self._loginScreen)
-        login_btn.grid(row=12, column=0)
-        register_btn = tk.Button(self._frame, text="Register", command=self._savedata)
-        register_btn.grid(row=12, column=1)
+        _login_btn = tk.Button(self._frame, text="Change to login Screen", command =self._loginScreen)
+        _login_btn.grid(row=12, column=0)
+        _register_btn = tk.Button(self._frame, text="Register", command=self._savedata)
+        _register_btn.grid(row=12, column=1)
   
     
     def _errorWindow(self, message):
-        messagebox.showinfo("Error",message)
+        messagebox.showinfo("Error:", message)
         
     def _nameCheck(self, name):  
         error = True
-        letters = string.ascii_letters
+        letters = string.ascii_letters + " " 
         for i in name:
             if (i not in letters):
                 error = False
-        if name == None or (not name):
+        if name == None:
             error = False
         if error == False:
             self._errorWindow("Name fields should contain letters.")
@@ -192,15 +193,15 @@ class Register:
             new_heigh = int(height)
             if new_heigh < 0 and new_heigh > 300:
                 error = False
-        except:
-            self._errorWindow(Exception) 
+        except Exception as e:
+            pass 
         
         try:    
             new_heigh = float(height)
             if new_heigh < 0.0 and new_heigh > 300.0: 
                 error = False
-        except:
-            self._errorWindow(Exception) 
+        except Exception as e:
+            pass 
         
         return error
     
@@ -208,11 +209,11 @@ class Register:
         
         name = self._name_entry.get()
         surname = self._surname_entry.get()
-        email = self._email_entry.get()
+        email = self._email_entry.get().lower()
         password1 = self._password1_entry.get()
         password2 = self._password2_entry.get()
         birthdate = self._birthdate_entry
-        gender = self._gender_var.get()
+        gender = self._gender_var.get().lower()
         height = self._height_lbl_entry.get()
         
         
@@ -224,7 +225,7 @@ class Register:
                             if self._checkHeightIsDigits(height):
                                 self._datatools._create_userSTR(name, surname, email, password1, birthdate, gender, height)
         except Exception as e:
-            self._errorWindow(f"Error: {e}")
+            self._errorWindow(f"There's something wrong with registration, Error: {e}")
        
             
         
