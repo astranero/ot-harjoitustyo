@@ -96,7 +96,7 @@ class User:
     def _passwordFinalization(self):
         self._password1 = self._passwordVar1.get()
         self._password2 = self._passwordVar2.get()
-        print(f"a:{self._password1} , {self._password}")
+        
         try:
             if self._password1 == self._password2:
                 self._DataTools._update_passwordSTR(self._email, self._password,self._password2)
