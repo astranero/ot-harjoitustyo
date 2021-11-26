@@ -8,3 +8,4 @@
 | 20.11. | 5    | Tkinterin ja sqliten harjoittelua
 | 21.11. | 2    | Tein joitakin hyödyllisiä sql koodipätkiä ja myös yhden testin
 | 23.11. | 9    | Tkinterin ja tkcalendar modulin avulla tein UI:n
+| 25.11. | 4    | Loin User interface
