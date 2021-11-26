@@ -2,7 +2,7 @@ from tkinter import  Frame, StringVar, Toplevel, constants, Button, Label, Entry
 from services.calculator_service import *
 from tkinter.messagebox import askyesno, showinfo
 from database.database_tools import DatabaseTools
-from services.user_handle_service import UserService
+from services.user_service import UserService
 
 class User:
     def __init__(self, root, email, password, login_view):
