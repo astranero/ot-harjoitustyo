@@ -9,24 +9,24 @@ class User:
         self.__weight = weight
         self.__height = height
     
-    def getPassword(self):
+    def _getPassword(self):
         return self.__password
     
-    def setpassword(self, newPassword):
+    def _setpassword(self, newPassword):
         self.__password = newPassword
     
-    def getSex(self):
+    def _getSex(self):
         return self.__sex
     
-    def getWeight(self):
+    def _getWeight(self):
         return self.__weight
     
-    def setWeight(self, newWeight):
+    def _setWeight(self, newWeight):
         self.__weight = newWeight
 
-    def getHeight(self):
+    def _getHeight(self):
         return self.__height
     
-    def setHeight(self, newHeight):
+    def _setHeight(self, newHeight):
         self.__height = newHeight
 

@@ -1,14 +1,14 @@
 from calendar import month
 import tkinter as tk
-from tkinter import Tk, constants, messagebox
+from tkinter import Toplevel, constants, messagebox
 import database.database_tools as tools
 from tkcalendar import *
-import string
-import re
+import services.user_handle_service as usertool
 
 class Register:
     
     def __init__(self, root, show_login_view):
+        self._userServ = usertool.UserService()
         self._root = root
         self._loginScreen = show_login_view
         self._datatools = tools.DatabaseTools()
@@ -44,7 +44,7 @@ class Register:
         date_of_birth_lbl = tk.Label(self._frame,text="Date of Birth")
         date_of_birth_lbl.grid(row=8, column=0, sticky="nsew")
         
-        self._new_win = tk.Tk()
+        self._new_win = Toplevel()
         self._new_win.title("Date of Birth")
         self._new_win.geometry("400x400")
         self._cal = Calendar(self._new_win, selectmode="day", date_patern="dd-mm-y")
@@ -138,75 +138,8 @@ class Register:
     
     def _errorWindow(self, message):
         messagebox.showinfo("Error:", message)
-        
-    def _nameCheck(self, name):  
-        error = True
-        letters = string.ascii_letters + " " 
-        for i in name:
-            if (i not in letters):
-                error = False
-        if name == None:
-            error = False
-        if error == False:
-            self._errorWindow("Name fields should contain letters.")
-        if error == True:
-            return error
-    
-    def _emailCheck(self, email):
-        error = False
-        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-        if (re.fullmatch(regex, email))!=None:
-            try:
-                email_available = self._datatools._check_email_availableSTR(email)
-                if email_available != None:
-                    self._errorWindow("Email is already in use!")
-                error=True
-            except Exception as e:
-                self._errorWindow(f"Error: {e}")
-        else:
-            self._errorWindow("Incorrect Email Address.")
-        return error
-        
-    def _passwordCheck(self,password1, password2):
-        error=False
-        if (password1 == password2 == ""):
-            self._errorWindow("Password can't be null.")
-            return error
-        if password1 == password2 and not (password1 == password2 == ""):
-            error=True
-        else:
-            self._errorWindow("Passwords don't match!")    
-        return error
-            
-    
-    def _checkHeightIsDigits(self, height):
-        error=True
-        dig = string.digits + "."
-        for i in height:
-            if i not in (dig):
-                error = False
-
-        if error==False:   
-            self._errorWindow("Height in digits, dots and centimeters, please.")
-        
-        try:
-            new_heigh = int(height)
-            if new_heigh < 0 and new_heigh > 300:
-                error = False
-        except Exception as e:
-            pass 
-        
-        try:    
-            new_heigh = float(height)
-            if new_heigh < 0.0 and new_heigh > 300.0: 
-                error = False
-        except Exception as e:
-            pass 
-        
-        return error
     
     def _savedata(self):
-        
         name = self._name_entry.get()
         surname = self._surname_entry.get()
         email = self._email_entry.get().lower()
@@ -215,17 +148,19 @@ class Register:
         birthdate = self._birthdate_entry
         gender = self._gender_var.get().lower()
         height = self._height_lbl_entry.get()
-        
-        
+  
         try:    
-            if self._nameCheck(name):
-                if self._nameCheck(surname):
-                    if self._emailCheck(email):
-                        if self._passwordCheck(password1, password2):
-                            if self._checkHeightIsDigits(height):
+            if self._userServ._nameCheck(name):
+                if self._userServ._nameCheck(surname):
+                    if self._userServ._emailCheck(email):
+                        if self._userServ._passwordCheck(password1, password2):
+                            if self._userServ._checkHeightIsDigits(height):
                                 self._datatools._create_userSTR(name, surname, email, password1, birthdate, gender, height)
+                                messagebox.showinfo("Hurray!", "Registration Succesful!")
+                                self._loginScreen()
+                                
         except Exception as e:
             self._errorWindow(f"There's something wrong with registration, Error: {e}")
-       
+        
             
         

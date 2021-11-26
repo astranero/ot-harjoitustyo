@@ -80,7 +80,6 @@ class LoginScreen:
 
         
     def _login_start(self):
-        
         email = self._email_entry.get()
         password = self._password_entry.get()
         self._user_handling(email, password)
