@@ -2,7 +2,7 @@ from sqlite3.dbapi2 import Error
 import tkinter as tk
 from tkinter import *
 from tkinter import constants, messagebox
-import database.database_tools as tools
+import repositories.user_repository as tools
 
 
 class LoginScreen:

@@ -1,5 +1,5 @@
 from tkinter.messagebox import askyesno, showinfo
-from database.database_tools import DatabaseTools
+from repositories.user_repository import DatabaseTools
 import string
 import re
 
@@ -83,7 +83,7 @@ class UserService:
                 error = False
 
         if error==False or new_height==None or new_height=="":   
-            self._errorWindow("Please insert height as centimeters in digits and dots, please.")
+            self._errorWindow("Please insert height as c    entimeters in digits and dots, please.")
             return False
         try:
             new_heigh = int(height)
@@ -100,3 +100,4 @@ class UserService:
             pass 
         
         return error
+        

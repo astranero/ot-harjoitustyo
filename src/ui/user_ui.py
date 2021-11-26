@@ -1,7 +1,7 @@
 from tkinter import  Frame, StringVar, Toplevel, constants, Button, Label, Entry, Tk
 from services.calculator_service import *
 from tkinter.messagebox import askyesno, showinfo
-from database.database_tools import DatabaseTools
+from repositories.user_repository import DatabaseTools
 from services.user_service import UserService
 
 class User:
