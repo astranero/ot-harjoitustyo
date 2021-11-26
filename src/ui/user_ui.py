@@ -72,6 +72,10 @@ class User:
         self._passwordHandling()
         self._trackHandling()
         self._logOutHandling()
+
+    def _cancelPasswordChange(self):
+        self._win.destroy()
+        self._passwordButton["state"] = "active"    
     
     def _passwordChange(self):
         self._passwordButton["state"] = "disabled"
@@ -92,16 +96,23 @@ class User:
             self._passwordEntry2.grid(row=2, column=2)
 
             self._passDoneBtn = Button(self._win, text="Done", command=self._passwordFinalization).grid(row=3, column=1)
+            self._passCancelBtn = Button(self._win, text="Cancel", command=self._cancelPasswordChange).grid(row=3, column=2)
+
+        else:
+            self._passwordButton["state"] = "active"
 
     def _passwordFinalization(self):
         self._password1 = self._passwordVar1.get()
         self._password2 = self._passwordVar2.get()
         
         try:
-            if self._password1 == self._password2:
+            if self._password1 == self._password2 and self._password1 != "":
                 self._DataTools._update_passwordSTR(self._email, self._password,self._password2)
                 showinfo("Done", "Password has been changed!")
-                
+            else:
+                showinfo("Password can't be null.")
+                self._passwordFinalization()
+
         except Exception as e:
             showinfo(f"Error", {e})    
         self._win.destroy()    
