@@ -9,3 +9,4 @@
 | 21.11. | 2    | Tein joitakin hyödyllisiä sql koodipätkiä ja myös yhden testin
 | 23.11. | 9    | Tkinterin ja tkcalendar modulin avulla tein UI:n
 | 25.11. | 4    | Loin User interface
+| 27.11. | 6    | Plint-käsittelyä, UI:n ja logiikan erittelyä ja virheiden korjaamista plintin avulla.
