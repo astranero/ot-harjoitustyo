@@ -1,5 +1,5 @@
 
-def createUserTableSTR():
+def create_user_table():
     return """CREATE TABLE IF NOT EXISTS Users (
                     id INT PRIMARY KEY,
                     firstName TEXT NOT NULL,
@@ -11,20 +11,18 @@ def createUserTableSTR():
                     height REAL
                     )"""
 
-def createWeightTableSTR():
+
+def create_weight_table():
     return """CREATE TABLE IF NOT EXISTS Weights (
-    
                     id integer PRIMARY KEY,
                     user_id INT,
                     weight REAL,
                     time DATE,
-                    FOREIGN KEY (user_id) REFERENCES Users (id)
-    
+                    FOREIGN KEY (user_id) REFERENCES Users (id) 
                     )"""
-                    
 
 
-def createPostTableSTR():
+def create_post_table():
     return """CREATE TABLE IF NOT EXISTS Posts (
                     id INT PRIMARY KEY,
                     user_id INT,
@@ -32,4 +30,3 @@ def createPostTableSTR():
                     image DATA,
                     time DATE,
                     FOREIGN KEY (user_id) REFERENCES Users (id))"""
-     
