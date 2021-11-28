@@ -10,3 +10,4 @@
 | 23.11. | 9    | Tkinterin ja tkcalendar modulin avulla tein UI:n
 | 25.11. | 4    | Loin User interface
 | 27.11. | 6    | Plint-käsittelyä, UI:n ja logiikan erittelyä ja virheiden korjaamista plintin avulla.
+| 28.11. | 3    | Lisäsin toiminnallisuus painon lisäämiseen ja poistamiseen Weight-taulusta sekä muokkasin UI:n rakennetta

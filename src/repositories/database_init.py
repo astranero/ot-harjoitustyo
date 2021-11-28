@@ -3,7 +3,6 @@ import database.sql_commands as command
 
 con = connection.return_connection()
 
-
 def database_drop_it(con):
     cur = con.cursor()
     cur.execute("DROP TABLE IF EXISTS Users")

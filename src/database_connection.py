@@ -16,6 +16,5 @@ def return_connection():
     try:
         if CONN is not None:
             return CONN
-            raise sqlite3.Error
     except sqlite3.Error:
         print("Database connection error occured!")

@@ -1,5 +1,5 @@
-from sqlite3.dbapi2 import Error
-from tkinter import constants, messagebox, tk
+import tkinter as tk
+from tkinter import constants, messagebox
 import repositories.user_repository as tools
 
 
@@ -25,17 +25,19 @@ class LoginScreen:
     def _popup_win(self, message):
         messagebox.showinfo("Notification", message)
 
-    def _user_handling(self, email, password):
+    def _user_handling(self, in_email, in_password):
+        email = in_email
+        password = in_password
         try:
-            email_value = self._cur._check_Email(email, password)
-            password_value = self._cur._check_Password(email, password)
+            email_value = self._cur.check_email(email, password)
+            password_value = self._cur.check_password(email, password)
             if email_value is not None and password_value is not None:
                 if email_value[0] == email and password_value[0] == password:
                     self._show_user_view(email, password)
             else:
-                self._popUpWin("Username or password is incorrect.")
+                self._popup_win("Email or password is incorrect.")
         except Exception as e:
-            self._popUpWin(f"Something went wrong: {e}!")
+            self._popup_win(f"Something went wrong: {e}!")
 
     def _initialize(self):
         self._frame = tk.Frame(master=self._root)
@@ -57,6 +59,7 @@ class LoginScreen:
             text="Login",
             command=self._login_start)
         btn_login.grid(row=4, column=0, sticky="nsew")
+        btn_login.bind("<Return>", lambda button_click:[self._login_start()])
         btn_register = tk.Button(
             master=self._frame,
             text="Create User",
@@ -66,4 +69,6 @@ class LoginScreen:
     def _login_start(self):
         email = self._email_entry.get()
         password = self._password_entry.get()
+        self._email = email
+        self._password = password
         self._user_handling(email, password)

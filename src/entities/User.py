@@ -1,31 +1,31 @@
 class User:
-    def __init__(self, first_name, surname, email, password, dateOfBirth, sex, weight=0, height=0):
+    def __init__(self, first_name, surname, email, password, age, sex, weight=0, height=0):
         self.__first_name = first_name
         self.__surname = surname
         self.__email = email
         self.__password = password
-        self.__dateOfBirth = dateOfBirth
+        self.__age = age
         self.__sex = sex
         self.__weight = weight
         self.__height = height
 
-    def _getPassword(self):
+    def _get_password(self):
         return self.__password
 
-    def _setpassword(self, newPassword):
+    def _set_password(self, newPassword):
         self.__password = newPassword
 
-    def _getSex(self):
+    def _get_sex(self):
         return self.__sex
 
-    def _getWeight(self):
+    def _get_weight(self):
         return self.__weight
 
-    def _setWeight(self, newWeight):
+    def _set_weight(self, newWeight):
         self.__weight = newWeight
 
-    def _getHeight(self):
+    def _get_height(self):
         return self.__height
 
-    def _setHeight(self, newHeight):
+    def _set_height(self, newHeight):
         self.__height = newHeight

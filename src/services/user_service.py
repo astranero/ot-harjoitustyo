@@ -26,15 +26,17 @@ class UserService:
                 self._datatools.delete_user(fun_email, fun_password)
             except sqlite3.Error as error:
                 showinfo("Error", "Error:" + f"{error}")
+        return answer
 
-    def change_password(self, in_email, in_password1, in_password2):
+    def change_password(self, in_email, password, in_password1, in_password2):
         self._password1 = in_password1
         self._password2 = in_password2
         email = in_email
+        self._password = password
         try:
-            if self._password1 == self._password2:
+            if self._password1 == self._password2 and self._password1 is not None and self._password1 != "":
                 self._datatools.update_password(
-                    email, self._password, self._password2)
+                    email,  self._password, self._password2)
                 showinfo("Done", "Password has been changed!")
         except sqlite3.Error as error:
             showinfo(f"Error, {error}")
@@ -45,9 +47,8 @@ class UserService:
         for i in name:
             if i not in letters:
                 error = False
-        if name is None:
+        if name is None or error is False or name == "":
             error = False
-        if error is False:
             self._error_window("Name fields should contain letters.")
         return error
 
@@ -90,16 +91,18 @@ class UserService:
             self._error_window(
                 "Please insert height as centimeters in digits and dots, please.")
             return False
-        try:
-            new_heigh = int(height)
-            if 300 < new_heigh < 0:
-                error = False
-        except ValueError:
-            pass
+        error = self._check_value_type(new_height)
+        return error
+
+    def _check_value_type(self, height):
+        new_heigh = height
+        error = True
+    
         try:
             new_heigh = float(height)
-            if 0.0 < new_heigh > 300.0:
+            if 0.0 > new_heigh > 300.0:
                 error = False
+                showinfo("Are you even human?")
         except ValueError:
             pass
         return error

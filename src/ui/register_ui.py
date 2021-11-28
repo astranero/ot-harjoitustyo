@@ -1,4 +1,4 @@
-from calendar import Calendar
+from tkcalendar import Calendar
 import tkinter as tk
 from tkinter import Toplevel, constants, messagebox
 import repositories.user_repository as tools
@@ -7,7 +7,7 @@ import services.user_service as usertool
 
 class Register:
     def __init__(self, root, show_login_view):
-        self._userServ = usertool.UserService()
+        self._usertool = usertool.UserService()
         self._root = root
         self._login_screen = show_login_view
         self._datatools = tools.DatabaseTools()
@@ -119,10 +119,10 @@ class Register:
         self._fetch_gender()
         self._fetch_height()
         self._date_btn = tk.Button(
-            self._frame, text="Choose Date of Birth", command=self._fetchDate)
+            self._frame, text="Choose Date of Birth", command=self._fetch_date)
         self._date_btn.grid(row=8, column=1)
         login_btn = tk.Button(
-            self._frame, text="Change to login Screen", command=self._loginScreen)
+            self._frame, text="Change to login Screen", command=self._login_screen)
         login_btn.grid(row=12, column=0)
         register_btn = tk.Button(
             self._frame, text="Register", command=self._savedata)
@@ -141,12 +141,12 @@ class Register:
         gender = self._gender_var.get().lower()
         height = self._height_lbl_entry.get()
         try:
-            if self._user_serv._nameCheck(name):
-                if self._user_serv._nameCheck(surname):
-                    if self._user_serv._emailCheck(email):
-                        if self._user_serv._passwordCheck(password1, password2):
-                            if self._user_serv._check_height_digit(height):
-                                self._datatools._create_user(
+            if self._usertool.name_check(name):
+                if self._usertool.name_check(surname):
+                    if self._usertool.email_check(email):
+                        if self._usertool.password_check(password1, password2):
+                            if self._usertool.check_height_digit(height):
+                                self._datatools.create_user(
                                     name, surname, email, password1, birthdate, gender, height)
                                 messagebox.showinfo(
                                     "Hurray!", "Registration Succesful!")
