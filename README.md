@@ -51,7 +51,7 @@ Ohjelman testikattavuusraportti generoidaan htmlcov-hakemistoon komennolla:
   
 
 ### Pylint
-Ohjelman pylint voidaan käynnistää komennolla:
+Pylint voidaan käynnistää komennolla:
 
     Poetry run invoke lint
   
