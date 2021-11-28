@@ -21,7 +21,7 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
 
 ## Perusversion tarjoama toiminnallisuus 
 
-[x] Käyttäjä pystyy rekisteröitymään ja kirjautumaan sovellukseen
+-[x] Käyttäjä pystyy rekisteröitymään ja kirjautumaan sovellukseen
 [x] Käyttäjän tunnuksen tulee olla sähköpostimuodossa ja käyttämätön. Ohjelma ilmoittaa kelvottomasta sähköpostista.
 
 [x] Käyttäjä pystyy lisäämään oman sukupuolensa, pituudensa ja painonsa
