@@ -14,7 +14,7 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 
 [Vaatimusmäärittely](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/Alustava_vaatimusmaarittely.md)
 
-[Arkkitehtuuri](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+[Arkkitehtuurikuvaus](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 [Työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
