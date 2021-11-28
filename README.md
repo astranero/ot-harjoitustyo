@@ -12,9 +12,11 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 
 ## Dokumentaatio
 
-[vaatimusmäärittely](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/Alustava_vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/Alustava_vaatimusmaarittely.md)
 
-[työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+[Arkkitehtuurikuvaus](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+[Työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Asennus
 
@@ -46,3 +48,10 @@ Ohjelman testit suoritetaan komennolla:
 Ohjelman testikattavuusraportti generoidaan htmlcov-hakemistoon komennolla:
 
     Poetry run invoke coverage-report
+  
+
+### Pylint
+Pylint voidaan käynnistää komennolla:
+
+    Poetry run invoke lint
+  

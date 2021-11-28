@@ -22,3 +22,4 @@ src/data/__pycache__
 /src/database/__pycache__
 /src/database/.sqlite3.dll
 /src/database/.sqlite3.exe
+/src/repositories/__pycache__
