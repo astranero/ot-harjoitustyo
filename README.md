@@ -48,3 +48,10 @@ Ohjelman testit suoritetaan komennolla:
 Ohjelman testikattavuusraportti generoidaan htmlcov-hakemistoon komennolla:
 
     Poetry run invoke coverage-report
+  
+
+### Pylint
+Ohjelman pylint voidaan käynnistää komennolla:
+
+    Poetry run invoke lint
+  
