@@ -94,6 +94,9 @@ class UserService:
         error = self._check_value_type(new_height)
         return error
 
+    def _age_calculation(self):
+        pass
+
     def _check_value_type(self, height):
         new_heigh = height
         error = True
