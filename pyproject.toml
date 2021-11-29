@@ -8,6 +8,7 @@ authors = ["Kozheen Taher Esa"]
 python = "^3.8"
 invoke = "^1.6.0"
 tkcalendar = "^1.6.1"
+matplotlib = "^3.5.0"
 
 [tool.poetry.dev-dependencies]
 coverage = "^6.1.2"

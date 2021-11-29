@@ -23,14 +23,19 @@ class DatabaseTools:
     
     def delete_weight(self, email):
         self.cur.execute(
-            "DELETE FROM Weights WHERE id = (SELECT id FROM Weights WHERE user_id=(SELECT id FROM Users WHERE email=?) ORDER BY TIMESTAMP DESC LIMIT 1)", [email]
+            "DELETE FROM Weights WHERE id = (SELECT id FROM Weights WHERE user_id=(SELECT id FROM Users WHERE email=?) ORDER BY weight_timestamp DESC LIMIT 1)", [email]
             )
         self.connection.commit()
     
     def fetch_weight(self, email):
         return self.cur.execute(   
-            "SELECT weight FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY TIMESTAMP DESC LIMIT 1",[email]
+            "SELECT weight FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY weight_timestamp DESC LIMIT 1",[email]
         ).fetchone()[0]
+        
+    def fetch_40_from_weights(self, email):
+        return self.cur.execute(   
+            "SELECT weight, weight_timestamp FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY weight_timestamp ASC LIMIT 40", [email]
+        ).fetchall()
         
     def update_password(self, email, password, newPassword):
         try:
