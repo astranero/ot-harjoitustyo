@@ -40,7 +40,6 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
 
 ## Jatkokehitysideoita
 
--  
 - BMI laskuri
 - Veden tarve laskuri
 - Calorie laskuri
