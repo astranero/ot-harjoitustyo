@@ -99,10 +99,11 @@ class Register:
         gender_lbl = tk.Label(self._frame, text="Select Gender")
         gender_lbl.grid(row=9, column=0, sticky="nsew")
         self._gender_var = tk.StringVar()
+        self._radiobutton_value = False
         radio_btn_male = tk.Radiobutton(
-            self._frame, text="Male", value="Male", variable=self._gender_var, activeforeground="green")
+            self._frame, text="Male", value="male", variable=self._gender_var, activeforeground="green")
         radio_btn_female = tk.Radiobutton(
-            self._frame, text="Female", value="Female", variable=self._gender_var, activeforeground="green")
+            self._frame, text="Female", value="female", variable=self._gender_var, activeforeground="green")
         radio_btn_male.grid(row=9, column=1, columnspan=3)
         radio_btn_female.grid(row=10, column=1, columnspan=3)
 
@@ -145,12 +146,13 @@ class Register:
                 if self._usertool.name_check(surname):
                     if self._usertool.email_check(email):
                         if self._usertool.password_check(password1, password2):
-                            if self._usertool.check_height_digit(height):
-                                self._datatools.create_user(
-                                    name, surname, email, password1, birthdate, gender, height)
-                                messagebox.showinfo(
-                                    "Hurray!", "Registration Succesful!")
-                                self._login_screen()
+                            if self._usertool.gender_check(gender):
+                                if self._usertool.check_height_digit(height):
+                                    self._datatools.create_user(
+                                        name, surname, email, password1, birthdate, gender, height)
+                                    messagebox.showinfo(
+                                        "Hurray!", "Registration Succesful!")
+                                    self._login_screen()
         except Exception as e:
             self._errorWindow(
                 f"There's something wrong with registration, Error: {e}")

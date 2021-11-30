@@ -1,7 +1,14 @@
-from tkinter import Frame, StringVar, Toplevel, constants, Button, Label, Entry
+from tkinter import Canvas, Frame, StringVar, Toplevel, constants, Button, Label, Entry
+import tkinter
 from tkinter.messagebox import askyesno, showinfo
 from repositories.user_repository import DatabaseTools
 from services.user_service import UserService
+import matplotlib
+from matplotlib import style
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.figure import Figure
+import matplotlib.dates as mdates
 
 class User:
     def __init__(self, root, email, password, login_view):
@@ -32,9 +39,25 @@ class User:
 
     def _track_handling(self):
         self._track_btn = Button(
-            self._frame, text="Track", command=None)
+            self._frame, text="Track", command=self._mathplotframe)
         self._track_btn.grid(row=5, column=1, sticky="nsew")
     
+    def _mathplotframe(self):
+        new_frame = Toplevel(self._root)
+        matplotlib.style.use("ggplot")
+        new_frame.title("Weight track")
+        datatuple = self._user_serv.fetch_weights_to_frame(self._email)
+        figure = Figure(figsize=(10,10), dpi=100)
+        add = figure.add_subplot(111)
+        add.plot( datatuple[1], datatuple[0], color="red", linestyle="dashed")
+        add.set_xlabel("Dates", y=100)
+        add.set_ylabel("Weights (kg)", x=3)
+        add.set_title("Weight track", y=2)
+        figure.autofmt_xdate(rotation=45, ha="center")
+        canvas = FigureCanvasTkAgg(figure, new_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=["both"], expand=True)
+        
     def _reset_box(self):
         self._weight_ent.delete(0, constants.END)
         

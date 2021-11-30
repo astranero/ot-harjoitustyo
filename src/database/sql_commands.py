@@ -7,7 +7,9 @@ def create_user_table():
                     password TEXT NOT NULL,
                     dateOfBirth date NOT NULL,
                     sex NOT NULL,
-                    height NOT NULL
+                    height NOT NULL,
+                    user_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    user_entity
                     )"""
 
 
@@ -16,7 +18,7 @@ def create_weight_table():
                     id INTEGER PRIMARY KEY,
                     user_id INTEGER,
                     weight REAL,
-                    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    weight_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (user_id) REFERENCES Users (id) 
                     )"""
 
@@ -27,5 +29,5 @@ def create_post_table():
                     user_id INT,
                     post TEXT,
                     image DATA,
-                    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    post_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (user_id) REFERENCES Users (id))"""

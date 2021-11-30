@@ -33,11 +33,11 @@ class UI:
 
 
 window = tk.Tk()
-style = ttk.Style().theme_use("clam")
-window.title("SoftFit-Assist")
-window.geometry("400x400")
+window.title("Softfit Assist")
+window.geometry("560x560")
 window.minsize(300, 300)
 window.maxsize(1280, 1020)
+window.iconbitmap(default="")
 ui = UI(window)
 ui._start()
 window.mainloop()

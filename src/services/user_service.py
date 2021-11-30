@@ -41,6 +41,14 @@ class UserService:
         except sqlite3.Error as error:
             showinfo(f"Error, {error}")
 
+    def gender_check(self, gender):
+        if gender == "male" or gender == "female":
+            error = True
+        else: 
+            error = False 
+            self._error_window("Please choose gender.")
+        return error
+    
     def name_check(self, name):
         error = True
         letters = string.ascii_letters + " "
@@ -52,6 +60,16 @@ class UserService:
             self._error_window("Name fields should contain letters.")
         return error
 
+    def fetch_weights_to_frame(self, email):
+        weight_list = []
+        date_list = []
+        datacontent = self._datatools.fetch_40_from_weights(email)
+        for row in datacontent:
+            weight_list.append(row[0])
+            date_list.append(row[1])
+        return (weight_list, date_list)
+       
+        
     def email_check(self, in_email):
         email = in_email
         error = False
