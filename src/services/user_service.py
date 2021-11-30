@@ -45,11 +45,11 @@ class UserService:
     def gender_check(self, gender):
         if gender == "male" or gender == "female":
             error = True
-        else: 
-            error = False 
+        else:
+            error = False
             self._error_window("Please choose gender.")
         return error
-    
+
     def name_check(self, name):
         error = True
         letters = string.ascii_letters + " "
@@ -69,8 +69,7 @@ class UserService:
             weight_list.append(row[0])
             date_list.append(row[1])
         return (weight_list, date_list)
-       
-        
+
     def email_check(self, in_email):
         email = in_email
         error = False
@@ -119,7 +118,7 @@ class UserService:
     def _check_value_type(self, height):
         new_heigh = height
         error = True
-    
+
         try:
             new_heigh = float(height)
             if 0.0 > new_heigh > 300.0:
