@@ -60,9 +60,9 @@ class TestIntakeTraceService(unittest.TestCase):
         self.mouth.set_carbohydrates(-20)
         self.assertEqual(self.mouth.get_carbohydrates(), 5)
 
-    def test_totalCalorieIntake_isOk(self):
+    def test_totalCalorieIntake(self):
         self.mouth.set_protein(12)
         self.mouth.set_fat(23)
         self.mouth.set_carbohydrates(13)
-        calories = self.mouth.totalCalorieIntake()
+        calories = self.mouth.total_calorie_intake()
         self.assertEqual(calories, 307)

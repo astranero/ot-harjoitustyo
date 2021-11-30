@@ -1,11 +1,11 @@
 class User:
-    def __init__(self, first_name, surname, email, password, age, sex, weight=0, height=0):
+    def __init__(self, first_name, surname, email, password, age, gender, weight=0, height=0):
         self.__first_name = first_name
         self.__surname = surname
         self.__email = email
         self.__password = password
         self.__age = age
-        self.__sex = sex
+        self.__gender = gender
         self.__weight = weight
         self.__height = height
 

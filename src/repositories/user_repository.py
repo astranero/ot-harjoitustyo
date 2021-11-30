@@ -15,7 +15,18 @@ class DatabaseTools:
 
     def check_email_available(self, email):
         return self.cur.execute("SELECT email FROM Users Where email=?", (email,)).fetchone()
+
+    def fetch_user_info(self, email):
+        return self.cur.execute("SELECT firstName, surname, sex, height FROM Users Where email=?", (email,)).fetchone()
     
+    def fetch_dateofbirth(self, email):
+        return self.cur.execute("SELECT dateOfBirth FROM Users Where email=?", (email,)).fetchone()
+
+    def delete_all(self):
+        self.cur.execute("DELETE FROM Weights;")
+        self.cur.execute("DELETE FROM Users;")
+        self.cur.execute("DELETE FROM Posts;")
+
     def insert_weight(self, email, weight):
         self.cur.execute(
             "INSERT INTO Weights (user_id, weight) VALUES ((SELECT id FROM Users WHERE email=?), ?)", (email, weight))
@@ -34,9 +45,12 @@ class DatabaseTools:
         
     def fetch_40_from_weights(self, email):
         return self.cur.execute(   
-            "SELECT weight, weight_timestamp FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY weight_timestamp ASC LIMIT 40", [email]
+            "SELECT weight, strftime('%d - %m  - %Y ', weight_timestamp) FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY weight_timestamp ASC LIMIT 40", [email]
         ).fetchall()
-        
+
+    def fetch_all_users(self):
+        return self.cur.execute("SELECT * FROM Users;").fetchall()
+
     def update_password(self, email, password, newPassword):
         try:
             self.cur.execute(
@@ -44,11 +58,6 @@ class DatabaseTools:
             self.connection.commit()
         except Exception as e:
             showinfo(f"{e}")
-
-    def update_height(self, email, height):
-        self.cur.execute(
-            "UPDATE Users SET height=? WHERE email=?", (height, email))
-        self.connection.commit()
 
     def delete_user(self, email, password):
         self.cur.execute(
