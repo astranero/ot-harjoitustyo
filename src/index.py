@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import ui.register_ui as create
 import ui.login_ui as login
 import ui.user_ui as user_view
@@ -32,6 +33,7 @@ class UI:
 
 
 window = tk.Tk()
+style = ttk.Style().theme_use("clam")
 window.title("SoftFit-Assist")
 window.geometry("400x400")
 window.minsize(300, 300)
