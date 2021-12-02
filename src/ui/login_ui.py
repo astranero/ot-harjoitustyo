@@ -59,7 +59,7 @@ class LoginScreen:
             text="Login",
             command=self._login_start)
         btn_login.grid(row=4, column=0, sticky="nsew")
-        btn_login.bind("<Return>", lambda button_click:[self._login_start()])
+        btn_login.bind("<Return>", lambda button_click: [self._login_start()])
         btn_register = tk.Button(
             master=self._frame,
             text="Create User",
