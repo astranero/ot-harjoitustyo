@@ -3,6 +3,7 @@ import string
 import re
 from tkinter.messagebox import askyesno, showinfo
 from repositories.user_repository import DatabaseTools
+from datetime import date
 
 
 class UserService:

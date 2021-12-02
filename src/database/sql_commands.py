@@ -5,11 +5,10 @@ def create_user_table():
                     surname TEXT NOT NULL,
                     email TEXT NOT NULL UNIQUE,
                     password TEXT NOT NULL,
-                    dateOfBirth date NOT NULL,
+                    dateOfBirth NOT NULL,
                     sex NOT NULL,
                     height NOT NULL,
-                    user_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    user_entity
+                    user_timestamp DATE DEFAULT CURRENT_TIMESTAMP
                     )"""
 
 

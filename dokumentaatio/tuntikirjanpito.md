@@ -11,5 +11,6 @@
 | 25.11. | 4    | Loin User interface
 | 27.11. | 6    | Plint-käsittelyä, UI:n ja logiikan erittelyä ja virheiden korjaamista plintin avulla.
 | 28.11. | 3    | Lisäsin toiminnallisuus painon lisäämiseen ja poistamiseen Weight-taulusta sekä muokkasin UI:n rakennetta
-| 30.11. | 4    | Harjoittelin matplotlibin käyttämistä ja loin painokuvaajan. 
-| yht    | 38.5
+| 29.11. | 4    | Harjoittelin matplotlibin käyttämistä ja loin painokuvaajan. 
+| 30.11. | 1    | Testi user_repository:lle
+| yht    | 39.5

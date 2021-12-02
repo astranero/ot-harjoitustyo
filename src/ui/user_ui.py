@@ -1,4 +1,3 @@
-import matplotlib.dates as mdates
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from tkinter import Canvas, Frame, StringVar, Toplevel, constants, Button, Label, Entry
@@ -48,10 +47,11 @@ class User:
         new_frame = Toplevel(self._root)
         matplotlib.style.use("ggplot")
         new_frame.title("Weight track")
-        datatuple = self._user_serv.fetch_weights_to_frame(self._email)
+        datelist, weightlist = self._user_serv.fetch_weights_to_frame(
+            self._email)
         figure = Figure(figsize=(10, 10), dpi=100)
         add = figure.add_subplot(111)
-        add.plot(datatuple[1], datatuple[0], color="red", linestyle="dashed")
+        add.plot(weightlist, datelist, color="red", linestyle="dashed")
         add.set_xlabel("Dates", y=100)
         add.set_ylabel("Weights (kg)", x=3)
         add.set_title("Weight track", y=2)
@@ -60,16 +60,13 @@ class User:
         canvas.draw()
         canvas.get_tk_widget().pack(fill=["both"], expand=True)
 
-    def _reset_box(self):
-        self._weight_ent.delete(0, constants.END)
-
     def _weight_handling(self):
         self._weightvar = StringVar()
         self._weight_ent = Entry(self._frame, textvariable=self._weightvar,
                                  border=1, background="white", foreground="black", width=15)
         self._weightvar.set(" Insert weight here!")
         self._weight_ent.bind(
-            "<Button-1>", lambda Button_click: [self._reset_box()])
+            "<Button-1>", lambda Button_click: [self._weight_ent.delete(0, constants.END)])
         self._weight_ent.grid(row=4, column=1, sticky="nsew")
         self._update_weight = Button(
             self._frame, text="Add weight", command=lambda: [self._weight_update(), self._config_weight()])
@@ -130,11 +127,8 @@ class User:
 
     def _logout_handling(self):
         self._logout_btn = Button(
-            self._frame, text="Log out", command=self._log_out)
+            self._frame, text="Log out", command=lambda: [self._login_view()])
         self._logout_btn.grid(row=1, column=3, sticky="nsew")
-
-    def _log_out(self):
-        self._login_view()
 
     def _user_screen_init(self):
         self._frame = Frame(self._root)
@@ -166,11 +160,11 @@ class User:
                 self._win, textvariable=self._passwordvar2, show="*")
             self._password_entry2.grid(row=2, column=2, sticky="nsew")
             self._pass_done_btn = Button(
-                self._win, text="Done", command=self._password_finalization).grid(row=3, column=1, sticky="nsew")
+                self._win, text="Done", command=self._password_change_finalization).grid(row=3, column=1, sticky="nsew")
         else:
             self._password_btn["state"] = "active"
 
-    def _password_finalization(self):
+    def _password_change_finalization(self):
         first_password = self._passwordvar1.get()
         second_password = self._passwordvar2.get()
         self._user_serv.change_password(

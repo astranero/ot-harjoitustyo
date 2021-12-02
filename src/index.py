@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import ui.register_ui as create
 import ui.login_ui as login
 import ui.user_ui as user_view
