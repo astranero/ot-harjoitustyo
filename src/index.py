@@ -27,7 +27,7 @@ class UI:
 
     def _show_user_view(self, email, password):
         self._current_view.destroy()
-        self._current_view = user_view.User(
+        self._current_view = user_view.UserUI(
             self._root, email, password, self._show_login_view)
         self._current_view.pack()
 

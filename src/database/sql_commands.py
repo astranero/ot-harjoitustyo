@@ -6,9 +6,10 @@ def create_user_table():
                     email TEXT NOT NULL UNIQUE,
                     password TEXT NOT NULL,
                     dateOfBirth NOT NULL,
-                    sex NOT NULL,
+                    gender NOT NULL,
                     height NOT NULL,
-                    user_timestamp DATE DEFAULT CURRENT_TIMESTAMP
+                    nutrient_data TEXT DEFAULT "",
+                    update_timestamp DATE DEFAULT CURRENT_TIMESTAMP
                     )"""
 
 
