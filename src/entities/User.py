@@ -1,31 +1,28 @@
 class User:
-    def __init__(self, first_name, surname, email, password, age, gender, weight=0, height=0):
-        self.__first_name = first_name
-        self.__surname = surname
-        self.__email = email
-        self.__password = password
+    def __init__(self,age=None, gender=None, weight=0, height=0, entity_data=None):
         self.__age = age
         self.__gender = gender
         self.__weight = weight
         self.__height = height
+        self.__entity_data = entity_data
 
-    def _get_password(self):
-        return self.__password
+    def set_entity_data_csv(self, data):
+        self.__entity_data = data
+    
+    def get_entity_data_csv(self):
+        return self.__entity_data
 
-    def _set_password(self, newPassword):
-        self.__password = newPassword
-
-    def _get_sex(self):
-        return self.__sex
-
-    def _get_weight(self):
-        return self.__weight
-
-    def _set_weight(self, newWeight):
-        self.__weight = newWeight
-
-    def _get_height(self):
+    def get_gender(self):
+        return self.__gender
+    
+    def get_age(self):
+        return self.__age
+    
+    def get_height(self):
         return self.__height
 
-    def _set_height(self, newHeight):
-        self.__height = newHeight
+    def get_weight(self):
+        return self.__weight
+
+    def set_weight(self, newWeight):
+        self.__weight = newWeight

@@ -1,23 +1,19 @@
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
-from tkinter import Canvas, Frame, StringVar, Toplevel, constants, Button, Label, Entry
-import tkinter
+from tkinter import Frame, StringVar, Toplevel, constants, Button, Label, Entry
 from tkinter.messagebox import askyesno, showinfo
 from repositories.user_repository import DatabaseTools
 from services.user_service import UserService
-import matplotlib
-from matplotlib import style
-matplotlib.use("TkAgg")
+from ui.matplotlib_ui import MatplotlibUI
 
-
-class User:
-    def __init__(self, root, email, password, login_view):
+class UserUI:
+    def __init__(self, root, email, password, login_view, calculator_view):
         self._root = root
         self._email = email
         self._password = password
         self._datatools = DatabaseTools()
         self._user_serv = UserService()
         self._login_view = login_view
+        self._calculator_view = calculator_view
+        self._mathplo = MatplotlibUI(self._root, self._email)
         self._weightvar = None
         self._passwordvar1 = None
         self._passwordvar2 = None
@@ -40,33 +36,14 @@ class User:
 
     def _track_handling(self):
         self._track_btn = Button(
-            self._frame, text="Track", command=self._mathplotframe)
+            self._frame, text="Track", command=lambda:[self._mathplo._mathplotframe()])
         self._track_btn.grid(row=5, column=1, sticky="nsew")
-
-    def _mathplotframe(self):
-        new_frame = Toplevel(self._root)
-        matplotlib.style.use("ggplot")
-        new_frame.title("Weight track")
-        datelist, weightlist = self._user_serv.fetch_weights_to_frame(
-            self._email)
-        figure = Figure(figsize=(10, 10), dpi=100)
-        add = figure.add_subplot(111)
-        add.plot(weightlist, datelist, color="red", linestyle="dashed")
-        add.set_xlabel("Dates", y=100)
-        add.set_ylabel("Weights (kg)", x=3)
-        add.set_title("Weight track", y=2)
-        figure.autofmt_xdate(rotation=45, ha="center")
-        canvas = FigureCanvasTkAgg(figure, new_frame)
-        canvas.draw()
-        canvas.get_tk_widget().pack(fill=["both"], expand=True)
 
     def _weight_handling(self):
         self._weightvar = StringVar()
         self._weight_ent = Entry(self._frame, textvariable=self._weightvar,
                                  border=1, background="white", foreground="black", width=15)
         self._weightvar.set(" Insert weight here!")
-        self._weight_ent.bind(
-            "<Button-1>", lambda Button_click: [self._weight_ent.delete(0, constants.END)])
         self._weight_ent.grid(row=4, column=1, sticky="nsew")
         self._update_weight = Button(
             self._frame, text="Add weight", command=lambda: [self._weight_update(), self._config_weight()])
@@ -117,7 +94,7 @@ class User:
 
     def _calculator_handling(self):
         self._calculator_btn = Button(
-            self._frame, text="Calculator", command=None)
+            self._frame, text="Calculator", command=lambda:[self._calculator_view(self._email, self._password)])
         self._calculator_btn.grid(row=5, column=2, sticky="nsew")
 
     def _password_handling(self):

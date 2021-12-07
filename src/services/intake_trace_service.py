@@ -1,4 +1,4 @@
-import src.services.calculator_service as calculator
+import services.calculator_service as calculator
 
 
 class Intake:

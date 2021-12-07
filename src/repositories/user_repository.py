@@ -16,11 +16,14 @@ class DatabaseTools:
         return self.cur.execute("SELECT email FROM Users Where email=?", (email,)).fetchone()
 
     def fetch_user_info(self, email):
-        return self.cur.execute("SELECT firstName, surname, sex, height FROM Users Where email=?", (email,)).fetchone()
+        return self.cur.execute("SELECT * FROM Users Where email=?", (email,)).fetchone()
 
     def fetch_dateofbirth(self, email):
         return self.cur.execute("SELECT dateOfBirth FROM Users Where email=?", (email,)).fetchone()
 
+    def fetch_updatedate(self, email):
+        return self.cur.execute("SELECT update_timestamp FROM Users WHERE email=?", (email,)).fetchone()[0]
+    
     def delete_all(self):
         self.cur.execute("DELETE FROM Weights;")
         self.cur.execute("DELETE FROM Users;")
@@ -37,6 +40,9 @@ class DatabaseTools:
                 email]
         )
         self.connection.commit()
+
+    def update_updatadate(self, email, update_date):
+        self.cur.execute("UPDATE Users SET update_timestamp=? WHERE email=?", (email, update_date))
 
     def fetch_weight(self, email):
         return self.cur.execute(
@@ -66,7 +72,7 @@ class DatabaseTools:
             "DELETE FROM Users WHERE email=? AND password=?", (email, password))
         self.connection.commit()
 
-    def create_user(self, firstName, surname, email, password, dateOfBirth, sex=None, height=None):
-        self.cur.execute("""INSERT INTO Users (firstName, surname, email, password, dateOfBirth, sex, height) 
-                         VALUES (?, ?, ?, ?, ?, ?,?)""", (firstName, surname, email, password, dateOfBirth, sex, height))
+    def create_user(self, firstName, surname, email, password, dateOfBirth, gender=None, height=None):
+        self.cur.execute("""INSERT INTO Users (firstName, surname, email, password, dateOfBirth, gender, height) 
+                         VALUES (?, ?, ?, ?, ?, ?,?)""", (firstName, surname, email, password, dateOfBirth, gender, height))
         self.connection.commit()

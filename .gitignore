@@ -20,6 +20,7 @@ src/data/__pycache__
 /src/tests/__pycache__
 /src/tests/.coverage
 /src/database/__pycache__
+/src/database/Softfit.db
 /src/database/.sqlite3.dll
 /src/database/.sqlite3.exe
 /src/repositories/__pycache__
