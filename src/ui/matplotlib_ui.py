@@ -1,18 +1,20 @@
+from tkinter import *
+from services.user_service import UserService
 import tkinter
 import matplotlib
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib import style
 matplotlib.use("TkAgg")
-from services.user_service import UserService
-from tkinter import *
+
+
 class MatplotlibUI:
     def __init__(self, root, email):
         self._email = email
         self._root = root
         self._user_serv = UserService()
         self._frame = None
-    
+
     def _mathplotframe(self):
         self._frame = Toplevel(self._root)
         matplotlib.style.use("ggplot")
@@ -29,7 +31,8 @@ class MatplotlibUI:
         canvas = FigureCanvasTkAgg(figure, self._frame)
         canvas.draw()
         canvas.get_tk_widget().grid(row=1, column=1, sticky="nsew")
-        tkinter.Button(self._frame, text="Close", command=self._destroy).grid(row=0, column=0)
-    
+        tkinter.Button(self._frame, text="Close",
+                       command=self._destroy).grid(row=0, column=0)
+
     def _destroy(self):
         self._frame.destroy()

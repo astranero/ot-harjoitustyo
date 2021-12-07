@@ -30,14 +30,18 @@ class Calculator:
         elif gender == "female":
             lean_body_mass_kg = 0.252 * weight_kg + 0.473 * height_cm - 48.3
         return lean_body_mass_kg
-    
+
     def _count_lean_body_mass_with_fatpercent(self, body_fat_percent, weight_kg):
-        lean_body_mass_kg = weight_kg - weight_kg * ((100 - body_fat_percent)/100)
+        lean_body_mass_kg = weight_kg - weight_kg * \
+            ((100 - body_fat_percent)/100)
         return lean_body_mass_kg
-    
-    def bmr_count(self, lean_body_mass):
-        basal_metabolic_rate = 370 + (21.6*lean_body_mass)
-        return basal_metabolic_rate
+
+    def bmr_count(self, lean_body_mass: float):
+        try:
+            basal_metabolic_rate = 370 + (21.6*lean_body_mass)
+            return basal_metabolic_rate
+        except ValueError as error:
+            return error
 
     def total_daily_energy_expenditure(self, bmr, activity_level):
         if activity_level == "Inactive":
@@ -52,4 +56,5 @@ class Calculator:
             activity_multiplier = 1.725
         elif activity_level == "Intense":
             activity_multiplier = 1.9
-        total_daily_energy_expenditure = bmr * activity_level
+        total_daily_energy_expenditure = bmr * activity_multiplier
+        return round(total_daily_energy_expenditure, 3)

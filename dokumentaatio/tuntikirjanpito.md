@@ -13,4 +13,5 @@
 | 28.11. | 3    | Lisäsin toiminnallisuus painon lisäämiseen ja poistamiseen Weight-taulusta sekä muokkasin UI:n rakennetta
 | 29.11. | 4    | Harjoittelin matplotlibin käyttämistä ja loin painokuvaajan. 
 | 30.11. | 1    | Testi user_repository:lle
-| yht    | 39.5
+| 7.12.  | 8    | BMR laskimen luomisen prosessi
+| yht    | 47.5

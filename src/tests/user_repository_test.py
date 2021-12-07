@@ -26,7 +26,7 @@ class TestDatabaseTools(unittest.TestCase):
         self.database.create_user(
             self.name, self.surname, self.email, self.password, self.date, self.sex, self.height)
         user_info = self.database.fetch_user_info(self.email)
-        self.assertEqual(user_info[0], self.name)
+        self.assertEqual(user_info[1], self.name)
 
     def test_check_email(self):
         self.database.create_user(
