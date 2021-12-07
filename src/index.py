@@ -38,6 +38,7 @@ class UI:
             self._root, self._show_user_view, email, password)
         self._current_view.pack()
 
+
 window = tk.Tk()
 window.title("Softfit Assist")
 window.geometry("560x560")

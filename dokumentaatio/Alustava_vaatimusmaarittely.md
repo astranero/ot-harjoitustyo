@@ -27,7 +27,7 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
 
 - [x] Käyttäjä pystyy lisäämään oman sukupuolensa, pituudensa ja painonsa
 
-- [ ] Ikä saadaan "Date of Birth" muuttujasta
+- [x] Ikä saadaan "Date of Birth" muuttujasta
 
 - [x] Painon mukana tallennetaan päivämäärä, jolloin se on lisätty.
 - [x] Taulukko, josta näkyy painon kehitys kuvaajana.

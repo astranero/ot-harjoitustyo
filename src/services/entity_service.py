@@ -2,6 +2,8 @@ from repositories.user_repository import DatabaseTools
 from datetime import datetime, date
 from entities.User import User
 from services.intake_trace_service import Intake
+
+
 class EntityService:
     def __init__(self, email):
         self._email = email
@@ -10,7 +12,7 @@ class EntityService:
         self._intake = None
         self._user_entity = None
         self._create_user_entity()
-    
+
     def _create_user_entity(self):
         data = self._datatools.fetch_user_info(self._email)
         dateOfBirth = data[5]
@@ -18,14 +20,15 @@ class EntityService:
         gender = data[6]
         height = data[7]
         nutrient_data_csv = data[8]
-        if not self.update_reset_timer(): nutrient_data_csv = "" 
+        if not self.update_reset_timer():
+            nutrient_data_csv = ""
         weight = self._datatools.fetch_weight(self._email)
         user_entity = User(age, gender, weight, height, nutrient_data_csv)
         self._user_entity = user_entity
-    
+
     def return_user_entity(self):
         return self._user_entity
-    
+
     def user_intake_load(self):
         self._intake = Intake()
         data_csv = self._user_entity.get_entity_data_csv()
@@ -38,13 +41,13 @@ class EntityService:
             self._intake.set_carbohydrates(carbohydrates)
             self._intake.set_fat(fat)
         return self._intake
-    
+
     def _age_count(self, dateOfBirth):
         birthdate = datetime.strptime(dateOfBirth, "%d.%m.%Y")
         nowdate = datetime.now()
         age = nowdate - birthdate
         return age.days/(365.25)
-    
+
     def update_reset_timer(self):
         updatedate = self._datatools.fetch_updatedate(self._email)
         updatedate_obj = datetime.strptime(updatedate, "%Y-%m-%d %H:%M:%S")
@@ -52,5 +55,6 @@ class EntityService:
         date_now = datetime.now()
         date_str = datetime.strftime(date_now, "%Y-%m-%d")
         handle = True
-        if date_str is not updatedate_str: handle=False
+        if date_str is not updatedate_str:
+            handle = False
         return handle

@@ -4,6 +4,7 @@ from repositories.user_repository import DatabaseTools
 from services.user_service import UserService
 from ui.matplotlib_ui import MatplotlibUI
 
+
 class UserUI:
     def __init__(self, root, email, password, login_view, calculator_view):
         self._root = root
@@ -36,7 +37,7 @@ class UserUI:
 
     def _track_handling(self):
         self._track_btn = Button(
-            self._frame, text="Track", command=lambda:[self._mathplo._mathplotframe()])
+            self._frame, text="Track", command=lambda: [self._mathplo._mathplotframe()])
         self._track_btn.grid(row=5, column=1, sticky="nsew")
 
     def _weight_handling(self):
@@ -94,7 +95,7 @@ class UserUI:
 
     def _calculator_handling(self):
         self._calculator_btn = Button(
-            self._frame, text="Calculator", command=lambda:[self._calculator_view(self._email, self._password)])
+            self._frame, text="Calculator", command=lambda: [self._calculator_view(self._email, self._password)])
         self._calculator_btn.grid(row=5, column=2, sticky="nsew")
 
     def _password_handling(self):

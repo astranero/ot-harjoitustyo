@@ -1,6 +1,7 @@
 from tkinter.messagebox import showinfo
 import database_connection as conn
 
+
 class DatabaseTools:
     def __init__(self):
         self.cur = conn.return_connection().cursor()
@@ -23,7 +24,7 @@ class DatabaseTools:
 
     def fetch_updatedate(self, email):
         return self.cur.execute("SELECT update_timestamp FROM Users WHERE email=?", (email,)).fetchone()[0]
-    
+
     def delete_all(self):
         self.cur.execute("DELETE FROM Weights;")
         self.cur.execute("DELETE FROM Users;")
@@ -42,7 +43,8 @@ class DatabaseTools:
         self.connection.commit()
 
     def update_updatadate(self, email, update_date):
-        self.cur.execute("UPDATE Users SET update_timestamp=? WHERE email=?", (email, update_date))
+        self.cur.execute(
+            "UPDATE Users SET update_timestamp=? WHERE email=?", (email, update_date))
 
     def fetch_weight(self, email):
         return self.cur.execute(
