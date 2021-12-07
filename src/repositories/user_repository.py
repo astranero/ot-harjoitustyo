@@ -1,6 +1,7 @@
 from tkinter.messagebox import showinfo
 import database_connection as conn
 
+
 class DatabaseTools:
     def __init__(self):
         self.cur = conn.return_connection().cursor()
