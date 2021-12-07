@@ -5,13 +5,14 @@ from services.user_service import UserService
 from ui.matplotlib_ui import MatplotlibUI
 
 class UserUI:
-    def __init__(self, root, email, password, login_view):
+    def __init__(self, root, email, password, login_view, calculator_view):
         self._root = root
         self._email = email
         self._password = password
         self._datatools = DatabaseTools()
         self._user_serv = UserService()
         self._login_view = login_view
+        self._calculator_view = calculator_view
         self._mathplo = MatplotlibUI(self._root, self._email)
         self._weightvar = None
         self._passwordvar1 = None
@@ -93,7 +94,7 @@ class UserUI:
 
     def _calculator_handling(self):
         self._calculator_btn = Button(
-            self._frame, text="Calculator", command=None)
+            self._frame, text="Calculator", command=lambda:[self._calculator_view(self._email, self._password)])
         self._calculator_btn.grid(row=5, column=2, sticky="nsew")
 
     def _password_handling(self):

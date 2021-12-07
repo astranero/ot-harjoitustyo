@@ -23,7 +23,7 @@ class DatabaseTools:
         return self.cur.execute("SELECT dateOfBirth FROM Users Where email=?", (email,)).fetchone()
 
     def fetch_updatedate(self, email):
-        return self.cur.execute("SELECT update_timestamp FROM Users WHERE email=?;", (email)).fetchone()[0]
+        return self.cur.execute("SELECT update_timestamp FROM Users WHERE email=?", (email,)).fetchone()[0]
     
     def delete_all(self):
         self.cur.execute("DELETE FROM Weights;")

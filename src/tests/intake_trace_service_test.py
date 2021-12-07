@@ -1,5 +1,5 @@
 import unittest
-from src.services.intake_trace_service import Intake
+from services.intake_trace_service import Intake
 
 
 class TestIntakeTraceService(unittest.TestCase):

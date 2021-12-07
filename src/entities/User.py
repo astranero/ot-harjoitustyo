@@ -1,12 +1,12 @@
 class User:
-    def __init__(self,age, gender, weight=0, height=0):
+    def __init__(self,age=None, gender=None, weight=0, height=0, entity_data=None):
         self.__age = age
         self.__gender = gender
         self.__weight = weight
         self.__height = height
-        self.__entity_data = ""
+        self.__entity_data = entity_data
 
-    def set_entity_data(self, data):
+    def set_entity_data_csv(self, data):
         self.__entity_data = data
     
     def get_entity_data_csv(self):
