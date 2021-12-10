@@ -40,11 +40,11 @@ class UI:
 
 
 window = tk.Tk()
+style = ttk.Style()
 window.title("Softfit Assist")
+style.theme_use("clam")
 window.geometry("560x560")
-window.minsize(300, 300)
-window.maxsize(1280, 1020)
-window.iconbitmap(default="")
+window.iconbitmap(default=".\dokumentaatio\kuvat\dumbbell.ico")
 ui = UI(window)
 ui._start()
 window.mainloop()

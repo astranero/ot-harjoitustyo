@@ -2,8 +2,6 @@
 https://www.reddit.com/r/nutrition/comments/bb90l0/most_accurate_bmrtdee_calculator/
 https://www.omnicalculator.com/health/bmr-katch-mcardle#what-is-the-katch-mcardle-calculator
 """
-
-
 class Calculator:
     def __init__(self):
         self.__protein_calorie_per_gram = 4
@@ -32,8 +30,7 @@ class Calculator:
         return lean_body_mass_kg
 
     def _count_lean_body_mass_with_fatpercent(self, body_fat_percent, weight_kg):
-        lean_body_mass_kg = weight_kg - weight_kg * \
-            ((100 - body_fat_percent)/100)
+        lean_body_mass_kg = weight_kg * ((100 - body_fat_percent)/100)
         return lean_body_mass_kg
 
     def bmr_count(self, lean_body_mass: float):
@@ -44,17 +41,22 @@ class Calculator:
             return error
 
     def total_daily_energy_expenditure(self, bmr, activity_level):
-        if activity_level == "Inactive":
-            activity_multiplier = 1.2
-        elif activity_level == "Low":
-            activity_multiplier = 1.375
-        elif activity_level == "Medium":
-            activity_multiplier = 1.55
-        elif activity_level == "Medium-high":
-            activity_multiplier = 1.65
-        elif activity_level == "High":
-            activity_multiplier = 1.725
-        elif activity_level == "Intense":
-            activity_multiplier = 1.9
-        total_daily_energy_expenditure = bmr * activity_multiplier
-        return round(total_daily_energy_expenditure, 3)
+        try:
+            if activity_level == "Inactive":
+                activity_multiplier = 1.2
+            elif activity_level == "Low":
+                activity_multiplier = 1.375
+            elif activity_level == "Medium":
+                activity_multiplier = 1.55
+            elif activity_level == "Medium-high":
+                activity_multiplier = 1.65
+            elif activity_level == "High":
+                activity_multiplier = 1.725
+            elif activity_level == "Intense":
+                activity_multiplier = 1.9
+            elif activity_level == "None":
+                activity_multiplier = 0
+            total_daily_energy_expenditure = bmr * activity_multiplier
+            return round(total_daily_energy_expenditure, 3)
+        except Exception as error:
+            return error

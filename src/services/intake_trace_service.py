@@ -40,4 +40,4 @@ class Intake:
         return protein_calories + carbohydrate_calories + fat_calories
 
     def __str__(self):
-        return f"""Protein: {self.__protein}g | Carbohydrates: {self.__carbohydrates}g | Fat: {self.__fat}g"""
+        return f"""Protein: {self.__protein}g | Carbohydrates: {self.__carbohydrates}g | Fat: {self.__fat}g | Total Calories: {self.total_calorie_intake()}"""
