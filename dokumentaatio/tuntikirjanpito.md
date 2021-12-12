@@ -15,4 +15,5 @@
 | 30.11. | 1    | Testi user_repository:lle
 | 7.12.  | 8    | BMR laskimen luomisen prosessi
 | 10.12. | 6    | Sain BMR- ja TDEE-laskurin toimimaan.
-| yht    | 53.5
+| 12.12. | 2    | Korjasin koodia ja virheitä. 
+| yht    | 55.5
