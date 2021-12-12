@@ -1,2 +1,2 @@
-import repositories.database_init as dbase
-dbase.database_init()
+from repositories.user_repository import DatabaseTools
+DatabaseTools().database_init()

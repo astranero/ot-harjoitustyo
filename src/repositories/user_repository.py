@@ -1,6 +1,6 @@
 from tkinter.messagebox import showinfo
 import database_connection as conn
-
+import database.sql_commands as command
 
 class DatabaseTools:
     def __init__(self):
@@ -54,7 +54,7 @@ class DatabaseTools:
 
     def fetch_40_from_weights(self, email):
         return self.cur.execute(
-            "SELECT weight, strftime('%d - %m  - %Y ', weight_timestamp) FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY weight_timestamp ASC LIMIT 40", [
+            "SELECT weight, strftime('%d.%m.%Y ', weight_timestamp) FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id WHERE email = ? ORDER BY weight_timestamp ASC LIMIT 40", [
                 email]
         ).fetchall()
 
@@ -78,3 +78,19 @@ class DatabaseTools:
         self.cur.execute("""INSERT INTO Users (firstName, surname, email, password, dateOfBirth, gender, height) 
                          VALUES (?, ?, ?, ?, ?, ?,?)""", (firstName, surname, email, password, dateOfBirth, gender, height))
         self.connection.commit()
+    
+    def database_drop_it(self):
+        self.cur.execute("DROP TABLE IF EXISTS Users")
+        self.cur.execute("DROP TABLE IF EXISTS Weights")
+        self.cur.execute("DROP TABLE IF EXISTS Posts")
+        self.connection.commit()
+    
+    def database_create_tables(self):
+        self.cur.execute(command.create_user_table())
+        self.cur.execute(command.create_weight_table())
+        self.cur.execute(command.create_post_table())
+        self.connection.commit()
+
+    def database_init(self):
+        self.database_drop_it()
+        self.database_create_tables()

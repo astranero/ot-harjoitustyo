@@ -68,6 +68,7 @@ class UserService:
         for row in datacontent:
             weight_list.append(row[0])
             date_list.append(row[1])
+        print(weight_list, date_list)
         return (weight_list, date_list)
 
     def email_check(self, in_email):

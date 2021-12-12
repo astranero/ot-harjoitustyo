@@ -43,7 +43,7 @@ class EntityService:
         return self._intake
 
     def _age_count(self, dateOfBirth):
-        birthdate = datetime.strptime(dateOfBirth, "%d.%m.%Y")
+        birthdate = datetime.strptime(dateOfBirth, "%d/%m/%y")
         nowdate = datetime.now()
         age = nowdate - birthdate
         return age.days/(365.25)

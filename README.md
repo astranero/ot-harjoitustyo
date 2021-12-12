@@ -23,32 +23,32 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 
 1. Seuraavalla komennolla saadaan asennettua riippuvuuksia:
 
-    ```Poetry install```
+    ```poetry install```
 
 2. Tarvittavat alustustoimeenpiteet suoritettava komennolla:
     
-    ```Poetry run invoke build```
+    ```poetry run invoke build```
 
 3. Käynnistetään sovellus:
 
-    ```Poetry run invoke start```
+    ```poetry run invoke start```
 
 ## Komentorivitoiminnot
 
 ### Ohjelman suorittaminen
 Ohjelman voi suorittaa komennolla:
     
-    Poetry run invoke start 
+    poetry run invoke start 
 
 ### Testaus
 Ohjelman testit suoritetaan komennolla:
      
-    Poetry run coverage test
+    poetry run coverage test
 
 ### Testikattavuus
 Ohjelman testikattavuusraportti generoidaan htmlcov-hakemistoon komennolla:
 
-    Poetry run invoke coverage-report
+    poetry run invoke coverage-report
   
 
 ### Pylint
