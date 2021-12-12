@@ -45,7 +45,8 @@ class Register:
         self._new_win.title("Date of Birth")
         self._new_win.geometry("400x400")
         self._cal = Calendar(
-            self._new_win, font="robotica", selectmode="day", cursor="hand1", year=2001, day=1, month=1,  date_pattern="dd/MM/yyyy")
+            self._new_win, font="robotica", selectmode="day", cursor="hand1", 
+            year=2001, day=1, month=1,  date_pattern="dd/MM/yyyy")
         self._cal.grid(row=0, column=0)
         self._choose_btn = tk.Button(
             self._new_win, text="Choose", command=self._get_date).grid(row=1, column=0)
