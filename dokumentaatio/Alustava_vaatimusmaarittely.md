@@ -22,20 +22,14 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
 ## Perusversion tarjoama toiminnallisuus 
 
 - [x] Käyttäjä pystyy rekisteröitymään ja kirjautumaan sovellukseen
-
 - [x] Käyttäjän tunnuksen tulee olla sähköpostimuodossa ja käyttämätön. Ohjelma ilmoittaa kelvottomasta sähköpostista.
-
 - [x] Käyttäjä pystyy lisäämään oman sukupuolensa, pituudensa ja painonsa
-
 - [x] Ikä saadaan "Date of Birth" muuttujasta
-
 - [x] Painon mukana tallennetaan päivämäärä, jolloin se on lisätty.
 - [x] Taulukko, josta näkyy painon kehitys kuvaajana.
-
-- [ ] Käyttäjä voi laskea lepokalorikulutuksensa (BMR, Basal Metabolic Rate)
-
+- [x] Käyttäjä voi laskea lepokalorikulutuksensa (BMR, Basal Metabolic Rate)
+- [x] Käyttäjä voi laskea päivän aikaisen energian kulutuksensa (TDEE, Total Daily Energy Expenditure) 
 - [x] Käyttäjä voi poistaa tilinsä
-
 - [x] Käyttäjä voi kirjautua ulos tilistä
 
 ## Jatkokehitysideoita
