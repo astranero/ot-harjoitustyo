@@ -154,6 +154,6 @@ class Register:
                                     messagebox.showinfo(
                                         "Hurray!", "Registration Succesful!")
                                     self._login_screen()
-        except Exception as e:
+        except Exception as error:
             self._errorWindow(
-                f"There's something wrong with registration, Error: {e}")
+                f"There's something wrong with registration, Error: {error}")

@@ -39,8 +39,11 @@ class UserService:
                 self._datatools.update_password(
                     email,  self._password, self._password2)
                 showinfo("Done", "Password has been changed!")
+            elif self._password1 != self._password2:
+                showinfo("Error", f"Passwords don't match")
+            else: raise ValueError
         except sqlite3.Error as error:
-            showinfo(f"Error, {error}")
+            showinfo("Error", f"Insert valid values: {error}")
 
     def gender_check(self, gender):
         if gender == "male" or gender == "female":
@@ -119,9 +122,9 @@ class UserService:
 
         try:
             new_heigh = float(height)
-            if 0.0 > new_heigh > 300.0:
+            if 0.0 > new_heigh > 400.0:
                 error = False
-                showinfo("Are you even human?")
+                showinfo("Value in kg, please.")
         except ValueError:
             pass
         return error

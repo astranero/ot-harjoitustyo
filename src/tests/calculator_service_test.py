@@ -21,10 +21,10 @@ class TestCalculator(unittest.TestCase):
         self.assertAlmostEqual(66.38, round(estimate, 2))
 
     def test_count_lean_body_mass_with_fatpercent(self):
-        fat_percent = 76.4
+        fat_percent = 24.1
         lean_mass = self.service._count_lean_body_mass_with_fatpercent(
             fat_percent, self.weight_kg)
-        self.assertEqual(68.76, lean_mass)
+        self.assertEqual(68.31, round(lean_mass,2))
 
     def test_total_daily_energy_exepnditure(self):
         lean_body_mass = float(76.4)

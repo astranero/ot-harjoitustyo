@@ -10,7 +10,7 @@ class TestIntakeTraceService(unittest.TestCase):
     def test_strMethod(self):
         print(self.mouth)
         self.assertEqual(self.mouth.__str__(),
-                         "Protein: 0g | Carbohydrates: 0g | Fat: 0g")
+                         "Protein: 0g | Carbohydrates: 0g | Fat: 0g | Total Calories: 0")
 
     def test_get_protein(self):
         self.assertEqual(self.mouth.get_protein(), 0)

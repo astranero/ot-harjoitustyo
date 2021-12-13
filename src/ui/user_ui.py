@@ -120,9 +120,9 @@ class UserUI:
         self._weight_show()
 
     def _password_change(self):
-        self._password_btn["state"] = "disabled"
         answer = self._popask_win()
         if answer:
+            self._password_btn["state"] = "disabled"
             self._win = Toplevel(self._frame)
             self._win.title("Password Change")
             self._password1_lbl = Label(
@@ -139,9 +139,7 @@ class UserUI:
             self._password_entry2.grid(row=2, column=2, sticky="nsew")
             self._pass_done_btn = Button(
                 self._win, text="Done", command=self._password_change_finalization).grid(row=3, column=1, sticky="nsew")
-        else:
-            self._password_btn["state"] = "active"
-
+                
     def _password_change_finalization(self):
         first_password = self._passwordvar1.get()
         second_password = self._passwordvar2.get()
