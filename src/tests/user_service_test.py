@@ -1,3 +1,4 @@
+import re
 from tkinter.messagebox import showinfo
 import unittest
 from services.user_service import UserService
@@ -52,4 +53,8 @@ class TestUserService(unittest.TestCase):
         return_value = self.service.email_check("adda")
         self.assertEqual(return_value, False)
     
-    def test_name_check
+    def test_name_check(self):
+        return_value=self.service.name_check("name")
+        self.assertEqual(return_value, True)
+        return_value=self.service.name_check("bom21")
+        self.assertEqual(return_value, False)
