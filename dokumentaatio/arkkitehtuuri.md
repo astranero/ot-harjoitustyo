@@ -26,7 +26,7 @@ UserService-luokan metodeja ovat esimerkiksi:
 UserService on riippuvainen DatabaseTools-luokasta, joka on käyttäjän tietojen tallentamisesta huolehtiva luokka. UserService käsittelee kirjautumiseen, rekisteröitymiseen ja käyttäjän muokkaamiseen liittyviä toiminnallisuuksia. 
 
 EntityService-luokan metodeja ovat esimerkiksi:
-- '_create_user_entity()'
+- ´_create_user_entity()´
 - 'return_user_entity()'
 
 Calculator-luokan metodeja ovat esimerkiksi:
