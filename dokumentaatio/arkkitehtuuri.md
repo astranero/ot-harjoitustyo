@@ -14,4 +14,8 @@ ui-hakemistossa on sovelluksen käyttöliittymästä ja services-hakemistossa so
 Ei vielä päivitetty
 
 # Sovelluslogiikka
+
+<img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokka_pakkauskaavio.png" width=760>
+
+
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Sekvenssikaavio.png" width=760>
