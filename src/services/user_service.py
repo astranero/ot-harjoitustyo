@@ -122,9 +122,9 @@ class UserService:
 
         try:
             new_heigh = float(height)
-            if 0.0 > new_heigh > 400.0:
+            if 0.0 > new_heigh < 400.0:
                 error = False
-                showinfo("Value in kg, please.")
+                showinfo("Value in centimeters, please.")
         except ValueError:
             pass
         return error
