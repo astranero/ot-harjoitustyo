@@ -1,14 +1,35 @@
-""" sources: 
-https://www.reddit.com/r/nutrition/comments/bb90l0/most_accurate_bmrtdee_calculator/
-https://www.omnicalculator.com/health/bmr-katch-mcardle#what-is-the-katch-mcardle-calculator
-"""
 class Calculator:
+    """Luokka, jonka avulla lasketaan kalorimäärät
+
+        Attributes:
+                self.__protein_calorie_per_gram: alustettu arvo yhden proteiinigramman kalorimäärästä.
+                self.__carbohydrates_calorie_per_gram: alustettu arvo yhden hiilihydraattigramman kalorimäärästä.
+                self.__fat_calorie_per_gram: alustettu arvo yhden rasvagramman kalorimäärästä.
+    """
+
     def __init__(self):
+        """ Luokan konstruktori, joka luo uuden laskimen.
+
+            Args: 
+                self.self.__protein_calorie_per_gram: yhden gramman proteiinin kalorimäärä
+                self.self.__carbohydrates_calorie_per_gram: yhden gramman hiilihydraatin kalorimäärä
+                self.self.__fat_calorie_per_gram: yhden gramman rasvan kalorimäärä        
+        """
+
         self.__protein_calorie_per_gram = 4
         self.__carbohydrates_calorie_per_gram = 4
         self.__fat_calorie_per_gram = 9
 
     def protein_calorie_count(self, protein_grams: int):
+        """Laskee proteiinin kalorimäärän
+
+            Args: 
+                protein_grams: Laskettavan proteiinin määrä grammoina.
+
+            Returns: 
+                Kokonaislukuarvoisen proteiinin kalorimäärän.
+        """
+
         self.protein_calories = self.__protein_calorie_per_gram * \
             int(protein_grams)
         return self.protein_calories
@@ -23,6 +44,12 @@ class Calculator:
         return self.fat_calories
 
     def _lean_body_mass_estimate(self, weight_kg=None, height_cm=None, gender=None):
+        """Laskee arvion käyttäjän lihasmassasta painon, pituuden ja sukupuolen perusteella.
+
+            Returns:
+                liukuluvun, joka kertoo lihasmassan kilogrammoina.
+        """
+
         if gender == "male":
             lean_body_mass_kg = 0.407 * weight_kg + 0.267 * height_cm - 19.2
         elif gender == "female":
@@ -30,10 +57,22 @@ class Calculator:
         return lean_body_mass_kg
 
     def _count_lean_body_mass_with_fatpercent(self, body_fat_percent, weight_kg):
+        """Laskee lihasmassan käyttäjän rasvaprosentti osuuden ja painon perusteella.
+
+            Returns:
+                liukuluvun, joka kertoo lihasmassan kilogrammoina.
+        """
+
         lean_body_mass_kg = weight_kg * ((100 - body_fat_percent)/100)
         return lean_body_mass_kg
 
     def bmr_count(self, lean_body_mass: float):
+        """ Laskee päivittäisen lepoaikaisen energian kulutuksen lihasmassan perusteella.
+            Returns:
+                liukuluvun, joka kertoo päivittäisen lihaskulutuksen kilokaloreina.
+                Mutta virhetilanteessa palauttaa virheen.
+        """
+
         try:
             basal_metabolic_rate = 370 + (21.6*lean_body_mass)
             return basal_metabolic_rate

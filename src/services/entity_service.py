@@ -1,11 +1,24 @@
 from repositories.user_repository import DatabaseTools
 from datetime import datetime, date
-from entities.User import User
+from entities.user import User
 from services.intake_trace_service import Intake
 
 
 class EntityService:
+    """Luokka, jonka avulla alustetaan User-olio.
+
+        Attributes: 
+            email: Käyttäjän sähköpostiosoite.
+            DatabaseTools(): Luokka-olio, jonka avulla päästään käsiksi tietokantaan.
+            User(): Luokka-olio, joka alustetaan käyttäjän tiedoilla. 
+    """
+
     def __init__(self, email):
+        """Luokan konstruktori, joka luo uuden instanssin.
+
+        Args:
+            email (String): Käyttäjän sähköpostiosoite.
+        """
         self._email = email
         self._datatools = DatabaseTools()
         self._user = User()
@@ -14,9 +27,12 @@ class EntityService:
         self._create_user_entity()
 
     def _create_user_entity(self):
+        """Metodi, jonka avulla alustetaan tietokannasta löytyvät tiedot User-olioon.
+        """
+
         data = self._datatools.fetch_user_info(self._email)
-        dateOfBirth = data[5]
-        age = self._age_count(dateOfBirth)
+        date_of_birth = data[5]
+        age = self._age_count(date_of_birth)
         gender = data[6]
         height = data[7]
         nutrient_data_csv = data[8]
@@ -27,6 +43,11 @@ class EntityService:
         self._user_entity = user_entity
 
     def return_user_entity(self):
+        """Palauttaa User-olion kutsukohtaan.
+
+        Returns:
+            User-luokan instanssi: Palauttaa alustetun olion.
+        """
         return self._user_entity
 
     def user_intake_load(self):
@@ -42,13 +63,26 @@ class EntityService:
             self._intake.set_fat(fat)
         return self._intake
 
-    def _age_count(self, dateOfBirth):
-        birthdate = datetime.strptime(dateOfBirth, "%d/%m/%y")
+    def _age_count(self, date_of_birth):
+        """Lasketaan käyttäjän ikä
+
+        Args:
+            date_of_birth (string): Käyttäjän syntymäaika merkkijonona formaattimuodossa "dd/MM/yyyy".
+
+        Returns:
+            ikä (float): Käyttäjän ikä liukulukuarvona
+        """
+        birthdate = datetime.strptime(date_of_birth, "%d/%m/%Y")
         nowdate = datetime.now()
         age = nowdate - birthdate
         return age.days/(365.25)
 
     def update_reset_timer(self):
+        """Metodi, joka alustaa päivittäin muuttujan nutrient_data_csv.
+
+        Returns:
+            True: Jos päivä on sama, niin palautetaan tosi. Muulloin epätosi.
+        """
         updatedate = self._datatools.fetch_updatedate(self._email)
         updatedate_obj = datetime.strptime(updatedate, "%Y-%m-%d %H:%M:%S")
         updatedate_str = datetime.strftime(updatedate_obj, "%Y-%m-%d")

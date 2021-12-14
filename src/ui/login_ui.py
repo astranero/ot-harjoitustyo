@@ -41,14 +41,15 @@ class LoginScreen:
                 self._popup_win("Email or password is incorrect.")
         except Exception as e:
             self._popup_win(f"Something went wrong: {e}!")
-    
+
     def email_handing(self):
         email_lbl = tk.Label(self._frame, text="Email", font=self._font)
         email_lbl.grid(row=2, column=0, sticky="nsew", **self.padding)
         self._email_entry = tk.StringVar(self._frame)
-        email_ent = tk.Entry(self._frame, textvariable=self._email_entry, font=self._font)
+        email_ent = tk.Entry(
+            self._frame, textvariable=self._email_entry, font=self._font)
         email_ent.grid(row=2, column=1, sticky="nsew")
-    
+
     def password_handling(self):
         password_lbl = tk.Label(self._frame, text="Password", font=self._font)
         password_lbl.grid(row=3, column=0, sticky="nsew", **self.padding)
@@ -56,7 +57,7 @@ class LoginScreen:
         password_ent = tk.Entry(
             self._frame, textvariable=self._password_entry, show="*", font=self._font)
         password_ent.grid(row=3, column=1, sticky="nsew")
-    
+
     def screen_handling(self):
         btn_login = tk.Button(
             self._frame,
@@ -71,10 +72,11 @@ class LoginScreen:
             command=self._show_register_view,
             font=self._font)
         btn_register.grid(row=4, column=1, sticky="nsew", **self.padding)
-        
+
     def _initialize(self):
         self._frame = tk.Frame(master=self._root)
-        heading_lbl = tk.Label(self._frame, text="Login Screen", bg="violet", font=self._font)
+        heading_lbl = tk.Label(
+            self._frame, text="Login Screen", bg="violet", font=self._font)
         heading_lbl.grid(row=1, column=1, sticky="nsew", **self.padding)
         self.email_handing()
         self.password_handling()

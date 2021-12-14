@@ -41,7 +41,8 @@ class UserService:
                 showinfo("Done", "Password has been changed!")
             elif self._password1 != self._password2:
                 showinfo("Error", f"Passwords don't match")
-            else: raise ValueError
+            else:
+                raise ValueError
         except sqlite3.Error as error:
             showinfo("Error", f"Insert valid values: {error}")
 
@@ -71,7 +72,6 @@ class UserService:
         for row in datacontent:
             weight_list.append(row[0])
             date_list.append(row[1])
-        print(weight_list, date_list)
         return (weight_list, date_list)
 
     def email_check(self, in_email):

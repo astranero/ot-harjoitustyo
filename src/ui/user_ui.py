@@ -139,7 +139,7 @@ class UserUI:
             self._password_entry2.grid(row=2, column=2, sticky="nsew")
             self._pass_done_btn = Button(
                 self._win, text="Done", command=self._password_change_finalization).grid(row=3, column=1, sticky="nsew")
-                
+
     def _password_change_finalization(self):
         first_password = self._passwordvar1.get()
         second_password = self._passwordvar2.get()
