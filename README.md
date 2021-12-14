@@ -18,6 +18,8 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 
 [Työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+[Käyttöohje](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 ## Asennus
 
 1. Seuraavalla komennolla saadaan asennettua riippuvuuksia:
