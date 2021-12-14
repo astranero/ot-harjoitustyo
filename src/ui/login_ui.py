@@ -76,7 +76,7 @@ class LoginScreen:
     def _initialize(self):
         self._frame = tk.Frame(master=self._root)
         heading_lbl = tk.Label(
-            self._frame, text="Login Screen", bg="violet", font=self._font)
+            self._frame, text="Login Screen", font=self._font)
         heading_lbl.grid(row=1, column=1, sticky="nsew", **self.padding)
         self.email_handing()
         self.password_handling()
