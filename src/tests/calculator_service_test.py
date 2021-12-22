@@ -22,19 +22,19 @@ class TestCalculator(unittest.TestCase):
 
     def test_lean_body_mass_estimate_male(self):
         gender = "male"
-        estimate = self.service._lean_body_mass_estimate(
+        estimate = self.service.lean_body_mass_estimate(
             self.weight_kg, self.height_cm, gender)
         self.assertAlmostEqual(69.3615, estimate)
 
     def test_lean_body_mass_estimate_female(self):
         gender = "female"
-        estimate = self.service._lean_body_mass_estimate(
+        estimate = self.service.lean_body_mass_estimate(
             self.weight_kg, self.height_cm, gender)
         self.assertAlmostEqual(66.38, round(estimate, 2))
 
     def test_count_lean_body_mass_with_fatpercent(self):
         fat_percent = 24.1
-        lean_mass = self.service._count_lean_body_mass_with_fatpercent(
+        lean_mass = self.service.count_lean_body_mass_with_fatpercent(
             fat_percent, self.weight_kg)
         self.assertEqual(68.31, round(lean_mass, 2))
 

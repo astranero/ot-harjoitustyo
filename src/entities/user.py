@@ -12,13 +12,10 @@ class User:
         """ Luokan konstruktori, joka luo uuden käyttäjä instanssin.
 
             Args: 
-                age: ikä
                 gender: sukupuoli, mies tai nainen.
                 weight: paino kilogrammoina.
                 height: Pituus senttimerteinä.
         """
-
-        self.__age = age
         self.__gender = gender
         self.__weight = weight
         self.__height = height

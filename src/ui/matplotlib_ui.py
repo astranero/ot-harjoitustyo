@@ -3,7 +3,7 @@ from services.user_service import UserService
 import tkinter
 import matplotlib
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib import style
 matplotlib.use("TkAgg")
 
@@ -14,6 +14,8 @@ class MatplotlibUI:
         self._root = root
         self._user_serv = UserService()
         self._frame = None
+        self.padding = {"padx": 5, "pady": 5}
+        self._font = ("Roboto", 12)
 
     def _mathplotframe(self):
         self._frame = Toplevel(self._root)
@@ -30,9 +32,9 @@ class MatplotlibUI:
         figure.autofmt_xdate(rotation=45, ha="center")
         canvas = FigureCanvasTkAgg(figure, self._frame)
         canvas.draw()
-        canvas.get_tk_widget().grid(row=1, column=1, sticky="nsew")
+        canvas.get_tk_widget().grid(row=1, column=0, sticky="nsew", **self.padding)
         tkinter.Button(self._frame, text="Close",
-                       command=self._destroy).grid(row=0, column=0)
+                       command=self._destroy, font=self._font).grid(row=0, column=0, **self.padding)
 
     def _destroy(self):
         self._frame.destroy()

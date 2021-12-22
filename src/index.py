@@ -16,7 +16,8 @@ class UI:
 
     def _show_register_view(self):
         self._current_view.destroy()
-        self._current_view = create.Register(self._root, self._show_login_view)
+        self._current_view = create.Register(
+            self._root, self._show_login_view, self._show_user_view)
         self._current_view.pack()
 
     def _show_login_view(self):

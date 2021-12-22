@@ -43,7 +43,7 @@ class Calculator:
         self.fat_calories = self.__fat_calorie_per_gram * int(fat_grams)
         return self.fat_calories
 
-    def _lean_body_mass_estimate(self, weight_kg=None, height_cm=None, gender=None):
+    def lean_body_mass_estimate(self, weight_kg=None, height_cm=None, gender=None):
         """Laskee arvion käyttäjän lihasmassasta painon, pituuden ja sukupuolen perusteella.
 
             Returns:
@@ -56,7 +56,7 @@ class Calculator:
             lean_body_mass_kg = 0.252 * weight_kg + 0.473 * height_cm - 48.3
         return lean_body_mass_kg
 
-    def _count_lean_body_mass_with_fatpercent(self, body_fat_percent, weight_kg):
+    def count_lean_body_mass_with_fatpercent(self, body_fat_percent, weight_kg):
         """Laskee lihasmassan käyttäjän rasvaprosentti osuuden ja painon perusteella.
 
             Returns:

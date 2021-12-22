@@ -8,8 +8,6 @@ class LoginScreen:
     def __init__(self, root, show_register_view, show_user_view):
         self._cur = tools.DatabaseTools()
         self._root = root
-        self._error_var = None
-        self._error_lbl = None
         self._email_entry = None
         self._password_entry = None
         self.padding = {"padx": 5, "pady": 5}
@@ -85,6 +83,4 @@ class LoginScreen:
     def _login_start(self):
         email = self._email_entry.get()
         password = self._password_entry.get()
-        self._email = email
-        self._password = password
         self._user_handling(email, password)
