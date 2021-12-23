@@ -32,26 +32,22 @@ class CalculatorScreen:
     def destroy(self):
         self._frame.destroy()
 
-    def framesec_destroy(self):
-        self._framesec.destroy
-
-    def popwin(self, message):
+    def _popwin(self, message):
         showerror("Error!", message)
 
-    def count_bmr_with_leanmass(self):
+    def _count_bmr_with_leanmass(self):
         lean_mass = self._leanmass.get()
         if lean_mass is not None:
             try:
                 self.bmr = round(
                     self._calculator.bmr_count(float(lean_mass)), 3)
             except ValueError as error:
-                self.popwin(
+                self._popwin(
                     f"Please insert only lean mass in kilograms and as Integer. Example: 16 , 17.4 , 12: {error}")
         self._var.set(f"{self.bmr} kcal/per day")
 
-    def count_bmr_with_bodyfat(self):
-        user = self._usser.return_user_entity()
-        weight = user.get_weight()
+    def _count_bmr_with_bodyfat(self):
+        weight = self._datatools.fetch_weight(self._email)
         body_fat = self._bodyfat.get()
         if body_fat is not None:
             try:
@@ -60,11 +56,11 @@ class CalculatorScreen:
                 self.bmr = round(
                     self._calculator.bmr_count(float(leanmass)), 3)
             except ValueError as error:
-                self.popwin(
+                self._popwin(
                     f"Please insert weight and body fat as a float. {error}")
         self._var.set(f"{self.bmr} kcal/per day")
 
-    def count_bmr_with_estimated_leanmass(self):
+    def _count_bmr_with_estimated_leanmass(self):
         try:
             data = self._datatools.fetch_user_info(self._email)
             gender = data[6]
@@ -74,52 +70,75 @@ class CalculatorScreen:
                 weight, height, gender)
             self.bmr = round(self._calculator.bmr_count(estimate), 2)
         except ValueError as error:
-            self.popwin(f"{error}")
+            self._popwin(f"{error}")
         self._var.set(f"{self.bmr} kcal/per day")
 
-    def calculator_frame1(self, frame):
+    def _refresh_frame(self):
+        if self._framesec is not None:
+            self._framesec.destroy()
+        self._framesec = Frame(self._frame)
+
+    def _span_suitable_screen(self):
+        choosed_option = self._choosed_var.get()
+        if choosed_option == "I'll count with my Lean Body Mass":
+            self._refresh_frame()
+            self._calculator_frame1(self._framesec)
+            self._framesec.grid()
+        elif choosed_option == "I'll count with my Body fat %":
+            self._refresh_frame()
+            self._calculator_frame2(self._framesec)
+            self._framesec.grid()
+        elif choosed_option == "I'll count by estimating my Lean Body Mass":
+            self._refresh_frame()
+            self._calculator_frame3(self._framesec, lambda: [
+                self._count_bmr_with_estimated_leanmass()])
+            self._framesec.grid()
+
+    def _calculator_frame1(self, frame):
         self._leanframe = frame
         self._leanmass = StringVar(self._leanframe)
         Label(self._leanframe, font=self._font, text="Lean body mass (kg): ").grid(
             row=0, column=0, sticky="nsew", **self.padding)
         self.lean_body_mass = Entry(
             self._leanframe, textvariable=self._leanmass, font=self._font)
-        self.lean_body_mass.grid(row=0, column=1, sticky="nsew", **self.padding)
-        self.calculator_frame3(self._leanframe, lambda: [
-                               self.count_bmr_with_leanmass()])
+        self.lean_body_mass.grid(
+            row=0, column=1, sticky="nsew", **self.padding)
+        self._calculator_frame3(self._leanframe, lambda: [
+            self._count_bmr_with_leanmass()])
 
-    def calculator_frame2(self, frame):
+    def _calculator_frame2(self, frame):
         self._fatframe = frame
         self._bodyfat = StringVar(self._fatframe)
         Label(self._fatframe, font=self._font, text="Body fat %: ").grid(
             row=0, column=0, sticky="nsew", **self.padding)
         self.bodyfat_percentage = Entry(
             self._fatframe, textvariable=self._bodyfat, font=self._font)
-        self.bodyfat_percentage.grid(row=0, column=1, sticky="nsew", **self.padding)
-        self.calculator_frame3(self._fatframe, lambda: [
-                               self.count_bmr_with_bodyfat()])
+        self.bodyfat_percentage.grid(
+            row=0, column=1, sticky="nsew", **self.padding)
+        self._calculator_frame3(self._fatframe, lambda: [
+            self._count_bmr_with_bodyfat()])
 
-    def calculator_frame3(self, frame, xcommand):
+    def _calculator_frame3(self, frame, xcommand):
         self._allframe = frame
         Label(self._allframe, text="Basal Metabolic rate: ", font=self._font).grid(
             row=1, column=0, sticky="nsew", **self.padding)
         self._var = StringVar(self._allframe)
         self.label = Label(self._allframe, textvariable=self._var, font=self._font).grid(
             row=1, column=1, sticky="nsew", **self.padding)
-        Button(self._allframe, text="Calculate BMR", font=self._font, command=lambda: [xcommand(), self.button_tdee()]).grid(
+        Button(self._allframe, text="Calculate BMR", font=self._font, command=lambda: [xcommand(), self._button_tdee()]).grid(
             row=2, column=0, sticky="nsew", **self.padding)
 
-    def button_tdee(self):
+    def _button_tdee(self):
         tdee_btn = Button(self._allframe, text="Continue to TDEE Calculation",
-                          command=lambda: self.total_expenditure_frame(self._allframe), font=self._font)
+                          command=lambda: self._total_expenditure_frame(self._allframe), font=self._font)
         tdee_btn.grid(row=2, column=1, **self.padding)
 
-    def tdee_calculation(self):
+    def _tdee_calculation(self):
         activity_level = self._activity_level.get()
         self._tdee_var.set(self._calculator.total_daily_energy_expenditure(
             self.bmr, activity_level))
 
-    def total_expenditure_frame(self, frame):
+    def _total_expenditure_frame(self, frame):
         self._frame_expend = frame
         self._activity_level = StringVar(self._frame_expend)
         Label(self._frame_expend, text="Choose activity level to count TDEE.", font=self._font).grid(
@@ -133,30 +152,9 @@ class CalculatorScreen:
         Label(self._frame_expend, textvariable=self._tdee_var, font=self._font).grid(
             row=4, column=1, sticky="nsew", **self.padding)
         expenditure_menu = OptionMenu(self._frame_expend, self._activity_level, *activity_levels,
-                   command=lambda x: [self.tdee_calculation()])
+                                      command=lambda x: [self._tdee_calculation()])
         expenditure_menu.grid(row=3, column=1, sticky="nsew", **self.padding)
         expenditure_menu.config(font=self._font)
-
-    def _refresh_frame(self):
-        if self._framesec is not None:
-            self._framesec.destroy()
-        self._framesec = Frame(self._frame)
-
-    def _span_suitable_screen(self):
-        choosed_option = self._choosed_var.get()
-        if choosed_option == "I'll count with my Lean Body Mass":
-            self._refresh_frame()
-            self.calculator_frame1(self._framesec)
-            self._framesec.grid()
-        elif choosed_option == "I'll count with my Body fat %":
-            self._refresh_frame()
-            self.calculator_frame2(self._framesec)
-            self._framesec.grid()
-        elif choosed_option == "I'll count by estimating my Lean Body Mass":
-            self._refresh_frame()
-            self.calculator_frame3(self._framesec, lambda: [
-                                   self.count_bmr_with_estimated_leanmass()])
-            self._framesec.grid()
 
     def _basal_frame(self):
         self._choosed_var = StringVar(self._frame)

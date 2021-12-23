@@ -1,5 +1,3 @@
-import re
-from tkinter.messagebox import showinfo
 import unittest
 from services.user_service import UserService
 

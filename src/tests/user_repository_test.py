@@ -1,11 +1,10 @@
 import unittest
-from repositories.user_repository import DatabaseTools
+import repositories.user_repository as repository
 
 
 class TestDatabaseTools(unittest.TestCase):
     def setUp(self):
-        self.database = DatabaseTools()
-        self.database.delete_all()
+        self.database = repository.DatabaseTools()
         self.name = "Pekka"
         self.surname = "Pekkanen"
         self.email = "Pekka@pekkanen.com"

@@ -11,7 +11,7 @@ class UI:
         self._root = root
         self._current_view = None
 
-    def _start(self):
+    def start(self):
         self._show_login_view()
 
     def _show_register_view(self):
@@ -46,5 +46,5 @@ window.title("Softfit Assist")
 style.theme_use("clam")
 window.geometry("560x560")
 ui = UI(window)
-ui._start()
+ui.start()
 window.mainloop()

@@ -2,46 +2,50 @@ class Calculator:
     """Luokka, jonka avulla lasketaan kalorimäärät
 
         Attributes:
-                self.__protein_calorie_per_gram: alustettu arvo yhden proteiinigramman kalorimäärästä.
-                self.__carbohydrates_calorie_per_gram: alustettu arvo yhden hiilihydraattigramman kalorimäärästä.
+                self.__protein_calorie_per_gram:
+                alustettu arvo yhden proteiinigramman kalorimäärästä.
+
+                self.__carbohydrates_calorie_per_gram:
+                alustettu arvo yhden hiilihydraattigramman kalorimäärästä.
+
                 self.__fat_calorie_per_gram: alustettu arvo yhden rasvagramman kalorimäärästä.
     """
 
     def __init__(self):
         """ Luokan konstruktori, joka luo uuden laskimen.
 
-            Args: 
+            Args:
                 self.self.__protein_calorie_per_gram: yhden gramman proteiinin kalorimäärä
                 self.self.__carbohydrates_calorie_per_gram: yhden gramman hiilihydraatin kalorimäärä
-                self.self.__fat_calorie_per_gram: yhden gramman rasvan kalorimäärä        
+                self.self.__fat_calorie_per_gram: yhden gramman rasvan kalorimäärä
         """
 
-        self.__protein_calorie_per_gram = 4
-        self.__carbohydrates_calorie_per_gram = 4
-        self.__fat_calorie_per_gram = 9
+        self._protein_calorie_per_gram = 4
+        self._carbohydrates_calorie_per_gram = 4
+        self._fat_calorie_per_gram = 9
 
     def protein_calorie_count(self, protein_grams: int):
         """Laskee proteiinin kalorimäärän
 
-            Args: 
+            Args:
                 protein_grams: Laskettavan proteiinin määrä grammoina.
 
-            Returns: 
+            Returns:
                 Kokonaislukuarvoisen proteiinin kalorimäärän.
         """
 
-        self.protein_calories = self.__protein_calorie_per_gram * \
+        protein_calories = self._protein_calorie_per_gram * \
             int(protein_grams)
-        return self.protein_calories
+        return protein_calories
 
     def carbohydrates_calorie_count(self, carbohydrates_grams: int):
-        self.carbohydrates_calories = self.__carbohydrates_calorie_per_gram * \
+        carbohydrates_calories = self._carbohydrates_calorie_per_gram * \
             int(carbohydrates_grams)
-        return self.carbohydrates_calories
+        return carbohydrates_calories
 
     def fat_calorie_count(self, fat_grams: int):
-        self.fat_calories = self.__fat_calorie_per_gram * int(fat_grams)
-        return self.fat_calories
+        fat_calories = self._fat_calorie_per_gram * int(fat_grams)
+        return fat_calories
 
     def lean_body_mass_estimate(self, weight_kg=None, height_cm=None, gender=None):
         """Laskee arvion käyttäjän lihasmassasta painon, pituuden ja sukupuolen perusteella.
@@ -96,5 +100,5 @@ class Calculator:
                 activity_multiplier = 0
             total_daily_energy_expenditure = bmr * activity_multiplier
             return round(total_daily_energy_expenditure, 3)
-        except Exception as error:
+        except ValueError as error:
             return error

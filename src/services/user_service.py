@@ -22,24 +22,15 @@ class UserService:
         email = in_email
         self._password = password
 
-        if self._password1 == self._password2 and self._password1 is not None and self._password1 != "":
-            try:
-                self._datatools.update_password(
-                    email,  self._password, self._password2)
-                return True
-            except Exception as error:
-                return error
-        elif self._password1 != self._password2:
-            return False
-        else:
-            raise ValueError
+        if self._password1 == self._password2 and self._password1 not in ([None], ""):
+            self._datatools.update_password(
+                email,  self._password, self._password2)
+            return True
+        return False
 
     def gender_check(self, gender):
-        if gender == "male" or gender == "female":
-            error = True
-        else:
-            error = False
-        return error
+        var = bool(gender in ("male", "female"))
+        return var
 
     def name_check(self, name):
         error = True
@@ -67,19 +58,15 @@ class UserService:
         if (re.fullmatch(regex, email)) is not None:
             email_available = self._datatools.check_email_available(
                 email)
-            if email_available is None:
-                error = True
-            else:
-                error = False
+            var = bool(email_available in ([None]))
+            return var
         return error
 
     def password_check(self, password1, password2):
-        if password1 == password2 == "":
-            return None
-        if password1 == password2 and not password1 == password2 == "":
-            return True
-        else:
-            return False
+        if password1 == password2:
+            var = bool("" not in (password1, password2))
+            return var
+        return None
 
     def check_height_digit(self, height):
         error = True
