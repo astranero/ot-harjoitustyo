@@ -49,7 +49,6 @@ class Calculator:
             Returns:
                 liukuluvun, joka kertoo lihasmassan kilogrammoina.
         """
-
         if gender == "male":
             lean_body_mass_kg = 0.407 * weight_kg + 0.267 * height_cm - 19.2
         elif gender == "female":

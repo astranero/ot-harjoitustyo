@@ -16,4 +16,6 @@
 | 7.12.  | 8    | BMR laskimen luomisen prosessi
 | 10.12. | 6    | Sain BMR- ja TDEE-laskurin toimimaan.
 | 12.12. | 2    | Korjasin koodia ja virheitä. 
-| yht    | 55.5
+| 22.12. | 7    | Poistin User-entityn, eristin UI:n paremmin ja putsasin koodia.
+| 23.12. | 3    | Tein toisenlaisen tavan toteuttaa aineiden tallennusta, ja loin niihin toiminnallisuudet
+| yht    | 65.5

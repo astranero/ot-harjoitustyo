@@ -2,7 +2,8 @@ from tkinter import Button, Label, OptionMenu, StringVar, Tk, Frame, Toplevel, c
 import tkinter as tk
 from tkinter.messagebox import showerror
 import services.calculator_service as calculator_service
-import services.entity_service as entity_service
+import services.intake_record_service as intake_record_service
+import repositories.user_repository as user_repo
 
 
 class CalculatorScreen:
@@ -11,9 +12,9 @@ class CalculatorScreen:
         self._email = email
         self._password = password
         self._user_view = user_view
-        self._intake_entity = None
+        self._datatools = user_repo.DatabaseTools()
         self._calculator = calculator_service.Calculator()
-        self._usser = entity_service.EntityService(self._email)
+        self._usser = intake_record_service.RecordService(self._email)
         self.bmr = None
         self.framesec = None
         self._leanmass = None
@@ -65,10 +66,10 @@ class CalculatorScreen:
 
     def count_bmr_with_estimated_leanmass(self):
         try:
-            user = self._usser.return_user_entity()
-            weight = float(user.get_weight())
-            gender = user.get_gender()
-            height = float(user.get_height())
+            data = self._datatools.fetch_user_info(self._email)
+            gender = data[6]
+            height = float(data[7])
+            weight = float(self._datatools.fetch_weight(self._email))
             estimate = self._calculator.lean_body_mass_estimate(
                 weight, height, gender)
             self.bmr = round(self._calculator.bmr_count(estimate), 2)

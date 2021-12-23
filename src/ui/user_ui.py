@@ -4,7 +4,7 @@ from tkinter.messagebox import askyesno, showinfo
 from repositories.user_repository import DatabaseTools
 from services.user_service import UserService
 from ui.matplotlib_ui import MatplotlibUI
-from services.entity_service import EntityService
+from services.intake_record_service import RecordService
 
 class UserUI:
     def __init__(self, root, email, password, login_view, calculator_view):
@@ -12,7 +12,8 @@ class UserUI:
         self._email = email
         self._password = password
         self._datatools = DatabaseTools()
-        self._entity_serv = EntityService(self._email)
+        self._entity_serv = RecordService(self._email)
+        self.intake = self._entity_serv.user_intake_load()
         self._user_serv = UserService()
         self._login_view = login_view
         self._calculator_view = calculator_view
@@ -49,6 +50,9 @@ class UserUI:
         self._track_btn = Button(
             self._frame, text="Track", font=self._font, command=lambda: [self._mathplo._mathplotframe()])
         self._track_btn.grid(row=5, column=1, sticky="nsew", **self.padding)
+    
+    def _weight_reset_field(self):
+        self._weight_ent.delete(0,"end")
 
     def _weight_handling(self):
         self._weightvar = StringVar()
@@ -62,6 +66,7 @@ class UserUI:
         self._delete_weight = Button(
             self._frame, text="Delete weight", font=self._font, command=lambda: [self._weight_delete(), self._config_weight()]
         ).grid(row=3, column=2, **self.padding, sticky="nsew")
+        self._weight_ent.bind("<Button-1>", lambda x:[self._weight_reset_field()])
 
     def _weight_update(self):
         try:
@@ -119,47 +124,102 @@ class UserUI:
 
     def _add_del_protein(self, bool_val):
         try:
-            if bool_val: 
-                self.intake.set_protein(int(self.protein_ent_var.get()))
-                print(self.intake.get_protein())
+            if bool_val: self.intake.set_protein(int(self.protein_ent_var.get()))
             elif not bool_val: self.intake.set_protein(-int(self.protein_ent_var.get()))
             protein = self.intake.get_protein()
             self.protein_var.set(f"Protein: {protein} grams")
+            self.calorie_var.set(f"Calories: {self.intake._total_calorie_intake()}")
         except ValueError:
             showinfo("Error", f"Please, insert only integers.")
+    
+    def _protein_reset_field(self):
+        self.protein_ent.delete(0,"end")
+        return None
 
     def _protein_info_handling(self):
-        self.intake = self._entity_serv.user_intake_load()
         self.protein_var = StringVar()
         self.protein_var.set(f"Protein: {self.intake.get_protein()} grams")
         protein_lbl = Label(self._frame, textvariable=self.protein_var, bg="white", fg="Black", font=self._font)
         protein_lbl.grid(row=6, column=1, sticky="nsew", **self.padding)
         self.protein_ent_var = StringVar()
-        protein_ent = Entry(self._frame, textvariable=self.protein_ent_var, font=self._font)
+        self.protein_ent = Entry(self._frame, textvariable=self.protein_ent_var, font=self._font)
         self.protein_ent_var.set("Insert protein")
-        protein_ent.grid(row=6, column=2)
-        add_btn = Button(self._frame, text="+", font=self._font, command=lambda:[self._add_del_protein(True)])
+        self.protein_ent.grid(row=6, column=2)
+        add_btn = Button(self._frame, text="+", font=self._font, command=lambda:[self._add_del_protein(True), self._writing_to_file()])
         add_btn.grid(row=6, column=3, sticky="nsew")
-        del_btn = Button(self._frame, text="-", font=self._font, command=lambda:[self._add_del_protein(False)])
+        del_btn = Button(self._frame, text="-", font=self._font, command=lambda:[self._add_del_protein(False), self._writing_to_file()])
         del_btn.grid(row=6, column=4, sticky="nsew")
+        self.protein_ent.bind("<Button-1>", lambda x:[self._protein_reset_field()])
     
     def _add_del_carbohydrates(self, bool_var):
-         
+        try:
+            if bool_var: self.intake.set_carbohydrates(int(self.carbo_ent_var.get()))
+            elif not bool_var: self.intake.set_carbohydrates(-int(self.carbo_ent_var.get()))
+            carbos = self.intake.get_carbohydrates()
+            self.carbo_var.set(f"Carbohydrates: {carbos} grams")
+            self.calorie_var.set(f"Calories: {self.intake._total_calorie_intake()}")
+        except ValueError:
+            showinfo("Error", f"Please, insert only integers.")
+
+    def _carbo_reset_field(self):
+        self.carbo_ent.delete(0,"end")
+        return None
+
     def _carbohydrates_info_handling(self):
-        self.intake = self._entity_serv.user_intake_load()
-        carbo_var = StringVar()
-        carbo_var.set(self.intake.get_carbohydrates)
-        carbo_lbl = Label(self._frame, text=f"Carbohydrates: {carbo_var.get()} grams", bg="white", fg="Black", font=self._font)
-        self.intake.set_carbo(3)
+        self.carbo_var = StringVar()
+        self.carbo_var.set(f"Carbohydrates: {self.intake.get_carbohydrates()} grams")
+        carbo_lbl = Label(self._frame, textvariable=self.carbo_var, bg="white", fg="Black", font=self._font)
         carbo_lbl.grid(row=7, column=1, sticky="nsew", **self.padding)
-        carbo_ent_var = StringVar()
-        carbo_ent = Entry(self._frame, textvariable=carbo_ent_var, font=self._font)
-        carbo_ent_var.set("Insert carbohydrates")
-        carbo_ent.grid(row=7, column=2)
-        add_btn = Button(self._frame, text="+", font=self._font, command=lambda:[self._add_protein(True)])
+        self.carbo_ent_var = StringVar()
+        self.carbo_ent = Entry(self._frame, textvariable=self.carbo_ent_var, font=self._font)
+        self.carbo_ent_var.set("Insert carbohydrates")
+        self.carbo_ent.grid(row=7, column=2)
+        add_btn = Button(self._frame, text="+", font=self._font, command=lambda:[self._add_del_carbohydrates(True), self._writing_to_file()])
         add_btn.grid(row=7, column=3, sticky="nsew")
-        del_btn = Button(self._frame, text="-", font=self._font, command=lambda:[self._add_protein(False)])
+        del_btn = Button(self._frame, text="-", font=self._font, command=lambda:[self._add_del_carbohydrates(False), self._writing_to_file()])
         del_btn.grid(row=7, column=4, sticky="nsew")
+        self.carbo_ent.bind("<Button-1>", lambda x:[self._carbo_reset_field()])
+    
+    def _add_del_fat(self, bool_var):
+        try:
+            if bool_var: self.intake.set_fat(int(self.fat_ent_var.get()))
+            elif not bool_var: self.intake.set_fat(-int(self.fat_ent_var.get()))
+            fats = self.intake.get_fat()
+            self.fat_var.set(f"Fat: {fats} grams")
+            self.calorie_var.set(f"Sum in calories: {self.intake._total_calorie_intake()}")
+        except ValueError:
+            showinfo("Error", f"Please, insert only integers.")
+
+    def _writing_to_file(self):
+        protein = self.intake.get_protein()
+        carbohydrates = self.intake.get_carbohydrates()
+        fat = self.intake.get_fat()
+        self._entity_serv.write_record(protein,carbohydrates,fat)
+    
+    def _reset_field(self):
+        self.fat_ent.delete(0,"end")
+        return None
+
+    def _fat_info_handling(self):
+        self.fat_var = StringVar()
+        self.fat_var.set(f"Fat: {self.intake.get_fat()} grams")
+        fat_lbl = Label(self._frame, textvariable=self.fat_var, bg="white", fg="Black", font=self._font)
+        fat_lbl.grid(row=8, column=1, sticky="nsew", **self.padding)
+        self.fat_ent_var = StringVar()
+        self.fat_ent = Entry(self._frame, textvariable=self.fat_ent_var, font=self._font)
+        self.fat_ent_var.set("Insert fat")
+        self.fat_ent.grid(row=8, column=2)
+        add_btn = Button(self._frame, text="+", font=self._font, command=lambda:[self._add_del_fat(True), self._writing_to_file()])
+        add_btn.grid(row=8, column=3, sticky="nsew")
+        del_btn = Button(self._frame, text="-", font=self._font, command=lambda:[self._add_del_fat(False), self._writing_to_file()])
+        del_btn.grid(row=8, column=4, sticky="nsew")
+        self.fat_ent.bind("<Button-1>", lambda x:[self._reset_field()])
+
+    def _nutrition_calorie_handling(self):
+        self.calorie_var = StringVar()
+        self.calorie_var.set(f"Calories: {self.intake._total_calorie_intake()}")
+        calorie_lbl = Label(self._frame, textvariable=self.calorie_var, bg="white", fg="Black", font=self._font)
+        calorie_lbl.grid(row=9, column=1, sticky="nsew", **self.padding)
 
     def _user_screen_init(self):
         self._frame = Frame(self._root)
@@ -171,7 +231,10 @@ class UserUI:
         self._calculator_handling()
         self._weight_show()
         self._protein_info_handling()
-
+        self._carbohydrates_info_handling()
+        self._fat_info_handling()
+        self._nutrition_calorie_handling()
+    
     def _password_change(self):
         answer = self._popask_win()
         if answer:

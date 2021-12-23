@@ -103,6 +103,24 @@ class Register:
         radio_btn_male.grid(row=9, column=1, columnspan=3, **self.padding, sticky="nsew")
         radio_btn_female.grid(row=10, column=1, columnspan=3, **self.padding, sticky="nsew")
 
+    def _date_handle(self):
+        date_of_birth_lbl = tk.Label(self._frame, text="Date of Birth", font=self._font)
+        date_of_birth_lbl.grid(row=8, column=0, sticky="nsew", **self.padding)
+        self._date_btn = tk.Button(
+        self._frame, text="Choose Date of Birth", command=self._fetch_date, font=self._font)
+        self._date_btn.bind("<Return>", lambda button_click:[self._fetch_date()])
+        self._date_btn.grid(row=8, column=1, **self.padding, sticky="nsew")
+    
+    def _screen_buttons(self):
+        login_btn = tk.Button(
+            self._frame, text="Change to login Screen", command=self._login_screen, font=self._font)
+        login_btn.bind("<Return>", lambda button_click:[self._login_screen()])
+        login_btn.grid(row=12, column=0, **self.padding, sticky="nsew")
+        register_btn = tk.Button(
+            self._frame, text="Register", command=self._savedata, font=self._font)
+        register_btn.bind("<Return>", lambda button_click:[self._savedata()])
+        register_btn.grid(row=12, column=1, **self.padding, sticky="nsew")
+
     def _register_screen(self):
         self._frame = tk.Frame(master=self._root)
         self._space = tk.Label(self._frame, text="     ", font=self._font)
@@ -111,20 +129,12 @@ class Register:
         self._fetch_surname()
         self._fetch_email()
         self._fetch_passwords()
+        self._date_handle()
         self._fetch_gender()
         self._fetch_height()
-        date_of_birth_lbl = tk.Label(self._frame, text="Date of Birth", font=self._font)
-        date_of_birth_lbl.grid(row=8, column=0, sticky="nsew", **self.padding)
-        self._date_btn = tk.Button(
-            self._frame, text="Choose Date of Birth", command=self._fetch_date, font=self._font)
-        self._date_btn.grid(row=8, column=1, **self.padding, sticky="nsew")
-        login_btn = tk.Button(
-            self._frame, text="Change to login Screen", command=self._login_screen, font=self._font)
-        login_btn.grid(row=12, column=0, **self.padding, sticky="nsew")
-        register_btn = tk.Button(
-            self._frame, text="Register", command=self._savedata, font=self._font)
-        register_btn.grid(row=12, column=1, **self.padding, sticky="nsew")
-
+        self._screen_buttons()
+       
+    
     def _savedata(self):
         name = self._name_entry.get()
         surname = self._surname_entry.get()

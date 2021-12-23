@@ -70,6 +70,7 @@ class LoginScreen:
             command=self._show_register_view,
             font=self._font)
         btn_register.grid(row=4, column=1, sticky="nsew", **self.padding)
+        btn_register.bind("<Return>", lambda button_click: [self._show_register_view()])
 
     def _initialize(self):
         self._frame = tk.Frame(master=self._root)

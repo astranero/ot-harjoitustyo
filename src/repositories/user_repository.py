@@ -11,10 +11,8 @@ def create_user_table():
             dateOfBirth NOT NULL,
             gender NOT NULL,
             height NOT NULL,
-            nutrient_data TEXT DEFAULT "",
             update_timestamp DATE DEFAULT CURRENT_TIMESTAMP
             )"""
-
 
 def create_weight_table():
     return """CREATE TABLE IF NOT EXISTS Weights (
@@ -95,11 +93,13 @@ class DatabaseTools:
     def _database_drop_it(self):
         self.cur.execute("DROP TABLE IF EXISTS Users")
         self.cur.execute("DROP TABLE IF EXISTS Weights")
+        self.cur.execute("DROP ")
         self.connection.commit()
 
     def _database_create_tables(self):
         self.cur.execute(create_user_table())
         self.cur.execute(create_weight_table())
+        self.cur.execute(create_weight_table)
         self.connection.commit()
 
     def database_init(self):
