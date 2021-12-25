@@ -38,11 +38,12 @@ __Change to login Screen__
 ## Käyttäjänäkymän selostus
 
 Käyttäjänäkymässä painamalla __change password__ voidaan vaihtaa salasana ja painamalla __Delete Account__ poistaa käyttäjätili. Näiden painaminen käynnistää pop-up ikkunan, jonka avulla varmistetaan toiminta. 
-__Log out__ kirjaa meidät ulos aloitusnäkymään.
-__Add weight__ lisää halutun painon tietokantaan.
-__Delete weight__ poistaa painon tietokannasta.
-__Track__ käynnistää matplotlib modulin avulla toteutetun ikkunan, jonka avulla seurataan painon muutosta.
-Painamalla __Calculator__ siirrytään laskin-näkymään.
+
+- __Log out__ kirjaa meidät ulos aloitusnäkymään.
+- __Add weight__ lisää halutun painon tietokantaan.
+- __Delete weight__ poistaa painon tietokannasta.
+- __Track__ käynnistää matplotlib modulin avulla toteutetun ikkunan, jonka avulla seurataan painon muutosta.
+- Painamalla __Calculator__ siirrytään laskin-näkymään.
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kayttaja_nakyma.png" width=760>
 
