@@ -4,7 +4,9 @@ Projektin viimeisin lähdekoodi saadaan valitsemalla Assets-osion alapuolelta So
 
 ## Konfigurointi
 
-Käyttäjän tietojen tallentamiseen käytettävän tiedoston nimi on alustettu merkkijonolla "Softfit", mutta se voidaan muuttaa halutessaan database_connection.py tiedostossa. Tekstitiedostoon records.txt tallennetaan käyttäjän päivänaikana asettamat proteiini-, hiilihydraatti ja rasvamäärät csv-tiedostona. 
+Käyttäjän tietojen tallentamiseen käytettävän tiedoston nimi on alustettu merkkijonolla "Softfit", mutta se voidaan muuttaa halutessaan database_connection.py tiedostossa. 
+
+Tekstitiedostoon records.txt tallennetaan käyttäjän päivänaikana asettamat proteiini-, hiilihydraatti ja rasvamäärät csv-tiedostona. 
 Tallentamiseen käytettävä tietokannat luodaaan automaattisesti database-hakemistoon, jos sitä ei ole jo valmiiksi siinä.
 
 ## Ohjelman käynnistäminen. 
