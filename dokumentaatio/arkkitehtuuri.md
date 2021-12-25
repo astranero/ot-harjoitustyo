@@ -105,7 +105,7 @@ Käyttäjänäkymässä on myös painike käyttäjän poistamiseen "Delete Accou
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/mathplotframe.png" width=760>
 
-## OHjelman rakenteeseen jääneet heikoudet
+## Ohjelman rakenteeseen jääneet heikoudet
 
 ### Sovelluslogiikka
 
