@@ -28,12 +28,12 @@ Kirjautuminen tapahtuu syöttämällä uniikki sähköposti ja salasana, jonka j
 
 ## Rekisteröityminen
 
-__Create User__ painikkeen avulla pystytään luomaan käyttäjän sovellukselle. Tämä siirtää meidät kirjautumisnäkymään.
+__Create User__ painikkeen avulla pystytään luomaan käyttäjä sovellukselle. Tämä siirtää meidät rekisteröitymisnäkymään.
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rekisteroityminen.png" width=760>
 
-Täyttämällä vaaditut kentät ohjeiden mukaisesti ja painamalla __Register__ saadaan luotua käyttäjä. Tämän jälkeen päästään takaisin aloitusnäkymään painammalla 
-__Change to login Screen__ 
+Täyttämällä vaaditut kentät ohjeiden mukaisesti ja painamalla __Register__ saadaan luotua käyttäjä, minkä jälkeen kirjautuminen tilille tapahtuu automaattisesti ja päästään käyttäjänäkymään.
+Toisaalta, jos ei haluta tehdä käyttäjää, niin painamalla __Change to login Screen__ päästään takaisin aloitusnäkymään. 
 
 ## Käyttäjänäkymän selostus
 
