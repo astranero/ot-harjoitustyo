@@ -27,6 +27,7 @@ Painamalla "Login" voi kirjautua sisään sovellukseen.
 - [x] Käyttäjä pystyy lisäämään oman sukupuolensa, pituudensa ja painonsa
 - [x] Painon mukana tallennetaan päivämäärä, jolloin se on lisätty.
 - [x] Taulukko, josta näkyy painon kehitys kuvaajana.
+- [x] Käyttäjä voi lisätä proteiini-, hiilihydraatti- ja rasvamäärät sekä nähdä näiden yhteenlaskettu kalorimäärä.
 - [x] Käyttäjä voi laskea lepokalorikulutuksensa (BMR, Basal Metabolic Rate)
 - [x] Käyttäjä voi laskea päivän aikaisen energian kulutuksensa (TDEE, Total Daily Energy Expenditure) 
 - [x] Käyttäjä voi poistaa tilinsä
@@ -39,7 +40,6 @@ Nämä toiminnallisuudet saatetaan lisätä vielä tulevaisuudessa.
 - Kommentti-toiminnallisuus
 - BMI laskuri
 - Veden tarve laskuri
-- Calorie laskuri
 
 
 
