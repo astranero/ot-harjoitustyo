@@ -3,17 +3,14 @@
 ## Sovelluksen tarkoitus
 
 
-Sovelluksen avulla käyttäjän on mahdollista laskea kalorin liittyviä ominaisuuksia, kuten proteiinin, hiilihydraatin ja rasvan kalorimäärää. Myös lisäämään oman painon sovellukseen ja seuraamaan painon muutosta. 
+Sovelluksen avulla käyttäjän on mahdollista seurata ja laskea kalorin liittyviä ominaisuuksia, kuten proteiini-, hiilihydraatti- ja rasvamäärää sekä näiden yhteenlaskettua kalorimäärää. Käyttäjä pystyy lisämään myös oman painon sovellukseen ja seuraamaan painon muutosta. Käyttäjätietojen perusteella laskurilla on myös toiminnallisuus laskea Basal Metabolic Rate ja Total daily energy expenditure. 
 Sovellusta voi käyttää vain rekisteröitynyt käyttäjä, joista jokaisen yksityiset tiedot on turvassa toisilta käyttäjiltä. 
-
-## Käyttäjät 
-
-Sovellukselle saatetaan lisätä administration käyttäjä, joka pystyy poistamaan epäasialliset postaukset ja tarvittaessa antamaan käyttäjälle postauskiellon.
 
 ## Käyttöliittymäluonnos 
 
 Sovelluksella on usea näkymä. 
-Ensin ennen kirjautumista käyttäjälle aukeaa ikkuna, jossa näkyvät napit "Register" ja "Login". Painamalla "Register" käyttäjä voi tehdä käyttäjätilin uuteen aukeavaan ikkunaan.
+Ensin ennen kirjautumista käyttäjälle aukeaa ikkuna, jossa näkyvät napit "Register" ja "Login". 
+Painamalla "Register" käyttäjä voi tehdä käyttäjätilin uuteen aukeavaan ikkunaan.
 Rekisteröitymisessä vaaditaan "Email id", "Password", "Rewrite Password" ja "Date of Birth" 
 Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Password". Painamalla "Login" voi kirjautua sisään sovellukseen.
 
@@ -32,7 +29,7 @@ Tämän jälkeen täyttämällä ensimmäisen taulukon taulut "Email id" ja "Pas
 - [x] Käyttäjä voi kirjautua ulos tilistä
 
 ## Toteuttamatta jääneet toiminnallisuudet
-
+Nämä toiminnallisuudet saatetaan lisätä vielä tulevaisuudessa.
 - Historia ravintoaineille
 - Postaus-palsta
 - Kommentti-toiminnallisuus
