@@ -53,10 +53,12 @@ Pakkauksessa repositories olevat luokat RecordService ja DatabaseTools huolehtiv
 
 Sovellus tallentaa records.txt tiedostoon vain käyttäjän päivän aikana syöttämät proteiini-, hiilihydraatti- ja rasvamäärät sekä näiden tietojen seulomiseen käyttäjän sähköposti ja tietojen tallentamisen aika.
 Tallennus CSV-tiedostoon tapahtuu formaatissa:
-...
+
+---
 account@gmail.com;2021-12-25 17:24:29.484410;12;13;14 
 epkka@hotmail.com;2021-12-25 17:24:29.484410;112;13;4 
-...
+---
+
 , eli käyttäjän sähköpostiosoitteen, päivämäärän, proteiinimäärän, hiilihydraattimäärän ja rasvamäärän. Kentät erotetaan toisistaan puolipisteellä.
 
 Käyttäjät sekä käyttäjän henkilökohtaiset tiedot, kuten etunimi, sukunimi, syntymäaika, pituus yms, tallennetaan Softfit.db tietokantaan tauluun Users ja käyttäjän painot tauluun Weights.
