@@ -2,7 +2,7 @@ from tkinter import Button, Label, OptionMenu, StringVar, Tk, Frame, Toplevel, c
 import tkinter as tk
 from tkinter.messagebox import showerror
 import services.calculator_service as calculator_service
-import services.intake_record_service as intake_record_service
+import repositories.intake_record_repository as intake_record_repository
 import repositories.user_repository as user_repo
 
 
@@ -14,7 +14,7 @@ class CalculatorScreen:
         self._user_view = user_view
         self._datatools = user_repo.DatabaseTools()
         self._calculator = calculator_service.Calculator()
-        self._usser = intake_record_service.RecordService(self._email)
+        self._usser = intake_record_repository.RecordService(self._email)
         self.bmr = None
         self.framesec = None
         self._leanmass = None
@@ -125,18 +125,23 @@ class CalculatorScreen:
         self._var = StringVar(self._allframe)
         self.label = Label(self._allframe, textvariable=self._var, font=self._font).grid(
             row=1, column=1, sticky="nsew", **self.padding)
-        Button(self._allframe, text="Calculate BMR", font=self._font, command=lambda: [xcommand(), self._button_tdee()]).grid(
-            row=2, column=0, sticky="nsew", **self.padding)
+        cal_btn = Button(self._allframe, text="Calculate BMR", font=self._font,
+                         command=lambda: [xcommand(), self._button_tdee()])
+        cal_btn.bind("<Return>", lambda click: [
+                     xcommand(), self._button_tdee()])
+        cal_btn.grid(row=2, column=0, sticky="nsew", **self.padding)
 
     def _button_tdee(self):
         tdee_btn = Button(self._allframe, text="Continue to TDEE Calculation",
                           command=lambda: self._total_expenditure_frame(self._allframe), font=self._font)
+        tdee_btn.bind(
+            "<Return>", lambda click: self._total_expenditure_frame(self._allframe))
         tdee_btn.grid(row=2, column=1, **self.padding)
 
     def _tdee_calculation(self):
         activity_level = self._activity_level.get()
-        self._tdee_var.set(self._calculator.total_daily_energy_expenditure(
-            self.bmr, activity_level))
+        self._tdee_var.set(
+            f"""{self._calculator.total_daily_energy_expenditure(self.bmr, activity_level)} kcal/ per""")
 
     def _total_expenditure_frame(self, frame):
         self._frame_expend = frame
@@ -167,12 +172,15 @@ class CalculatorScreen:
         menu = OptionMenu(self._frame, self._choosed_var, *options, command=lambda x: [
             self._span_suitable_screen()])
         menu.grid(row=4, column=0, sticky="nsew", **self.padding)
+        menu.bind("Return", lambda x: [self._span_suitable_screen()])
         menu.config(font=self._font)
 
     def _initialize(self):
         self._frame = Frame(master=self._root)
         goback_btn = Button(self._frame, text="Go back", command=lambda: [self._user_view(
             self._email, self._password)], font=self._font)
+        goback_btn.bind("<Return>", lambda click: [
+                        self._user_view(self._email, self._password)])
         goback_btn.grid(row=0, column=0, sticky="nsew", **self.padding)
         self._framesec = Frame(master=self._frame)
         self._basal_frame()

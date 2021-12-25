@@ -11,6 +11,11 @@ except sqlite3.Error as e:
         CONN.close()
     print("Error has occured:", e)
 
+try:
+    csv_file = os.path.join(directory_name, "database", "records.txt")
+except FileNotFoundError:
+    pass
+
 
 def return_connection():
     try:
@@ -19,3 +24,7 @@ def return_connection():
         return None
     except sqlite3.Error as error:
         return error
+
+
+def return_file_path():
+    return csv_file

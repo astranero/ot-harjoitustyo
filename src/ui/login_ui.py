@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import constants, messagebox
-from tkinter import font
 import repositories.user_repository as tools
 
 

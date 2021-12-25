@@ -46,7 +46,10 @@ class Register:
         self._choose_btn = tk.Button(
             self._new_win, text="Choose", command=lambda: [self._get_date(), self._destroy_date_screen()], font=self._font)
         self._choose_btn.grid(row=1, column=0, **self.padding, sticky="nsew")
-        self._choose_btn.bind("<Return>", lambda click:[self._get_date(), self._destroy_date_screen()])
+        self._new_win.protocol("WM_DELETE_WINDOW", lambda: [
+                               self._destroy_date_screen()])
+        self._choose_btn.bind("<Return>", lambda click: [
+                              self._get_date(), self._destroy_date_screen()])
 
     def _fetch_name(self):
         name_lbl = tk.Label(self._frame, text="First name", font=self._font)

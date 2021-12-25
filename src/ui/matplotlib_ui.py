@@ -1,5 +1,5 @@
-from tkinter import *
 from services.user_service import UserService
+from tkinter import *
 import tkinter
 import matplotlib
 from matplotlib.figure import Figure
@@ -33,8 +33,11 @@ class MatplotlibUI:
         canvas = FigureCanvasTkAgg(figure, self._frame)
         canvas.draw()
         canvas.get_tk_widget().grid(row=1, column=0, sticky="nsew", **self.padding)
-        tkinter.Button(self._frame, text="Close",
-                       command=self._destroy, font=self._font).grid(row=0, column=0, **self.padding)
+        close_btn = Button(self._frame, text="Close",
+                           command=self._destroy, font=self._font)
+
+        close_btn.bind("<Return>", lambda click: [self._destroy()])
+        close_btn.grid(row=0, column=0, **self.padding)
 
     def _destroy(self):
         self._frame.destroy()

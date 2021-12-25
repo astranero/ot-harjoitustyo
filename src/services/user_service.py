@@ -5,6 +5,8 @@ from repositories.user_repository import DatabaseTools
 
 class UserService:
     def __init__(self):
+        """Luokka instanssi, joka käsittelee käyttäjän haluamia toiminnallisuuksia, kuten salasanan vaihtamista.
+        """
         self._datatools = DatabaseTools()
         self._password1 = None
         self._password2 = None
@@ -12,11 +14,18 @@ class UserService:
         self._password = None
 
     def user_delete(self, email, password):
+        """Metodi, joka poistaa käyttäjän.
+
+        Args:
+            email (String): Käyttäjän sähköposti
+            password (String): Käyttäjän salasana
+        """
         fun_email = email
         fun_password = password
         self._datatools.delete_user(fun_email, fun_password)
 
     def change_password(self, in_email, password, in_password1, in_password2):
+        """Metodi, jonka avulla voidaan vaihtaa käyttäjän salasana"""
         self._password1 = in_password1
         self._password2 = in_password2
         email = in_email
@@ -29,10 +38,26 @@ class UserService:
         return False
 
     def gender_check(self, gender):
+        """Tarkistaa, että käyttäjä on syöttänyt sukupuolen.
+
+        Args:
+            gender (String): käyttäjän sukupuoli
+
+        Returns:
+            Boolean: Palauttaa True, jos sukupuoli on ilmoitettu.
+        """
         var = bool(gender in ("male", "female"))
         return var
 
     def name_check(self, name):
+        """Tarkistaa, että etunimi ja sukunimi syötteet ovat oikein.
+
+        Args:
+            name (String): joko etunimi tai sukunimi
+
+        Returns:
+            Boolean: Jos nimi koostuu akkosista, niin palauttaa True.
+        """
         error = True
         letters = string.ascii_letters + " "
         for i in name:
@@ -43,6 +68,15 @@ class UserService:
         return error
 
     def fetch_weights_to_frame(self, email):
+        """Memotid, joka vastaanottaa DatabaseTools-oliolta
+        käyttäjän painot, joita käsittelee ja välittää eteenpäin.
+
+        Args:
+            email (String): Käyttäjän sähköpostiosoite
+
+        Returns:
+            Tuple: Palauttaa monikkon, jonka sisällä on paino- ja päivämäärä-lista.
+        """
         weight_list = []
         date_list = []
         datacontent = self._datatools.fetch_all_from_weights(email)
@@ -52,6 +86,15 @@ class UserService:
         return (weight_list, date_list)
 
     def email_check(self, in_email):
+        """Funktio, joka tarkistaa, että sähköpostia ei ole olemassa
+        ja sähköpostiosoitteen formaatti on oikein.
+
+        Args:
+            in_email: Käyttäjän sähköpostiosoite
+
+        Returns:
+            Boolean: Palauttaa False, jos formaatti on oikein.
+        """
         email = in_email
         error = False
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'

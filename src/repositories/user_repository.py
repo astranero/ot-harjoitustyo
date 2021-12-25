@@ -44,11 +44,8 @@ class DatabaseTools:
     def fetch_user_info(self, email):
         return self.cur.execute("SELECT * FROM Users Where email=?", (email,)).fetchone()
 
-    def fetch_updatedate(self, email):
-        return self.cur.execute("""SELECT update_timestamp
-        FROM Users WHERE email=?""", (email,)).fetchone()[0]
-
     def insert_weight(self, email, weight):
+        """Käyttäjän painon lisääminen Weights-tauluun"""
         self.cur.execute(
             """INSERT INTO Weights (user_id, weight)
             VALUES ((SELECT id FROM Users WHERE email=?), ?)""",
@@ -56,6 +53,7 @@ class DatabaseTools:
         self.connection.commit()
 
     def delete_weight(self, email):
+        """Poistaa käyttäjän viimeksi lisänneen painon Weights-taulusta"""
         self.cur.execute(
             """DELETE FROM Weights WHERE id =
             (SELECT id FROM Weights WHERE user_id=(SELECT id FROM Users WHERE email=?)
@@ -64,14 +62,22 @@ class DatabaseTools:
         self.connection.commit()
 
     def fetch_weight(self, email):
-        return self.cur.execute(
-            """SELECT weight FROM Users
-            LEFT JOIN Weights ON Users.id = Weights.user_id
-            WHERE email = ? ORDER BY weight_timestamp DESC LIMIT 1""",
-            [email]
-        ).fetchone()[0]
+        """Noutaa päivämäärän perusteella käyttäjän viimeksi lisäämän painon"""
+        try:
+            weight = self.cur.execute(
+                """SELECT weight FROM Users
+                LEFT JOIN Weights ON Users.id = Weights.user_id
+                WHERE email = ? ORDER BY weight_timestamp DESC LIMIT 1""",
+                [email]
+            ).fetchone()[0]
+            if weight is None:
+                return 0
+            return weight
+        except:
+            pass
 
     def fetch_all_from_weights(self, email):
+        """Noutaa kaikki käyttäjän painot"""
         return self.cur.execute(
             """SELECT weight, strftime('%d.%m.%Y ', weight_timestamp)
             FROM Users LEFT JOIN Weights ON Users.id = Weights.user_id
@@ -80,13 +86,23 @@ class DatabaseTools:
         ).fetchall()
 
     def update_password(self, email, password, new_password):
+        """Päivittää käyttäjän salasanan"""
         self.cur.execute(
             """UPDATE Users SET password=?
             WHERE email=? AND password=?""",
             (new_password, email, password))
         self.connection.commit()
 
+    def delete_weights(self, email, password):
+        self.cur.execute(
+            """DELETE FROM Weights
+            WHERE user_id=(SELECT id FROM Users where email=? AND password=?)""",
+            (email, password))
+        self.connection.commit()
+
     def delete_user(self, email, password):
+        """Poistaa kaikki käyttäjän tiedot"""
+        self.delete_weights(email, password)
         self.cur.execute(
             """DELETE FROM Users
             WHERE email=? AND password=?""",
@@ -94,6 +110,9 @@ class DatabaseTools:
         self.connection.commit()
 
     def create_user(self, name, surname, email, password, date_of_birth, gender=None, height=None):
+        """ Lisää Users-tauluun uuden käyttäjätilin
+        """
+
         self.cur.execute("""INSERT INTO Users (firstname, surname, email,
         password, dateOfBirth, gender, height)
         VALUES (?, ?, ?, ?, ?, ?,?)""",
@@ -111,5 +130,8 @@ class DatabaseTools:
         self.connection.commit()
 
     def database_init(self):
+        """Alustaa tietokannan
+
+        """
         self._database_drop_it()
         self._database_create_tables()

@@ -4,7 +4,7 @@ from tkinter.messagebox import askyesno, showinfo
 from repositories.user_repository import DatabaseTools
 from services.user_service import UserService
 from ui.matplotlib_ui import MatplotlibUI
-from services.intake_record_service import RecordService
+from repositories.intake_record_repository import RecordService
 
 
 class UserUI:
@@ -13,7 +13,7 @@ class UserUI:
         self._email = email
         self._password = password
         self._datatools = DatabaseTools()
-        self._nutrition_function = NutritionFunctionality
+        self._nutrition_function = NutritionFunctionalityUI
         self._user_serv = UserService()
         self._login_view = login_view
         self._calculator_view = calculator_view
@@ -45,10 +45,11 @@ class UserUI:
 
     def _track_handling(self):
         self._track_btn = Button(
-            self._frame, text="Track", font=self._font, command=lambda: [self._mathplo._mathplotframe()])
+            self._frame, text="Track", font=self._font,
+            command=lambda: [self._mathplo._mathplotframe()])
         self._track_btn.grid(row=5, column=1, sticky="nsew", **self.padding)
-        self._track_btn.bind("<Return>", lambda: [
-                             self._mathplo._mathplotframe()])
+        self._track_btn.bind("<Return>",
+                             lambda click: [self._mathplo._mathplotframe()])
 
     def _weight_reset_field(self):
         self._weight_ent.delete(0, "end")
@@ -60,19 +61,21 @@ class UserUI:
         self._weightvar.set(" Insert weight here!")
         self._weight_ent.grid(row=4, column=1, sticky="nsew", **self.padding)
         self._update_weight = Button(
-            self._frame, text="Add weight", font=self._font, command=lambda: [self._weight_update(), self._config_weight()])
-        self._update_weight.bind("<Return>", lambda: [
-                                 self._weight_update(), self._config_weight()])
+            self._frame, text="Add weight", font=self._font,
+            command=lambda: [self._weight_update(), self._config_weight()])
+        self._update_weight.bind("<Return>",
+                                 lambda click: [self._weight_update(), self._config_weight()])
         self._update_weight.grid(
             row=3, column=1, sticky="nsew", **self.padding)
         self._delete_weight = Button(
-            self._frame, text="Delete weight", font=self._font, command=lambda: [self._weight_delete(), self._config_weight()])
+            self._frame, text="Delete weight", font=self._font,
+            command=lambda: [self._weight_delete(), self._config_weight()])
         self._delete_weight.bind(
-            "<Return>", lambda x: [self._weight_delete(), self._config_weight()])
+            "<Return>", lambda click: [self._weight_delete(), self._config_weight()])
         self._delete_weight.grid(
             row=3, column=2, **self.padding, sticky="nsew")
         self._weight_ent.bind(
-            "<Button-1>", lambda x: [self._weight_reset_field()])
+            "<Button-1>", lambda click: [self._weight_reset_field()])
 
     def _weight_update(self):
         try:
@@ -113,27 +116,32 @@ class UserUI:
             self._frame, text="Delete Account", font=self._font, command=self._user_delete)
         self._delete_account_btn.grid(
             row=1, column=2, sticky="nsew", **self.padding)
-        self._delete_account_btn.bind("<Return>", self._user_delete)
+        self._delete_account_btn.bind(
+            "<Return>", lambda click: [self._user_delete()])
 
     def _calculator_handling(self):
         self._calculator_btn = Button(
-            self._frame, text="Calculator", font=self._font, command=lambda: [self._calculator_view(self._email, self._password)])
+            self._frame, text="Calculator", font=self._font,
+            command=lambda: [self._calculator_view(self._email, self._password)])
         self._calculator_btn.grid(
             row=5, column=2, sticky="nsew", **self.padding)
         self._calculator_btn.bind(
-            "<Return>", lambda: [self._calculator_view(self._email, self._password)])
+            "<Return>", lambda click: [self._calculator_view(self._email, self._password)])
 
     def _password_handling(self):
         self._password_btn = Button(
-            self._frame, text="Change password", font=self._font, command=self._password_change)
+            self._frame, text="Change password", font=self._font,
+            command=lambda: [self._password_change()])
         self._password_btn.grid(row=1, column=1, sticky="nsew", **self.padding)
-        self._password_btn.bind("<Return>", self._password_change)
+        self._password_btn.bind("<Return>", lambda click: [
+                                self._password_change()])
 
     def _logout_handling(self):
         self._logout_btn = Button(
-            self._frame, text="Log out", font=self._font, command=lambda: [self._login_view()])
+            self._frame, text="Log out", font=self._font,
+            command=lambda: [self._login_view()])
         self._logout_btn.grid(row=1, column=3, sticky="nsew", **self.padding)
-        self._logout_btn.bind("<Return>", lambda: [self._login_view()])
+        self._logout_btn.bind("<Return>", lambda click: [self._login_view()])
 
     def _user_screen_init(self):
         self._frame = Frame(self._root)
@@ -146,6 +154,10 @@ class UserUI:
         self._calculator_handling()
         self._nutrition_function(
             self._frame, self._email).initialize_functionality()
+
+    def _win_destroy(self):
+        self._password_btn["state"] = "active"
+        self._win.destroy()
 
     def _password_change(self):
         answer = self._popask_win()
@@ -169,11 +181,12 @@ class UserUI:
             self._password_entry2.grid(
                 row=2, column=2, sticky="nsew", **self.padding)
             self._pass_done_btn = Button(
-                self._win, text="Done", command=self._password_change_finalization)
+                self._win, text="Done", command=lambda: [self._password_change_finalization()])
             self._pass_done_btn.grid(
                 row=3, column=1, sticky="nsew", **self.padding)
             self._pass_done_btn.bind(
-                "<Return>", self._password_change_finalization)
+                "<Return>", lambda click: [self._password_change_finalization()])
+            self._win.protocol("WM_DELETE_WINDOW", self._win_destroy)
 
     def _password_change_finalization(self):
         first_password = self._passwordvar1.get()
@@ -187,11 +200,10 @@ class UserUI:
                 showinfo("Error", f"Passwords don't match")
         except Exception as error:
             showinfo("Error", f"Insert valid values: {error}")
-        self._win.destroy()
-        self._password_btn["state"] = "active"
+        self._win_destroy()
 
 
-class NutritionFunctionality:
+class NutritionFunctionalityUI:
     def __init__(self, root, email):
         self._email = email
         self._frame = root
@@ -231,15 +243,15 @@ class NutritionFunctionality:
         add_btn = Button(self._frame, text="+", font=self._font,
                          command=lambda: [self._add_del_protein(True), self._writing_to_file()])
         add_btn.grid(row=6, column=3, sticky="nsew")
-        add_btn.bind("<Return>", lambda: [
-                     self._add_del_protein(True), self._writing_to_file()])
-        del_btn = Button(self._frame, text="-", font=self._font, command=lambda: [
-                         self._add_del_protein(False), self._writing_to_file()])
+        add_btn.bind("<Return>",
+                     lambda click: [self._add_del_protein(True), self._writing_to_file()])
+        del_btn = Button(self._frame, text="-", font=self._font,
+                         command=lambda: [self._add_del_protein(False), self._writing_to_file()])
         del_btn.grid(row=6, column=4, sticky="nsew")
-        del_btn.bind("<Return>", lambda: [
-                     self._add_del_protein(False), self._writing_to_file()])
+        del_btn.bind("<Return>",
+                     lambda click: [self._add_del_protein(False), self._writing_to_file()])
         self.protein_ent.bind(
-            "<Button-1>", lambda x: [self._protein_reset_field()])
+            "<Button-1>", lambda click: [self._protein_reset_field()])
 
     def _add_del_carbohydrates(self, bool_var):
         try:
@@ -273,15 +285,15 @@ class NutritionFunctionality:
         add_btn = Button(self._frame, text="+", font=self._font, command=lambda: [
                          self._add_del_carbohydrates(True), self._writing_to_file()])
         add_btn.grid(row=7, column=3, sticky="nsew")
-        add_btn.bind("<Return>", lambda: [
+        add_btn.bind("<Return>", lambda click: [
                      self._add_del_carbohydrates(True), self._writing_to_file()])
         del_btn = Button(self._frame, text="-", font=self._font, command=lambda: [
-                         self._add_del_carbohydrates(False), self._writing_to_file()])
+            self._add_del_carbohydrates(False), self._writing_to_file()])
         del_btn.grid(row=7, column=4, sticky="nsew")
-        del_btn.bind("<Return>", lambda: [
-                     self._add_del_carbohydrates(False), self._writing_to_file()])
+        del_btn.bind("<Return>",
+                     lambda click: [self._add_del_carbohydrates(False), self._writing_to_file()])
         self.carbo_ent.bind(
-            "<Button-1>", lambda x: [self._carbo_reset_field()])
+            "<Button-1>", lambda click: [self._carbo_reset_field()])
 
     def _add_del_fat(self, bool_var):
         try:
@@ -314,14 +326,14 @@ class NutritionFunctionality:
         add_btn = Button(self._frame, text="+", font=self._font,
                          command=lambda: [self._add_del_fat(True), self._writing_to_file()])
         add_btn.grid(row=8, column=3, sticky="nsew")
-        add_btn.bind("<Return>", lambda: [
-                     self._add_del_fat(True), self._writing_to_file()])
+        add_btn.bind("<Return>", lambda click: [
+            self._add_del_fat(True), self._writing_to_file()])
         del_btn = Button(self._frame, text="-", font=self._font,
                          command=lambda: [self._add_del_fat(False), self._writing_to_file()])
         del_btn.grid(row=8, column=4, sticky="nsew")
-        del_btn.bind("<Return>", lambda: [
+        del_btn.bind("<Return>", lambda click: [
                      self._add_del_fat(False), self._writing_to_file()])
-        self.fat_ent.bind("<Button-1>", lambda x: [self._reset_field()])
+        self.fat_ent.bind("<Button-1>", lambda click: [self._reset_field()])
 
     def _nutrition_calorie_handling(self):
         self.calorie_var = StringVar()
