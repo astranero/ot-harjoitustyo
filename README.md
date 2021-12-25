@@ -18,6 +18,8 @@ Sovelluksella käyttäjät pystyvät laskemaan erilaisia urheiluun liittyviä as
 
 [Arkkitehtuurikuvaus](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/testausdokumentti.md)
+
 [Työaikakirjanpito](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Asennus
