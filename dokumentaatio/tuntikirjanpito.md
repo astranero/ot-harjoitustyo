@@ -19,4 +19,5 @@
 | 22.12. | 7    | Poistin User-entityn, eristin UI:n paremmin ja putsasin koodia.
 | 23.12. | 3    | Tein toisenlaisen tavan toteuttaa aineiden tallennusta, ja loin niihin toiminnallisuudet
 | 23.12. | 6    | Puhdistin koodia lintin avulla, korjasin joitakin loogisia virheitä ja muutin toteutustapoja.
-| yht    | 71.5
+| 25.12. | 4    | Kaikki kaaviot on tehty sekä muutama testi että koodin korjaus.
+| yht    | 75.5
