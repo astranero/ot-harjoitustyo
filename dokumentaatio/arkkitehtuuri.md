@@ -63,7 +63,8 @@ Käyttäjät sekä käyttäjän henkilökohtaiset tiedot, kuten etunimi, sukunim
 Tietokannan alustus tapahtuu user_repository.py-tiedostossa. 
 
 ## Päätoiminnallisuudet
-Kuvataan sovelluksen jotkut toimintalogiikat sekvenssikaavioilla.
+
+Jotkut sovelluksen toimintalogiikka sekvenssikaaviolla kuvattuna.
 
 ### Käyttäjän kirjautuminen
 
