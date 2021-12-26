@@ -19,7 +19,8 @@ Käyttäjän kirjautumisen yhteydessä tietokannoista haetaan [fetch_weight()](h
 
 ## Sovelluslogiikka
 
-Toiminnallisuuksista vastaavat luokkien UserService, EntityService, Calculator, Intake oliot.
+Toiminnallisuuksista vastaavien luokkien [UserService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py)-, [Calculator](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/calculator_service.py)-, [IntakeTrace](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/intake_trace_service.py)-oliot.
+
 Luokat tarjoavat käyttöliittymälle toimintoja metodeillaan. 
 UserService-luokan metodeja ovat esimerkiksi: 
 - `user_delete(email, password)`
@@ -27,9 +28,9 @@ UserService-luokan metodeja ovat esimerkiksi:
 - `password_check(password1, password2)`
 - `email_check(in_email)`
 
-UserService on riippuvainen DatabaseTools-luokasta, joka on käyttäjän tietojen tallentamisesta huolehtiva luokka. UserService käsittelee kirjautumiseen, rekisteröitymiseen ja käyttäjän muokkaamiseen liittyviä toiminnallisuuksia. 
+[UserService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py) on riippuvainen  [DatabaseTools](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py)-luokasta, joka on käyttäjän tietojen tallentamisesta huolehtiva luokka. UserService käsittelee kirjautumiseen, rekisteröitymiseen ja käyttäjän muokkaamiseen liittyviä toiminnallisuuksia. 
 
-Intake-luokan metodeja ovat esimerkiksi:
+IntakeTrace-luokan metodeja ovat esimerkiksi:
 - `set_protein(protein_gram)`
 - `set_fat(fat_gram)`
 - `get_protein()`
@@ -49,7 +50,7 @@ Suhteita kuvaava luokka/pakkauskaavio:
 
 
 ## Tietojen pysyväistallennus
-Pakkauksessa repositories olevat luokat RecordService ja DatabaseTools huolehtivat käyttäjän tietojen tallentamisesta. RecordService tallentaa tietoa records.txt nimiseen CSV-tiedostoon. Vastaavasti DatabaseTools tallentaa tietoa Sqlite3-tietokantaan. 
+Pakkauksessa repositories olevat luokat [RecordService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py) ja [DatabaseTools](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py) huolehtivat käyttäjän tietojen tallentamisesta. `RecordService` tallentaa tietoa records.txt nimiseen CSV-tiedostoon. Vastaavasti `DatabaseTools` tallentaa tietoa Sqlite3-tietokantaan. 
 
 Sovellus tallentaa records.txt tiedostoon vain käyttäjän päivän aikana syöttämät proteiini-, hiilihydraatti- ja rasvamäärät sekä näiden tietojen seulomiseen käyttäjän sähköposti ja tietojen tallentamisen aika.
 Tallennus CSV-tiedostoon tapahtuu formaatissa:
@@ -59,10 +60,10 @@ account@gmail.com;2021-12-25 17:24:29.484410;12;13;14
 epkka@hotmail.com;2021-12-25 17:24:29.484410;112;13;4 
 ```
 
-, eli käyttäjän sähköpostiosoitteen, päivämäärän, proteiinimäärän, hiilihydraattimäärän ja rasvamäärän. Kentät erotetaan toisistaan puolipisteellä.
+eli käyttäjän sähköpostiosoitteen, päivämäärän, proteiinimäärän, hiilihydraattimäärän ja rasvamäärän. Kentät erotetaan toisistaan puolipisteellä.
 
 Käyttäjät sekä käyttäjän henkilökohtaiset tiedot, kuten etunimi, sukunimi, syntymäaika, pituus yms, tallennetaan Softfit.db tietokantaan tauluun Users ja käyttäjän painot tauluun Weights.
-Tietokannan alustus tapahtuu user_repository.py-tiedostossa. 
+Tietokannan alustus tapahtuu [user_repository.py](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L133)-tiedostossa. 
 
 ## Päätoiminnallisuudet
 
