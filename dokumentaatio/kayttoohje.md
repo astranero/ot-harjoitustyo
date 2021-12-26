@@ -11,15 +11,15 @@ Tallentamiseen käytettävä tietokannat luodaaan automaattisesti database-hakem
 
 ## Ohjelman käynnistäminen. 
 
-Ennen käynnistämistä on asennettava riippuvuudet seuraavalla komennolla:
+- Ennen käynnistämistä on asennettava riippuvuudet seuraavalla komennolla:
 
 `poetry install`
 
-Seuraavaksi on alustettava tietokannat komennolla:
+- Seuraavaksi on alustettava tietokannat komennolla:
 
 `poetry run invoke build`
 
-Nyt ohjelma voidaan käynnistää seuraavasti:
+- Nyt ohjelma voidaan käynnistää seuraavasti:
 
 `poetry run invoke start`
 
