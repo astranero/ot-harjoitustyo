@@ -27,7 +27,7 @@ Järjestelmäntestaus on toteutettu manuaalisesti.
 #### Asennus ja konfigurointi
 
 Sovellus on asennettu ja testattu käyttöohjeen ilmoittamalla tavalla Linux-ympräristön avulla.
-Sovellusta on testattu sekä tilanteissa, jossa tiedostot ovat olleet olemassa jo valmiiksi, että tilanteessa, jossa ne on ei ole olleet olemassa. Jos tiedostoja ei ole olemassa, niin ohjelma on luoo ne itse.
+Sovellusta on testattu sekä tilanteissa, jossa tiedostot ovat olleet olemassa jo valmiiksi, että tilanteessa, jossa ne eivät ole olleet olemassa. Jos tiedostoja ei ole valmiiksi olemassa, niin ohjelma luoo ne itse.
 
 #### Toiminnallisuudet
 

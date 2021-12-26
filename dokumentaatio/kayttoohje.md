@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Projektin viimeisin lähdekoodi saadaan valitsemalla Assets-osion alapuolelta Source code (zip).
+Projektin viimeisin [lähdekoodi](https://github.com/Neroniuoso/ot-harjoitustyo/releases/tag/3rd_release) saadaan valitsemalla Assets-osion alapuolelta Source code (zip).
 
 ## Konfigurointi
 
@@ -12,12 +12,15 @@ Tallentamiseen käytettävä tietokannat luodaaan automaattisesti database-hakem
 ## Ohjelman käynnistäminen. 
 
 Ennen käynnistämistä on asennettava riippuvuudet seuraavalla komennolla:
+
 `poetry install`
 
 Seuraavaksi on alustettava tietokannat komennolla:
+
 `poetry run invoke build`
 
 Nyt ohjelma voidaan käynnistää seuraavasti:
+
 `poetry run invoke start`
 
 ## Kirjautuminen
