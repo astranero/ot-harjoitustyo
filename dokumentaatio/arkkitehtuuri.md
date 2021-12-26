@@ -78,7 +78,9 @@ Kun käyttäjä on kirjoittanut sähköpostiosoitteensa ja salasanansa, ja sen j
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Login.png" width=760>
 
 Painikkeen painamiseen reagoiva tapahtumankäsittelijä kutsuu DatabaseTools-olion metodeja check_email ja check_password sähköposti ja salasana parametreilla. check_email tarkistaa, onko sähköposti olemassa tietokannassa, jos se on olemassa, niin palautetaan sähköposti.
-Vastaavast check_password vahvistaa tarkistamalla, että myös salasana on olemassa. Jos sähköpostia tai salasanaa ei ole olemassa, niin metodit palauttavat None-objektin. Jos sekä sähköposti että salasana on olemassa, niin vaihdetaan näkymäksi `UserUI`. joka on sovelluksen päänäkymä. Päänäkymälle renderöityy kirjautuneen käyttäjät nykyinen paino ja päivän aikana syödyt ravintoaineet.
+Vastaavast check_password vahvistaa tarkistamalla, että myös salasana on olemassa.
+
+Jos sähköpostia tai salasanaa ei ole olemassa, niin metodit palauttavat None-objektin. Jos sekä sähköposti että salasana on olemassa, niin vaihdetaan näkymäksi `UserUI`. joka on sovelluksen päänäkymä. Päänäkymälle renderöityy kirjautuneen käyttäjät nykyinen paino ja päivän aikana syödyt ravintoaineet.
 
 ### Uuden käyttäjän luominen
 Jos halutaan luoda käyttäjä, niin se tehdään painamalla painiketta "Create User", päästään käyttäjän luomisnäkymään. Kun käyttäjän tiedot on syötetty ja painetaan painiketta "Register", niin kontrolli siirtyy seuraavasti:
@@ -87,6 +89,7 @@ Jos halutaan luoda käyttäjä, niin se tehdään painamalla painiketta "Create 
 
 Tapahtumankäsittelijä kutsuu `UserService`-olion metodeja tarkistamaan käyttäjän syöttämät tiedot. 
 Näitä metodeja ovat esimerkiksi name_check_handling, joka ottaa parametrikseen nimen, ja email_check_handling, joka tarkistaa sähköpostin formaatin oikeellisuuden. email_check_handling tarkistaa myös kutsumalla `DatabaseTools-olion` metodia email_check, että sähköpostiosoite on uniikki, eli sitä ei löydy tietokannasta.
+
 Kun kaikki käyttäjän syötteet on tarkistettu kutsutaan `DatabaseTools`-olion metodia create_user, jonka parametreina ovat etunimi, sukunimi, sähköpostiosoite, salasana, syntymäaika, sukupuoli ja pituus. Tämän jälkeen käyttäjänäkymä vaihdetaan päänäkymäksi, eli `UserUI`-olio alustetaan.
 
 ### Basal metabolic rate -laskeminen
@@ -95,8 +98,13 @@ Calculator-näkymässä valinta vaihtoehtoista riippuen kontrolli siirtyy eri ta
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Calculator.png" width=760>
 
 Tässä painamalla Calculator kutsutaan `UI`-luokan _show_calculator_view metodia, joka vaihtaa näkymän laskimen näkymäksi.
-Tämän jälkeen valitsemalla OptionMenu:sta vaihtoehtoisen tavan laskea BMR, eli tässä tapauksessa arvioimalla lihasmassan, niin saadaan `Calculator`-olion lean_body_mass_estimate metodin avulla arvioitua lihasmassa. Ennen tätä DatabaseTools-olion metodeja fetch_user_info ja fetch_weight kutsumalla lean_body_mass_estimate saa paino-, pituus- ja sukupuoliparametrit, joiden perusteella lihasmassa arvioidaan.
-Lihasmassa syötetään parametrina `Calculator`-olion bmr_count metodille, joka palauttaa bmr:n liukulukuarvona. Jos käyttäjä haluaa vielä laskea TDEE:n, niin painikkeen "Continue to TDEE Calculation" painaminen käynnistää total_daily_energy_expenditure metodin kutsun, joka ottaa parametriksi bmr:n ja aktiivisuustason. Tämän jälkeen alustetaan laskin näkymä `UI`-olion _show_calculator_view metodilla.
+Tämän jälkeen valitsemalla OptionMenu:sta vaihtoehtoisen tavan laskea BMR, eli tässä tapauksessa arvioimalla lihasmassan, niin saadaan `Calculator`-olion lean_body_mass_estimate metodin avulla arvioitua lihasmassa. 
+
+Ennen tätä DatabaseTools-olion metodeja fetch_user_info ja fetch_weight kutsumalla lean_body_mass_estimate saa paino-, pituus- ja sukupuoliparametrit, joiden perusteella lihasmassa arvioidaan.
+Lihasmassa syötetään parametrina `Calculator`-olion bmr_count metodille, joka palauttaa bmr:n liukulukuarvona. 
+
+Jos käyttäjä haluaa vielä laskea TDEE:n, niin painikkeen "Continue to TDEE Calculation" painaminen käynnistää total_daily_energy_expenditure metodin kutsun, joka ottaa parametriksi bmr:n ja aktiivisuustason. Tämän jälkeen alustetaan laskin näkymä `UI`-olion _show_calculator_view metodilla.
+
 Painike "Go Back" siirtää meidät takaisin päänäkymään metodilla _show_user_view().  
 
 ### Salasanan vaihtaminen ja käyttäjän poistaminen
@@ -105,7 +113,11 @@ Käyttäjänäkymässä painamalla "Change password" päästään vaihtamaan sal
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Change_password.png" width=760>
 
-Painamalla "Change Password" tapahtumakäsittelijän seurauksena `UserService`-olion metodi Change_password kutsutaan, joka ottaa parametriksi sähköpostin, vanhan salasanan ja käyttäjän syöttämän uuden salasanan sekä varmennuksena uuden salasanan uudelleen kirjoitettuna. Jos salasanat vastaavat toisiaan eivätkä ole tyhjä merkkijono, niin kutsumalla DatabaseTools-olion metodi update_password päivitetään salasaana. update_password metodi ottaa parametrikseen sähköpostin, vanhan salasanan ja uuden salasanan. 
+Painamalla "Change Password" tapahtumakäsittelijän seurauksena `UserService`-olion metodi Change_password kutsutaan, joka ottaa parametriksi sähköpostin, vanhan salasanan ja käyttäjän syöttämän uuden salasanan sekä varmennuksena uuden salasanan uudelleen kirjoitettuna. 
+
+Jos salasanat vastaavat toisiaan eivätkä ole tyhjä merkkijono, niin kutsumalla `DatabaseTools`-olion metodi update_password päivitetään salasaana. 
+
+update_password metodi ottaa parametrikseen sähköpostin, vanhan salasanan ja uuden salasanan. 
 Kun salasana on päivitetty, niin palautetaan `UI`-oliolle True-totuusarvo, jonka perusteella käyttäjälle ilmoitetaan salasanan päivittyneen. Tämän jälkeen ohjataan käyttäjä takaisin päänäkymään _show_user_view metodilla.
 
 Käyttäjänäkymässä on myös painike käyttäjän poistamiseen "Delete Account", jota painamalla kontrolli siirtyy seuraavasti.
