@@ -1,7 +1,7 @@
 import services.calculator_service as calculator
 
 
-class Intake:
+class IntakeTrace:
     """Luokka, joka käsittelee käyttäjän päivän aikana syömää proteiini-
     , hiilihydraatti- ja rasvamäärää sekä
     palauttaa niiden perusteella lasketun kalorimäärän.

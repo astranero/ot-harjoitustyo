@@ -1,7 +1,7 @@
 from datetime import datetime
 import csv
 import database_connection as conn
-from services.intake_trace_service import Intake
+from services.intake_trace_service import IntakeTrace
 
 
 class RecordService:
@@ -12,15 +12,15 @@ class RecordService:
             Intake(): Luokka-olio, joka alustetaan käyttäjän tiedoilla.
     """
 
-    def __init__(self, email):
+    def __init__(self, email, file_name):
         """Luokan konstruktori, joka luo uuden instanssin.
 
         Args:
             email (String): Käyttäjän sähköpostiosoite.
         """
         self._email = email
-        self._intake = Intake()
-        self.file_path = conn.return_file_path
+        self._intake = IntakeTrace()
+        self.file_path = conn.return_file_path(file_name)
 
     def write_record(self, protein, carbohydrates, fat):
         """Metodi, jonka avulla voidaan kirjoittaa records-tiedostoon
@@ -30,7 +30,7 @@ class RecordService:
             carbohydrates: hiilihydraattimäärä grammoina
             fat: rasvamäärä grammoina
         """
-        with open(self.file_path(), "a", encoding="utf-8") as file:
+        with open(self.file_path, "a", encoding="utf-8") as file:
             file.write(
                 f"{self._email};{datetime.now()};{protein};{carbohydrates};{fat} \n")
 
@@ -42,7 +42,7 @@ class RecordService:
         """
     
         data = csv.reader(
-            open(self.file_path(), "r", encoding="utf-8"), delimiter=";")
+            open(self.file_path, "r", encoding="utf-8"), delimiter=";")
         data_by_email = sorted(
             (row for row in data if row[0] == self._email))
         sorted_data = sorted(data_by_email, key=lambda row: datetime.strptime(
@@ -84,5 +84,5 @@ class RecordService:
             self.reset_records()
 
     def reset_records(self):
-        with open(self.file_path(), "w", encoding="utf-8"):
+        with open(self.file_path, "w", encoding="utf-8"):
                 pass

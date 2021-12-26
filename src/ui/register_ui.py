@@ -11,7 +11,7 @@ class Register:
         self._root = root
         self._login_screen = show_login_view
         self._user_screen = show_user_view
-        self._datatools = tools.DatabaseTools()
+        self._datatools = tools.DatabaseTools("Softfit.db")
         self.padding = {"padx": 5, "pady": 5}
         self._font = ("Roboto", 12)
         self._birthdate_entry = None

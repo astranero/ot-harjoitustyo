@@ -1,2 +1,2 @@
 from repositories.user_repository import DatabaseTools
-DatabaseTools().database_init()
+DatabaseTools("Softfit.db").database_init()

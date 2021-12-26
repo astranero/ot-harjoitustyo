@@ -1,3 +1,4 @@
+import database
 import database_connection as conn
 
 
@@ -26,8 +27,8 @@ def create_weight_table():
 
 
 class DatabaseTools:
-    def __init__(self):
-        self.connection = conn.return_connection()
+    def __init__(self, database_name):
+        self.connection = conn.return_connection(database_name)
         self.cur = self.connection.cursor()
 
     def check_email(self, email, password):

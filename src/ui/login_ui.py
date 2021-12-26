@@ -5,7 +5,7 @@ import repositories.user_repository as tools
 
 class LoginScreen:
     def __init__(self, root, show_register_view, show_user_view):
-        self._cur = tools.DatabaseTools()
+        self._cur = tools.DatabaseTools("Softfit.db")
         self._root = root
         self._email_entry = None
         self._password_entry = None

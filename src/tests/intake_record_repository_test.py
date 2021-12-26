@@ -4,7 +4,7 @@ from datetime import datetime
 class TestRecordService(unittest.TestCase):
 
     def setUp(self):
-        self.serv = RecordService("account@gmail.com")
+        self.serv = RecordService("account@gmail.com","records_test.txt")
         self.serv.reset_records()
         self.serv.write_record(12,13,14)
 

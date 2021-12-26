@@ -12,9 +12,9 @@ class CalculatorScreen:
         self._email = email
         self._password = password
         self._user_view = user_view
-        self._datatools = user_repo.DatabaseTools()
+        self._datatools = user_repo.DatabaseTools("Softfit.db")
         self._calculator = calculator_service.Calculator()
-        self._usser = intake_record_repository.RecordService(self._email)
+        self._usser = intake_record_repository.RecordService(self._email,"records.txt")
         self.bmr = None
         self.framesec = None
         self._leanmass = None

@@ -22,9 +22,14 @@ Painamalla "Login" voi kirjautua sisään sovellukseen.
 
 ## Perusversion tarjoama toiminnallisuus 
 
+#### Ennen kirjautumista
+
 - [x] Käyttäjä pystyy rekisteröitymään ja kirjautumaan sovellukseen
 - [x] Käyttäjän tunnuksen tulee olla sähköpostimuodossa ja käyttämätön. Ohjelma ilmoittaa kelvottomasta sähköpostista.
 - [x] Käyttäjä pystyy lisäämään oman sukupuolensa, pituudensa ja painonsa
+
+#### Kirjautumisen jälkeen
+
 - [x] Painon mukana tallennetaan päivämäärä, jolloin se on lisätty.
 - [x] Taulukko, josta näkyy painon kehitys kuvaajana.
 - [x] Käyttäjä voi lisätä proteiini-, hiilihydraatti- ja rasvamäärät sekä nähdä näiden yhteenlaskettu kalorimäärä.

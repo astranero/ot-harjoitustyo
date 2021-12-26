@@ -7,7 +7,7 @@ class UserService:
     def __init__(self):
         """Luokka instanssi, joka käsittelee käyttäjän haluamia toiminnallisuuksia, kuten salasanan vaihtamista.
         """
-        self._datatools = DatabaseTools()
+        self._datatools = DatabaseTools("Softfit.db")
         self._password1 = None
         self._password2 = None
         self._email = None

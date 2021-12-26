@@ -12,7 +12,7 @@ class UserUI:
         self._root = root
         self._email = email
         self._password = password
-        self._datatools = DatabaseTools()
+        self._datatools = DatabaseTools("Softfit.db")
         self._nutrition_function = NutritionFunctionalityUI
         self._user_serv = UserService()
         self._login_view = login_view
@@ -207,7 +207,7 @@ class NutritionFunctionalityUI:
     def __init__(self, root, email):
         self._email = email
         self._frame = root
-        self._entity_serv = RecordService(self._email)
+        self._entity_serv = RecordService(self._email, "records.txt")
         self.intake = self._entity_serv.user_intake_load()
         self.padding = {"padx": 5, "pady": 5}
         self._font = ("Roboto", 12)

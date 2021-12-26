@@ -1,11 +1,11 @@
 import unittest
-from services.intake_trace_service import Intake
+from services.intake_trace_service import IntakeTrace
 
 
-class TestIntakeTraceService(unittest.TestCase):
+class TestIntakeService(unittest.TestCase):
 
     def setUp(self):
-        self.mouth = Intake()
+        self.mouth = IntakeTrace()
 
     def test_get_protein(self):
         self.assertEqual(self.mouth.get_protein(), 0)

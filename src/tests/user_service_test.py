@@ -1,5 +1,6 @@
 import unittest
 from services.user_service import UserService
+from repositories.user_repository import DatabaseTools
 
 
 class TestUserService(unittest.TestCase):
@@ -8,6 +9,7 @@ class TestUserService(unittest.TestCase):
         self.service.user_delete("Pekkis@gmail.com", "1234")
 
     def test_user_delete(self):
+        DatabaseTools("Softfit_test.db").create_user("name","surname","Pekkis@gmail.com","1234","21.02.2021","male","195")
         answer = self.service.user_delete("Pekkis@gmail.com", "1234")
         if answer:
             return_value = self.service._datatools.check_email(

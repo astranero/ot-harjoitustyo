@@ -4,7 +4,7 @@ import repositories.user_repository as repository
 
 class TestDatabaseTools(unittest.TestCase):
     def setUp(self):
-        self.database = repository.DatabaseTools()
+        self.database = repository.DatabaseTools("Softfit_test.db")
         self.database.database_init()
         self.name = "Pekka"
         self.surname = "Pekkanen"
