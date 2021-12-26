@@ -14,8 +14,10 @@ Sovelluksen rakenne koostuu käyttöliittymäkerroksesta, sovelluslogiikkakerrok
 Käyttöliittymällä on useita erillisiä näkymiä.
 Sovelluksen käynnistäminen johtaa kirjautumisnäkymään. Tästä voidaan kirjautumalla siirtyä käyttäjänäkymään, josta edelleen päästään joko laskuri- tai track-näkymään. Toisaalta painamalla "Create User" siirrytään uuden käyttäjän luomiselle tarkoitettuun näkymään.
 
-Käyttöliittymä on parhaan mukaan eristetty sovelluslogiikasta. Käyttöliittymä kutsuu sekä [UserService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py)-, [Calculator](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/calculator_service.py)-luokkien että [RecordService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py)- ja [DatabaseTools](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py)-luokkien metodeja.
-Käyttäjän kirjautumisen yhteydessä tietokannoista haetaan [fetch_weight()](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L65) ja [user_intake_load()](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py#L52) metodeilla käyttäjän tiedot, jonka perusteella käyttäjänäkymä renderöidään.
+Käyttöliittymä on parhaan mukaan eristetty sovelluslogiikasta. Käyttöliittymä kutsuu sekä [UserService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py)-, [Calculator](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/calculator_service.py)-luokkien
+että [RecordService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py)- ja [DatabaseTools](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py)-luokkien metodeja.
+
+Käyttäjän kirjautumisen yhteydessä tietokannoista haetaan [fetch_weight()](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L65) ja [user_intake_load()](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py#L52) metodeilla käyttäjän tiedot, joiden perusteella käyttäjänäkymä renderöidään.
 
 ## Sovelluslogiikka
 
