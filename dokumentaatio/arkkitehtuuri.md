@@ -77,19 +77,25 @@ Kun käyttäjä on kirjoittanut sähköpostiosoitteensa ja salasanansa, ja sen j
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Login.png" width=760>
 
-kutsuu DatabaseTools metodia check_email ja che
-
+Painikkeen painamiseen reagoiva tapahtumankäsittelijä kutsuu DatabaseTools-olion metodeja check_email ja check_password sähköposti ja salasana parametreilla. check_email tarkistaa, onko sähköposti olemassa tietokannassa, jos se on olemassa, niin palautetaan sähköposti.
+Vastaavast check_password vahvistaa tarkistamalla, että myös salasana on olemassa. Jos sähköpostia tai salasanaa ei ole olemassa, niin metodit palauttavat None-objektin. Jos sekä sähköposti että salasana on olemassa, niin vaihdetaan näkymäksi `UserUI`. joka on sovelluksen päänäkymä. Päänäkymälle renderöityy kirjautuneen käyttäjät nykyinen paino ja päivän aikana syödyt ravintoaineet.
 
 ### Uuden käyttäjän luominen
 Jos halutaan luoda käyttäjä, niin se tehdään painamalla painiketta "Create User", päästään käyttäjän luomisnäkymään. Kun käyttäjän tiedot on syötetty ja painetaan painiketta "Register", niin kontrolli siirtyy seuraavasti:
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/register.png" width=760>
 
+Tapahtumankäsittelijä kutsuu `UserService`-olion metodeja tarkistamaan käyttäjän syöttämät tiedot. 
+Näitä metodeja ovat esimerkiksi name_check_handling, joka ottaa parametrikseen nimen, ja email_check_handling, joka tarkistaa sähköpostin formaatin oikeellisuuden. email_check_handling tarkistaa myös kutsumalla `DatabaseTools-olion` metodia email_check, että sähköpostiosoite on uniikki, eli sitä ei löydy tietokannasta.
+Kun kaikki käyttäjän syötteet on tarkistettu kutsutaan `DatabaseTools`-olion metodia create_user, jonka parametreina ovat etunimi, sukunimi, sähköpostiosoite, salasana, syntymäaika, sukupuoli ja pituus. Tämän jälkeen käyttäjänäkymä vaihdetaan päänäkymäksi, eli `UserUI`-olio alustetaan.
+
 ### Basal metabolic rate -laskeminen
 Calculator-näkymässä valinta vaihtoehtoista riippuen kontrolli siirtyy eri tavalla. Tässä on yksi mahdollisista tapauksista:
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Calculator.png" width=760>
 
+Tässä painamalla Calculator kutsutaan `UI`-luokan _show_calculator_view metodia, joka vaihtaa näkymän laskimen näkymäksi.
+Tämän jälkeen valitsemalla OptionMenu:sta vaihtoehtoisen tavan laskea BMR, eli tässä tapauksessa arvioimalla lihasmassan, niin saadaan `Calculator`-olion lean_body_mass_estimate metodin avulla arvioitua lihasmassa. lean_body_mass_estimate metodi kutsuu `DatabaseTools`-olion metodia fetch_user ja fetch_weight, jolla saadaan paino-, pituus- ja sukupuoliparametrit lean_body_mass_E
 
 ### Salasanan vaihtaminen ja käyttäjän poistaminen
 
