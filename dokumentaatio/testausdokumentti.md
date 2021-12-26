@@ -20,15 +20,15 @@ Sovelluksen testauksen haarautumakattavuus on 84%. Testi ei sisällä käyttäli
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/coverage.png" width=760>
 
-### Järjestelmätestaus
+## Järjestelmätestaus
 
 Järjestelmäntestaus on toteutettu manuaalisesti.
 
-#### Asennus ja konfigurointi
+### Asennus ja konfigurointi
 
 Sovellus on asennettu ja testattu käyttöohjeen ilmoittamalla tavalla Linux-ympräristön avulla.
 Sovellusta on testattu sekä tilanteissa, jossa tiedostot ovat olleet olemassa jo valmiiksi, että tilanteessa, jossa ne eivät ole olleet olemassa. Jos tiedostoja ei ole valmiiksi olemassa, niin ohjelma luoo ne itse.
 
-#### Toiminnallisuudet
+### Toiminnallisuudet
 
 Kaikki määrittelydokumentin ja käyttöohjeen ilmoittamat toiminnallisuudet on suoritettu ongelmitta. Virheelliset arvot on käsitelty niin, ettei seurauksena ole ohjelman kaatuminen. Ohjelma käsittelee virheelliset syötteet ilmoituksena käyttäjälle.
