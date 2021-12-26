@@ -7,15 +7,15 @@ Ohjelmakoodin pakkausrakenne on seuraavan kaavion mukainen:
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Pakkauskaavio.png" width=760>
 
 Sovelluksen rakenne koostuu käyttöliittymäkerroksesta, sovelluslogiikkakerroksesta  ja tallennuslogiikasta vastaavasta kerroksesta.
-ui-hakemistossa on sovelluksen käyttöliittymästä ja services-hakemistossa sovelluslogiikasta vastaava koodi. repositories-hakemisto sisältää tallentamisesta huolehtivaa koodia. 
+*ui*-hakemistossa on sovelluksen käyttöliittymästä ja *services*-hakemistossa sovelluslogiikasta vastaava koodi. *repositories*-hakemisto sisältää tallentamisesta huolehtivaa koodia. 
 
 ## Käyttöliittymä
 
 Käyttöliittymällä on useita erillisiä näkymiä.
 Sovelluksen käynnistäminen johtaa kirjautumisnäkymään. Tästä voidaan kirjautumalla siirtyä käyttäjänäkymään, josta edelleen päästään joko laskuri- tai track-näkymään. Toisaalta painamalla "Create User" siirrytään uuden käyttäjän luomiselle tarkoitettuun näkymään.
 
-Käyttöliittymä on parhaan mukaan eristetty sovelluslogiikasta. Käyttöliittymä kutsuu sekä UserService-, Calculator-luokkien että RecordService- ja DatabaseTools-luokkien metodeja.
-Käyttäjän kirjautumisen yhteydessä tietokannoista haetaan fetch_weight() ja user_intake_load() metodeilla käyttäjän tiedot, jonka perusteella käyttäjänäkymä renderöidään.
+Käyttöliittymä on parhaan mukaan eristetty sovelluslogiikasta. Käyttöliittymä kutsuu sekä [UserService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py)-, [Calculator](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/calculator_service.py)-luokkien että [RecordService](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py)- ja [DatabaseTools](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py)-luokkien metodeja.
+Käyttäjän kirjautumisen yhteydessä tietokannoista haetaan [fetch_weight()](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L65) ja [user_intake_load()](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/intake_record_repository.py#L52) metodeilla käyttäjän tiedot, jonka perusteella käyttäjänäkymä renderöidään.
 
 ## Sovelluslogiikka
 
@@ -54,10 +54,10 @@ Pakkauksessa repositories olevat luokat RecordService ja DatabaseTools huolehtiv
 Sovellus tallentaa records.txt tiedostoon vain käyttäjän päivän aikana syöttämät proteiini-, hiilihydraatti- ja rasvamäärät sekä näiden tietojen seulomiseen käyttäjän sähköposti ja tietojen tallentamisen aika.
 Tallennus CSV-tiedostoon tapahtuu formaatissa:
 
-...
+```
 account@gmail.com;2021-12-25 17:24:29.484410;12;13;14 
 epkka@hotmail.com;2021-12-25 17:24:29.484410;112;13;4 
-...
+```
 
 , eli käyttäjän sähköpostiosoitteen, päivämäärän, proteiinimäärän, hiilihydraattimäärän ja rasvamäärän. Kentät erotetaan toisistaan puolipisteellä.
 
