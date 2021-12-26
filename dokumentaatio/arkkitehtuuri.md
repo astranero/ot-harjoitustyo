@@ -95,7 +95,9 @@ Calculator-näkymässä valinta vaihtoehtoista riippuen kontrolli siirtyy eri ta
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Calculator.png" width=760>
 
 Tässä painamalla Calculator kutsutaan `UI`-luokan _show_calculator_view metodia, joka vaihtaa näkymän laskimen näkymäksi.
-Tämän jälkeen valitsemalla OptionMenu:sta vaihtoehtoisen tavan laskea BMR, eli tässä tapauksessa arvioimalla lihasmassan, niin saadaan `Calculator`-olion lean_body_mass_estimate metodin avulla arvioitua lihasmassa. lean_body_mass_estimate metodi kutsuu `DatabaseTools`-olion metodia fetch_user ja fetch_weight, jolla saadaan paino-, pituus- ja sukupuoliparametrit lean_body_mass_E
+Tämän jälkeen valitsemalla OptionMenu:sta vaihtoehtoisen tavan laskea BMR, eli tässä tapauksessa arvioimalla lihasmassan, niin saadaan `Calculator`-olion lean_body_mass_estimate metodin avulla arvioitua lihasmassa. Ennen tätä DatabaseTools-olion metodeja fetch_user_info ja fetch_weight kutsumalla lean_body_mass_estimate saa paino-, pituus- ja sukupuoliparametrit, joiden perusteella lihasmassa arvioidaan.
+Lihasmassa syötetään parametrina `Calculator`-olion bmr_count metodille, joka palauttaa bmr:n liukulukuarvona. Jos käyttäjä haluaa vielä laskea TDEE:n, niin painikkeen "Continue to TDEE Calculation" painaminen käynnistää total_daily_energy_expenditure metodin kutsun, joka ottaa parametriksi bmr:n ja aktiivisuustason. Tämän jälkeen alustetaan laskin näkymä `UI`-olion _show_calculator_view metodilla.
+Painike "Go Back" siirtää meidät takaisin päänäkymään metodilla _show_user_view().  
 
 ### Salasanan vaihtaminen ja käyttäjän poistaminen
 
@@ -103,17 +105,26 @@ Käyttäjänäkymässä painamalla "Change password" päästään vaihtamaan sal
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Change_password.png" width=760>
 
+Painamalla "Change Password" tapahtumakäsittelijän seurauksena `UserService`-olion metodi Change_password kutsutaan, joka ottaa parametriksi sähköpostin, vanhan salasanan ja käyttäjän syöttämän uuden salasanan sekä varmennuksena uuden salasanan uudelleen kirjoitettuna. Jos salasanat vastaavat toisiaan eivätkä ole tyhjä merkkijono, niin kutsumalla DatabaseTools-olion metodi update_password päivitetään salasaana. update_password metodi ottaa parametrikseen sähköpostin, vanhan salasanan ja uuden salasanan. 
+Kun salasana on päivitetty, niin palautetaan `UI`-oliolle True-totuusarvo, jonka perusteella käyttäjälle ilmoitetaan salasanan päivittyneen. Tämän jälkeen ohjataan käyttäjä takaisin päänäkymään _show_user_view metodilla.
 
 Käyttäjänäkymässä on myös painike käyttäjän poistamiseen "Delete Account", jota painamalla kontrolli siirtyy seuraavasti.
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/delete_account.png" width=760>
 
+Painike "Delete Account" kutsuu _user_delete metodia, joka kutsuu DatabaseTool-olin delete_user metodia.sekä _user_delete että delete_user metodi ottaa parametriksi sähköpostin ja salasanan. Tämän jälkeen käyttäjä ohjataan kirjautumisnäkymään _show_login_view metodilla.
+
 ### Muut toiminnallisuudet
+
+Painon lisääminen tapahtuu seuraavan kaavion mukaisesti.
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Add_weight.png" width=760>
 
+Ja painon poistaminen tapahtuu seuraavasti
+
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/delete_weight.png" width=760>
 
+Tämä kaavio näyttää, miten "Track" painikkeen siirtää kontrollia.
 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/mathplotframe.png" width=760>
 

@@ -20,4 +20,5 @@
 | 23.12. | 3    | Tein toisenlaisen tavan toteuttaa aineiden tallennusta, ja loin niihin toiminnallisuudet
 | 23.12. | 6    | Puhdistin koodia lintin avulla, korjasin joitakin loogisia virheitä ja muutin toteutustapoja.
 | 25.12. | 4    | Kaikki kaaviot on tehty sekä muutama testi että koodin korjaus.
-| yht    | 75.5
+| 26.12. | 3    | Dokumentaation tekeminen
+| yht    | 78.5
