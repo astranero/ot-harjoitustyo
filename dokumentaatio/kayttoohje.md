@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Projektin viimeisin [lähdekoodi](https://github.com/Neroniuoso/ot-harjoitustyo/releases/tag/3rd_release) saadaan valitsemalla Assets-osion alapuolelta Source code (zip).
+Projektin viimeisin [lähdekoodi](https://github.com/Neroniuoso/ot-harjoitustyo/releases/tag/viikko_7) saadaan valitsemalla Assets-osion alapuolelta Source code (zip).
 
 ## Konfigurointi
 

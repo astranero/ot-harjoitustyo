@@ -89,7 +89,7 @@ Jos halutaan luoda käyttäjä, niin se tehdään painamalla painiketta "Create 
 <img src="https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/register.png" width=760>
 
 Tapahtumankäsittelijä kutsuu `UserService`-olion metodeja tarkistamaan käyttäjän syöttämät tiedot. 
-Näitä metodeja ovat esimerkiksi [name_check](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py#L52), joka ottaa parametrikseen nimen, ja [email_check](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py#L88), joka tarkistaa sähköpostin formaatin oikeellisuuden. email_check_handling tarkistaa myös kutsumalla `DatabaseTools-olion` metodia [check_email_available(https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L42)], että sähköpostiosoite on uniikki, eli sitä ei löydy tietokannasta.
+Näitä metodeja ovat esimerkiksi [name_check](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py#L52), joka ottaa parametrikseen nimen, ja [email_check](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/services/user_service.py#L88), joka tarkistaa sähköpostin formaatin oikeellisuuden. email_check_handling tarkistaa myös kutsumalla `DatabaseTools-olion` metodia [check_email_available](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L42), että sähköpostiosoite on uniikki, eli sitä ei löydy tietokannasta.
 
 Kun kaikki käyttäjän syötteet on tarkistettu kutsutaan `DatabaseTools`-olion metodia [create_user](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L113), jonka parametreina ovat etunimi, sukunimi, sähköpostiosoite, salasana, syntymäaika, sukupuoli ja pituus. Tämän jälkeen käyttäjänäkymä vaihdetaan päänäkymäksi, eli `UserUI`-olio alustetaan.
 
@@ -104,7 +104,7 @@ Tämän jälkeen valitsemalla OptionMenu:sta vaihtoehtoisen tavan laskea BMR, el
 Ennen tätä DatabaseTools-olion metodeja [fetch_user_info](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#45) ja [fetch_weight](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/repositories/user_repository.py#L65) kutsumalla lean_body_mass_estimate saa paino-, pituus- ja sukupuoliparametrit, joiden perusteella lihasmassa arvioidaan.
 Lihasmassa syötetään parametrina `Calculator`-olion bmr_count metodille, joka palauttaa bmr:n liukulukuarvona. 
 
-Jos käyttäjä haluaa vielä laskea TDEE:n, niin painikkeen "Continue to TDEE Calculation" painaminen käynnistää total_daily_energy_expenditure metodin kutsun, joka ottaa parametriksi bmr:n ja aktiivisuustason. Tämän jälkeen alustetaan laskin näkymä `UI`-olion _show_calculator_view metodilla.
+Jos käyttäjä haluaa vielä laskea TDEE:n, niin painikkeen "Continue to TDEE Calculation" painaminen käynnistää _total_daily_energy_expenditure_ metodin kutsun, joka ottaa parametriksi bmr:n ja aktiivisuustason. Tämän jälkeen alustetaan laskin näkymä `UI`-olion __show_calculator_view_ metodilla.
 
 Painike "Go Back" siirtää meidät takaisin päänäkymään metodilla [_show_user_view](https://github.com/Neroniuoso/ot-harjoitustyo/blob/master/src/index.py#L30).  
 
